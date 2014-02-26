@@ -1,10 +1,7 @@
 package drow.view;
-
 import java.awt.Color;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
 import drow.document.DrowDocument;
 import drow.gui.DrowGui;
 import drow.manager.DrowDocumentManager;
@@ -14,10 +11,8 @@ public class DocumentView extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	private JPanel background;
-	
 	private String currentFileName;
 	private boolean changed;
-	
 	private DrowGui gui;
 	private DrowDocumentManager docManager;
 	
@@ -27,10 +22,6 @@ public class DocumentView extends JFrame {
 		
 		background = new JPanel();
 		this.add(background);
-		
-		JFrame frame = new JFrame();
-		frame.setLocationRelativeTo(null);  // *** this will center your app ***
-		
 		
 		docManager = new DrowDocumentManager(this);
 		
