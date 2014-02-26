@@ -27,7 +27,7 @@ public class DocumentView extends JFrame {
 		
 		background = new JPanel();
 		this.add(background);
-		
+		setSize( 300, 200 );
 		docManager = new DrowDocumentManager(this);
 		
 		currentFileName = "Untitled Document";

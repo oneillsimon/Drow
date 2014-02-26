@@ -64,6 +64,8 @@ public class DrowGui {
 		menuEdit = new JMenu("Edit");
 		toolBar = new JToolBar();
 		
+		
+		
 		docView.setJMenuBar(jmb);
 		docView.add(scroll,BorderLayout.CENTER);
 		docView.add(toolBar, BorderLayout.NORTH);
