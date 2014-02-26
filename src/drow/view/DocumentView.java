@@ -27,7 +27,11 @@ public class DocumentView extends JFrame {
 		
 		background = new JPanel();
 		this.add(background);
-		setSize( 300, 200 );
+		
+		JFrame frame = new JFrame();
+		frame.setLocationRelativeTo(null);  // *** this will center your app ***
+		
+		
 		docManager = new DrowDocumentManager(this);
 		
 		currentFileName = "Untitled Document";
@@ -37,8 +41,9 @@ public class DocumentView extends JFrame {
 		gui = new DrowGui(this);
 		
 		background.setBackground(Color.cyan);
+		setSize(500,500);
 		
-		this.pack();
+		
 		this.setTitle(getCurrentFileName());
 		this.setVisible(true);
 	}

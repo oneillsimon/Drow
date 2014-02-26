@@ -21,12 +21,10 @@ public class DrowDocument extends JPanel {
 	
 	public DrowDocument(JPanel view) {
 		textPane = new JTextPane();
-		
 		view.add(textPane);
 	}
 
 	public JTextPane getTextPane() {
-		
 		return textPane;
 	}
 

@@ -1,5 +1,6 @@
 package drow.gui;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
@@ -8,6 +9,7 @@ import javax.swing.ActionMap;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JScrollPane;
@@ -47,6 +49,7 @@ public class DrowGui {
 	
 	public DrowGui(DocumentView docView) {
 		
+		
 		this.docView = docView;
 		
 		Filters.setUpFilters();
@@ -65,10 +68,11 @@ public class DrowGui {
 		toolBar = new JToolBar();
 		
 		
-		
 		docView.setJMenuBar(jmb);
 		docView.add(scroll,BorderLayout.CENTER);
 		docView.add(toolBar, BorderLayout.NORTH);
+		
+		
 		
 		actionMap = docView.getDrowDocument().getActionMap();
 		actionCut = actionMap.get(DefaultEditorKit.cutAction);
@@ -208,8 +212,10 @@ public class DrowGui {
 				docView.dispose();
 			}
 		};
+
 	}
 
+	
 	public JFileChooser getFileChooser() {
 		return fileChooser;
 	}
