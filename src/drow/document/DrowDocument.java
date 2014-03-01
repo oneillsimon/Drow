@@ -1,27 +1,47 @@
 package drow.document;
 
-import java.util.ArrayList;
-
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
+import javax.swing.text.DefaultStyledDocument;
+import javax.swing.text.StyleContext;
 
-import org.apache.poi.xwpf.usermodel.XWPFDocument;
-
-import drow.view.DocumentView;
+import drow.styles.DrowStyles;
 
 public class DrowDocument extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	
-	private String title;
-	private ArrayList<DrowParagraph> paragraphs = new ArrayList<DrowParagraph>();
-	
+	private StyleContext styleContext;
+    private DefaultStyledDocument styledDocument;
 	private JTextPane textPane;
 	
+	
 	public DrowDocument(JPanel view) {
-		textPane = new JTextPane();
+		
+		new DrowStyles();
+		
+		styleContext = new StyleContext();
+		styledDocument = new DefaultStyledDocument(styleContext);
+		styleContext.addStyle("MainStyle", styleContext.getStyle(StyleContext.DEFAULT_STYLE));
+		textPane = new JTextPane(styledDocument);
+		
 		view.add(textPane);
+	}
+
+	public StyleContext getStyleContext() {
+		return styleContext;
+	}
+
+	public void setStyleContext(StyleContext styleContext) {
+		this.styleContext = styleContext;
+	}
+
+	public DefaultStyledDocument getStyledDocument() {
+		return styledDocument;
+	}
+
+	public void setStyledDocument(DefaultStyledDocument styledDocument) {
+		this.styledDocument = styledDocument;
 	}
 
 	public JTextPane getTextPane() {

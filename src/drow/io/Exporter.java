@@ -4,13 +4,16 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.StyleConstants;
 
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 
+import drow.styles.DrowStyles;
 import drow.view.DocumentView;
 
 public class Exporter {
@@ -51,8 +54,23 @@ public class Exporter {
 		XWPFDocument document = new XWPFDocument();
 		XWPFParagraph paragraph = document.createParagraph();
 		XWPFRun run = paragraph.createRun();
+		String s = "";
 		
-		run.setText(docView.getDrowDocument().getTextPane().getText());
+		for(int i = 0; i < docView.getDrowDocument().getStyledDocument().getLength(); i++) {
+			try {
+				s += docView.getDrowDocument().getStyledDocument().getText(i, 1);
+				
+				boolean b = StyleConstants.Bold instanceof AttributeSet.CharacterAttribute;
+				run.setBold(b);
+				b = false;
+				
+			} catch (BadLocationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		run.setText(s);
 		
 		try {
 			FileOutputStream output = new FileOutputStream(fileName);

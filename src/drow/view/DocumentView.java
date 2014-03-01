@@ -28,17 +28,19 @@ public class DocumentView extends JFrame {
 		background = new JPanel();
 		this.add(background);
 		
+		doc = new DrowDocument(background);
 		docManager = new DrowDocumentManager(this);
 		
 		currentFileName = "Untitled Document";
 		changed = false;
 		
-		doc = new DrowDocument(background);
+		//doc = new DrowDocument(background);
 		gui = new DrowGui(this);
 		
-		background.setBackground(Color.cyan);
+		background.setBackground(Color.GRAY);
 		
-		this.pack();
+		
+		this.setSize(500, 500);
 		this.setTitle(getCurrentFileName());
 		this.setVisible(true);
 	}
