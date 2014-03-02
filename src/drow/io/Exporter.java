@@ -1,21 +1,16 @@
 package drow.io;
 
-import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.DateFormat.Field;
-import java.util.Enumeration;
 
 import javax.swing.JTextPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.text.*;
-import javax.swing.text.html.CSS;
 
 import sl.docx.DocxEditorKit;
 
-import drow.styles.DrowStyles;
 import drow.view.DocumentView;
 
 public class Exporter {
