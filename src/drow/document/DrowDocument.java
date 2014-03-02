@@ -5,6 +5,8 @@ import javax.swing.JTextPane;
 import javax.swing.text.DefaultStyledDocument;
 import javax.swing.text.StyleContext;
 
+import sl.docx.DocxDocument;
+
 import drow.styles.DrowStyles;
 
 public class DrowDocument extends JPanel {

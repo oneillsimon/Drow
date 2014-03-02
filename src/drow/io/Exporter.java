@@ -1,17 +1,19 @@
 package drow.io;
 
+import java.awt.Color;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DateFormat.Field;
+import java.util.Enumeration;
 
+import javax.swing.JTextPane;
 import javax.swing.filechooser.FileFilter;
-import javax.swing.text.AttributeSet;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.StyleConstants;
+import javax.swing.text.*;
+import javax.swing.text.html.CSS;
 
-import org.apache.poi.xwpf.usermodel.XWPFDocument;
-import org.apache.poi.xwpf.usermodel.XWPFParagraph;
-import org.apache.poi.xwpf.usermodel.XWPFRun;
+import sl.docx.DocxEditorKit;
 
 import drow.styles.DrowStyles;
 import drow.view.DocumentView;
@@ -19,9 +21,13 @@ import drow.view.DocumentView;
 public class Exporter {
 	
 	private DocumentView docView;
+	private JTextPane textPane;
+	private StyledDocument styledDocument;
 	
 	public Exporter(DocumentView docView) {
 		this.docView = docView;
+		this.textPane = docView.getDrowDocument().getTextPane();
+		this.styledDocument = textPane.getStyledDocument();
 	}
 	
 	public void exportFile(String fileName, FileFilter fileFilter) {
@@ -44,6 +50,11 @@ public class Exporter {
 		if(fileFilter.equals(Filters.TXT)) {
 			asTxt(fileName);
 		}
+		
+		docView.setCurrentFileName(fileName);
+		docView.setTitle(fileName);
+		docView.setChanged(false);
+		docView.getDrowGui().getActionSave().setEnabled(false);
 	}
 
 	private void asDoc(String fileName) {
@@ -51,48 +62,24 @@ public class Exporter {
 	}
 
 	private void asDocx(String fileName) {
-		XWPFDocument document = new XWPFDocument();
-		XWPFParagraph paragraph = document.createParagraph();
-		XWPFRun run = paragraph.createRun();
-		String s = "";
-		
-		for(int i = 0; i < docView.getDrowDocument().getStyledDocument().getLength(); i++) {
-			try {
-				s += docView.getDrowDocument().getStyledDocument().getText(i, 1);
-				
-				boolean b = StyleConstants.Bold instanceof AttributeSet.CharacterAttribute;
-				run.setBold(b);
-				b = false;
-				
-			} catch (BadLocationException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		
-		run.setText(s);
+		textPane.setEditorKit(new DocxEditorKit());
 		
 		try {
-			FileOutputStream output = new FileOutputStream(fileName);
-			document.write(output);
-			output.close();
-		} catch(Exception e) {
+			textPane.getEditorKit().write(new FileOutputStream(fileName), styledDocument, 0, styledDocument.getLength());
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (BadLocationException e) {
 			e.printStackTrace();
 		}
 	}
 
 	private void asTxt(String fileName) {
-
 		try {
 			FileWriter writer = new FileWriter(fileName);
 			docView.getDrowDocument().getTextPane().write(writer);
 			writer.close();
-
-			docView.setCurrentFileName(fileName);
-			docView.setTitle(fileName);
-			docView.setChanged(false);
-			docView.getDrowGui().getActionSave().setEnabled(false);
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

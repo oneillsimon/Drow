@@ -10,19 +10,26 @@ import java.io.IOException;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JTextPane;
 import javax.swing.filechooser.FileFilter;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.StyledDocument;
 
-import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
-import org.apache.poi.xwpf.usermodel.*;
+import sl.docx.DocxDocument;
+import sl.docx.DocxEditorKit;
 
 import drow.view.DocumentView;
 
 public class Importer {
 	
 	private DocumentView docView;
+	private JTextPane textPane;
+	private StyledDocument styledDocument;
 	
 	public Importer(DocumentView docView) {
 		this.docView = docView;
+		this.textPane = docView.getDrowDocument().getTextPane();
+		this.styledDocument = textPane.getStyledDocument();
 	}
 	
 	public void importFile(String filePath, FileFilter fileFilter) {
@@ -56,18 +63,15 @@ public class Importer {
 	}
 
 	private void asDocx(String filePath) {
+		styledDocument = new DocxDocument();//(DocxDocument)textPane.getStyledDocument();
+		textPane.setEditorKit(new DocxEditorKit());
 		try {
-			XWPFDocument doc = new XWPFDocument(new FileInputStream(filePath));
-			XWPFWordExtractor extract = new XWPFWordExtractor(doc);
-			
-			docView.getDrowDocument().getTextPane().setText(extract.getText());
+			textPane.getEditorKit().read(new FileInputStream(filePath), styledDocument, 0);
 		} catch (FileNotFoundException e) {
-			
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			
-			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (BadLocationException e) {
 			e.printStackTrace();
 		}
 	}
