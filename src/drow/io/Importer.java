@@ -28,7 +28,7 @@ public class Importer {
 	public void importFile(String filePath, FileFilter fileFilter) {
 		
 		if(fileFilter.equals(Filters.DOC)) {
-			
+			asDoc(filePath);
 		}
 		
 		if(fileFilter.equals(Filters.DOCX)) {
@@ -36,7 +36,7 @@ public class Importer {
 		}
 
 		if(fileFilter.equals(Filters.RTF)) {
-	
+			asRtf(filePath);
 		}
 		
 		if(fileFilter.equals(Filters.TXT)) {

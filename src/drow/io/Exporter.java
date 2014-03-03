@@ -31,7 +31,7 @@ public class Exporter {
 		fileName += dFilter.getFullExtension();
 		
 		if(fileFilter.equals(Filters.DOC)) {
-			
+			asDoc(fileName);
 		}
 		
 		if(fileFilter.equals(Filters.DOCX)) {
@@ -39,7 +39,7 @@ public class Exporter {
 		}
 
 		if(fileFilter.equals(Filters.RTF)) {
-	
+			asRtf(fileName);
 		}
 		
 		if(fileFilter.equals(Filters.TXT)) {
