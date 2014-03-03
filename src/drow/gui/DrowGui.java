@@ -17,6 +17,7 @@ import javax.swing.text.DefaultEditorKit;
 
 import drow.io.Filters;
 import drow.manager.DrowDocumentManager;
+import drow.styles.DrowStyles;
 import drow.view.DocumentView;
 
 public class DrowGui {
@@ -203,7 +204,8 @@ public class DrowGui {
 			private static final long serialVersionUID = 1L;
 			
 			public void actionPerformed(ActionEvent e) {
-				docView.dispose();
+				docView.getDrowDocument().getStyledDocument().setCharacterAttributes(0, 4, DrowStyles.applyStyleItalic(), false);
+				//docView.dispose();
 			}
 		};
 	}

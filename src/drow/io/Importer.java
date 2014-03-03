@@ -11,7 +11,6 @@ import javax.swing.JTextPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.text.BadLocationException;
 
-import sl.docx.DocxDocument;
 import sl.docx.DocxEditorKit;
 import drow.view.DocumentView;
 
@@ -56,10 +55,10 @@ public class Importer {
 	}
 
 	private void asDocx(String filePath) {
-		DocxDocument doc = new DocxDocument(docView.getDrowDocument().getStyleContext());
+		//DocxDocument doc = new DocxDocument(docView.getDrowDocument().getStyleContext());
 		textPane.setEditorKit(new DocxEditorKit());
 		try {
-			textPane.getEditorKit().read(new FileInputStream(filePath), doc, 0);
+			textPane.getEditorKit().read(new FileInputStream(filePath), textPane.getStyledDocument(), 0);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -67,8 +66,6 @@ public class Importer {
 		} catch (BadLocationException e) {
 			e.printStackTrace();
 		}
-		
-		textPane.setStyledDocument(doc);
 	}
 
 	private void asTxt(String filePath) {

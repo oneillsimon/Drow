@@ -9,25 +9,26 @@ import javax.swing.JTextPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.text.*;
 
+import sl.docx.DocxDocument;
 import sl.docx.DocxEditorKit;
-
 import drow.view.DocumentView;
 
 public class Exporter {
 	
 	private DocumentView docView;
 	private JTextPane textPane;
-	private StyledDocument styledDocument;
+	private DocxDocument styledDocument;
 	
 	public Exporter(DocumentView docView) {
 		this.docView = docView;
 		this.textPane = docView.getDrowDocument().getTextPane();
-		this.styledDocument = textPane.getStyledDocument();
+		this.styledDocument = docView.getDrowDocument().getStyledDocument();
 	}
 	
 	public void exportFile(String fileName, FileFilter fileFilter) {
-		
 		DrowFileFilter dFilter = (DrowFileFilter)fileFilter;
+		
+		// TODO: check if extension exists before adding it
 		fileName += dFilter.getFullExtension();
 		
 		if(fileFilter.equals(Filters.DOC)) {
@@ -68,6 +69,7 @@ public class Exporter {
 		} catch (BadLocationException e) {
 			e.printStackTrace();
 		}
+		textPane.setStyledDocument(styledDocument);
 	}
 
 	private void asTxt(String fileName) {
