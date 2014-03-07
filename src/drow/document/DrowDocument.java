@@ -2,11 +2,9 @@ package drow.document;
 
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
-import javax.swing.text.BadLocationException;
 import javax.swing.text.StyleContext;
 
 import sl.docx.DocxDocument;
-import drow.spellchecker.DictionaryListener;
 import drow.styles.DrowStyles;
 
 public class DrowDocument extends JPanel {
@@ -17,8 +15,6 @@ public class DrowDocument extends JPanel {
     private DocxDocument styledDocument;
 	private JTextPane textPane;
 	
-	private DictionaryListener dictionaryListener;
-	
 	public DrowDocument(JPanel view) {
 		
 		new DrowStyles();
@@ -27,19 +23,7 @@ public class DrowDocument extends JPanel {
 		styledDocument = new DocxDocument(styleContext);
 		styleContext.addStyle("MainStyle", styleContext.getStyle(StyleContext.DEFAULT_STYLE));
 		textPane = new JTextPane(styledDocument);
-		dictionaryListener = new DictionaryListener(textPane);
-		//textPane.addKeyListener(dictionaryListener);
-		//textPane.setHighlighter(dictionaryListener.manager.getHighlighter());
-		
-		try {
-			styledDocument.insertString(0, "Hello", null);
-		} catch (BadLocationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		//styledDocument.setCharacterAttributes(0, 10, DrowStyles.applyStyleFontSize(1000), false);
-		
+
 		view.add(textPane);
 	}
 

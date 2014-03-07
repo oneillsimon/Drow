@@ -6,9 +6,6 @@ import java.awt.event.KeyListener;
 import java.io.IOException;
 
 import javax.swing.JTextPane;
-import javax.swing.text.AttributeSet;
-import javax.swing.text.StyleConstants;
-import javax.swing.text.StyleContext;
 
 import drow.highlighter.DrowHighlightManager;
 
@@ -19,7 +16,7 @@ public class DictionaryListener implements KeyListener {
 	JTextPane typingArea;
 	Dictionary d;
 	
-    public DrowHighlightManager manager = new DrowHighlightManager(Color.red);
+    public DrowHighlightManager highlightManager = new DrowHighlightManager(Color.red);
 	
 	public DictionaryListener(JTextPane t) {
 		this.typingArea = t;
@@ -59,7 +56,7 @@ public class DictionaryListener implements KeyListener {
         	System.out.println("\n word is: " + d.isWord(lastWord)); // "sentence"
         	
         	if(!d.isWord(lastWord)) {
-        		manager.highlight(lastWord);
+        		highlightManager.highlight(lastWord);
     			System.out.println(" this is not a word: " + lastWord);
         	}
         	
