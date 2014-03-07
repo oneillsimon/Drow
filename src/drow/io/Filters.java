@@ -33,4 +33,8 @@ public class Filters {
 	public static ArrayList<DrowFileFilter> getExtensions() {
 		return extensions;
 	}
+	
+	public static String getExtensionString(int i) {
+		return extensions.get(i).getExtension();
+	}
 }

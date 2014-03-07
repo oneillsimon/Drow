@@ -24,9 +24,7 @@ public class DocumentView extends JFrame {
 	private DrowDocument doc;
 
 	public DocumentView() {
-		
 		background = new JPanel();
-		this.add(background);
 		
 		doc = new DrowDocument(background);
 		docManager = new DrowDocumentManager(this);
@@ -34,7 +32,6 @@ public class DocumentView extends JFrame {
 		currentFileName = "Untitled Document";
 		changed = false;
 		
-		//doc = new DrowDocument(background);
 		gui = new DrowGui(this);
 		
 		background.setBackground(Color.GRAY);
@@ -65,7 +62,7 @@ public class DocumentView extends JFrame {
 		this.currentFileName = currentFileName;
 	}
 
-	public boolean isChanged() {
+	public boolean getChanged() {
 		return changed;
 	}
 

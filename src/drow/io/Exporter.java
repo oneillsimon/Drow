@@ -29,7 +29,15 @@ public class Exporter {
 		DrowFileFilter dFilter = (DrowFileFilter)fileFilter;
 		
 		// TODO: check if extension exists before adding it
-		fileName += dFilter.getFullExtension();
+		
+		String[] split = fileName.split("\\.");
+		
+		for(int i = 0; i < Filters.getExtensions().size(); i++) {
+			if(!split[split.length - 1].equals(Filters.getExtensionString(i))) {
+				fileName += dFilter.getFullExtension();
+				break;
+			}
+		}
 		
 		if(fileFilter.equals(Filters.DOC)) {
 			asDoc(fileName);
@@ -50,7 +58,7 @@ public class Exporter {
 		docView.setCurrentFileName(fileName);
 		docView.setTitle(fileName);
 		docView.setChanged(false);
-		docView.getDrowGui().getActionSave().setEnabled(false);
+		docView.setChanged(!docView.getChanged());
 	}
 
 	private void asDoc(String fileName) {

@@ -8,7 +8,7 @@ import javax.swing.text.StyleContext;
 
 public class DrowStyles {
 	
-	//styledDocument.setCharacterAttributes(0, 10, DrowStyles.applyStyleBold(true), false);
+	//styledDocument.setCharacterAttributes(0, 10, DrowStyles.applyStyleBold(), false);
 	
 	private static StyleContext styleContext;
 	
@@ -37,8 +37,8 @@ public class DrowStyles {
 		styleLeftIndent 	 = styleContext.addStyle("", null);
 		styleRightIndent 	 = styleContext.addStyle("", null);
 		styleFirstLineIndent = styleContext.addStyle("", null);
-		styleSpaceAbove 	 = styleContext.addStyle("", null);;
-		styleSpaceBelow 	 = styleContext.addStyle("", null);;
+		styleSpaceAbove 	 = styleContext.addStyle("", null);
+		styleSpaceBelow 	 = styleContext.addStyle("", null);
 		styleBold 			 = styleContext.addStyle("", null);
 		styleItalic 		 = styleContext.addStyle("", null);
 		styleUnderline 		 = styleContext.addStyle("", null);
