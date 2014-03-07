@@ -42,5 +42,6 @@
 	<classpathentry kind="lib" path="C:/Program Files/Java/docx4j-3.0.1/dependencies/xmlgraphics-commons-1.5.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Java/docx4j-3.0.1/docx4j-3.0.1.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Java/docx4j-3.0.1/docxkit.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/JTattoo-1.6.10.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
