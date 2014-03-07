@@ -25,6 +25,9 @@ public class DrowDocument extends JPanel {
 		textPane = new JTextPane(styledDocument);
 
 		view.add(textPane);
+
+		textPane = new JTextPane();
+		view.add(textPane); 
 	}
 
 	public StyleContext getStyleContext() {

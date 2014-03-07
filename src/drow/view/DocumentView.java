@@ -1,12 +1,10 @@
 package drow.view;
-
 import java.awt.Color;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
 import drow.document.DrowDocument;
 import drow.gui.DrowGui;
+import drow.gui.TabbedGUI;
 import drow.manager.DrowDocumentManager;
 
 public class DocumentView extends JFrame {
@@ -14,13 +12,11 @@ public class DocumentView extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	private JPanel background;
-	
 	private String currentFileName;
 	private boolean changed;
-	
 	private DrowGui gui;
 	private DrowDocumentManager docManager;
-	
+	private TabbedGUI tabbedGUI;
 	private DrowDocument doc;
 
 	public DocumentView() {
@@ -32,13 +28,16 @@ public class DocumentView extends JFrame {
 		currentFileName = "Untitled Document";
 		changed = false;
 		
-		gui = new DrowGui(this);
-		
 		background.setBackground(Color.GRAY);
 		
 		
-		this.setSize(500, 500);
-		this.setTitle(getCurrentFileName());
+		doc = new DrowDocument(background);
+
+		tabbedGUI = new TabbedGUI(this);
+		background.setBackground(Color.cyan);
+		
+		
+		//this.setTitle(getCurrentFileName());
 		this.setVisible(true);
 	}
 	

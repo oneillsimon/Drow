@@ -85,6 +85,12 @@ public class Exporter {
 			FileWriter writer = new FileWriter(fileName);
 			docView.getDrowDocument().getTextPane().write(writer);
 			writer.close();
+
+			docView.setCurrentFileName(fileName);
+			//docView.setTitle(fileName);
+			docView.setChanged(false);
+			//docView.getDrowGui().getActionSave().setEnabled(false);
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
