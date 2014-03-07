@@ -2,7 +2,6 @@ package drow.gui;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
-
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ActionMap;
@@ -14,7 +13,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
 import javax.swing.text.DefaultEditorKit;
-
 import drow.io.Filters;
 import drow.manager.DrowDocumentManager;
 import drow.styles.DrowStyles;
@@ -49,6 +47,7 @@ public class DrowGui {
 	
 	public DrowGui(DocumentView docView) {
 		
+		
 		this.docView = docView;
 		
 		Filters.setUpFilters();
@@ -66,16 +65,20 @@ public class DrowGui {
 		menuEdit = new JMenu("Edit");
 		toolBar = new JToolBar();
 		
+		
 		docView.setJMenuBar(jmb);
 		docView.add(scroll,BorderLayout.CENTER);
 		docView.add(toolBar, BorderLayout.NORTH);
+		
+		
 		
 		actionMap = docView.getDrowDocument().getActionMap();
 		actionCut = actionMap.get(DefaultEditorKit.cutAction);
 		actionCopy = actionMap.get(DefaultEditorKit.copyAction);
 		actionPaste = actionMap.get(DefaultEditorKit.pasteAction);
-		
+		 
 		setUpActions();
+
 		setUpMenuBar();
 		setUpFileMenu();
 		setUpEditMenu();
@@ -132,7 +135,7 @@ public class DrowGui {
 		buttonPaste.setText(null); 
 		buttonPaste.setIcon(new ImageIcon(resDirectory + "paste.gif"));
 	}
-	
+
 	private void setUpFileFilters()
 	{
 		for(int i = 0; i < Filters.getExtensions().size(); i++) {
@@ -208,8 +211,10 @@ public class DrowGui {
 				//docView.dispose();
 			}
 		};
+
 	}
 
+	
 	public JFileChooser getFileChooser() {
 		return fileChooser;
 	}
