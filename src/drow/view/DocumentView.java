@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import drow.document.DrowDocument;
 import drow.gui.DrowGui;
+import drow.gui.TabbedGUI;
 import drow.manager.DrowDocumentManager;
 
 public class DocumentView extends JFrame {
@@ -13,9 +14,9 @@ public class DocumentView extends JFrame {
 	private JPanel background;
 	private String currentFileName;
 	private boolean changed;
-	private DrowGui gui;
+	//private DrowGui gui;
 	private DrowDocumentManager docManager;
-	
+	private TabbedGUI tabbedGUI;
 	private DrowDocument doc;
 
 	public DocumentView() {
@@ -29,20 +30,20 @@ public class DocumentView extends JFrame {
 		changed = false;
 		
 		doc = new DrowDocument(background);
-		gui = new DrowGui(this);
-		
+		//gui = new DrowGui(this);
+		tabbedGUI = new TabbedGUI(this);
 		background.setBackground(Color.cyan);
 		setSize(500,500);
 		
 		
-		this.setTitle(getCurrentFileName());
+		//this.setTitle(getCurrentFileName());
 		this.setVisible(true);
 	}
 	
-	public DrowGui getDrowGui() {
-		return gui;
+	/*public DrowGui getDrowGui() {
+		return tabbedGUI;
 	}
-	
+	*/
 	public DrowDocumentManager getDrowDocumentManager() {
 		return docManager;
 	}

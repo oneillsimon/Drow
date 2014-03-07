@@ -47,7 +47,7 @@ public class Importer {
 		String fileName = split[split.length - 1];
 		
 		docView.setCurrentFileName(fileName);
-		docView.setTitle(fileName);
+		//docView.setTitle(fileName);
 		docView.setChanged(false);
 	}
 

@@ -12,12 +12,30 @@ import javax.swing.JMenuBar;
 import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
 import javax.swing.text.DefaultEditorKit;
-
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.TextArea;
+import javax.swing.BorderFactory;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextArea;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JSplitPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.plaf.*;  
+import javax.swing.plaf.metal.*; 
 import drow.io.Filters;
 import drow.manager.DrowDocumentManager;
 import drow.view.DocumentView;
 
 public class DrowGui {
+	
+	private TabbedGUI tabbedGUI;
 	
 	private DocumentView docView;
 	private DrowDocumentManager docManager;
@@ -26,10 +44,10 @@ public class DrowGui {
 	
 	private JFileChooser fileChooser;
 	private JScrollPane scroll;
-	private JMenuBar jmb;
-	private JMenu menuFile;
-	private JMenu menuEdit;
-	private JToolBar toolBar;
+	//private JMenuBar jmb;
+	//private JMenu menuFile;
+	//private JMenu menuEdit;
+	//private JToolBar toolBar;
 	private JButton buttonCut;
 	private JButton buttonCopy;
 	private JButton buttonPaste;
@@ -49,6 +67,8 @@ public class DrowGui {
 		
 		this.docView = docView;
 		
+		tabbedGUI = new TabbedGUI(this.docView);
+		
 		Filters.setUpFilters();
 		
 		resDirectory = "res/";
@@ -59,15 +79,15 @@ public class DrowGui {
 		scroll = new JScrollPane(docView.getDrowDocument().getTextPane(),
 								 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, 
 								 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		jmb = new JMenuBar();
-		menuFile = new JMenu("File");
-		menuEdit = new JMenu("Edit");
-		toolBar = new JToolBar();
+		//jmb = new JMenuBar();
+		//menuFile = new JMenu("File");
+		//menuEdit = new JMenu("Edit");
+		//toolBar = new JToolBar();
 		
 		
-		docView.setJMenuBar(jmb);
+		//docView.setJMenuBar(jmb);
 		docView.add(scroll,BorderLayout.CENTER);
-		docView.add(toolBar, BorderLayout.NORTH);
+		//docView.add(toolBar, BorderLayout.NORTH);
 		
 		
 		
@@ -75,18 +95,18 @@ public class DrowGui {
 		actionCut = actionMap.get(DefaultEditorKit.cutAction);
 		actionCopy = actionMap.get(DefaultEditorKit.copyAction);
 		actionPaste = actionMap.get(DefaultEditorKit.pasteAction);
-		
+		 
 		setUpActions();
 		
-		setUpMenuBar();
-		setUpFileMenu();
-		setUpEditMenu();
-		setUpToolBar();
-		setUpToolBarButtons();
+		//setUpMenuBar();
+		//setUpFileMenu();
+		//setUpEditMenu();
+		/*setUpToolBar();
+		setUpToolBarButtons();*/
 		setUpFileFilters();
 	}
 	
-	private void setUpMenuBar() {
+	/*private void setUpMenuBar() {
 		jmb.add(menuFile); 
 		jmb.add(menuEdit);
 	}
@@ -110,17 +130,17 @@ public class DrowGui {
 		menuEdit.getItem(0).setText("Cut");
 		menuEdit.getItem(1).setText("Copy");
 		menuEdit.getItem(2).setText("Paste");
-	}
+	}*/
 	
-	private void setUpToolBar() {
+	/*private void setUpToolBar() {
 		toolBar.add(actionNew);
 		toolBar.add(actionOpen);
 		toolBar.add(actionSave);
 		toolBar.addSeparator();
 		toolBar.setFloatable(false);
 	}
-	
-	private void setUpToolBarButtons() {
+	*/
+	/*private void setUpToolBarButtons() {
 		buttonCut = toolBar.add(actionCut);
 		buttonCopy = toolBar.add(actionCopy);
 		buttonPaste = toolBar.add(actionPaste);
@@ -134,7 +154,7 @@ public class DrowGui {
 		buttonPaste.setText(null); 
 		buttonPaste.setIcon(new ImageIcon(resDirectory + "paste.gif"));
 	}
-	
+*/	
 	private void setUpFileFilters()
 	{
 		for(int i = 0; i < Filters.getExtensions().size(); i++) {

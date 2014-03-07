@@ -71,9 +71,9 @@ public class Exporter {
 			writer.close();
 
 			docView.setCurrentFileName(fileName);
-			docView.setTitle(fileName);
+			//docView.setTitle(fileName);
 			docView.setChanged(false);
-			docView.getDrowGui().getActionSave().setEnabled(false);
+			//docView.getDrowGui().getActionSave().setEnabled(false);
 
 		} catch (IOException e) {
 			e.printStackTrace();
