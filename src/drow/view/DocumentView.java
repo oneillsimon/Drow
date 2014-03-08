@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import drow.document.DrowDocument;
 import drow.gui.TabbedGUI;
 import drow.manager.DrowDocumentManager;
+import drow.styles.DrowStyleActions;
 
 public class DocumentView extends JFrame {
 
@@ -30,6 +31,7 @@ public class DocumentView extends JFrame {
 		changed = false;
 		
 		new TabbedGUI(this);
+		new DrowStyleActions(this);
 		
 		this.setSize(500, 500);
 		this.setTitle(getCurrentFileName());
