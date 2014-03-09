@@ -2,34 +2,73 @@ package drow.styles;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.PropertyChangeListener;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
-import javax.swing.ActionMap;
 import javax.swing.text.StyledDocument;
 
+import drow.document.DrowDocument;
 import drow.view.DocumentView;
 
 public class DrowStyleActions {
 	
-	private static DocumentView docView;
 	private static StyledDocument styledDocument;
-	
-	public static Action bold;
+	private static DrowDocument document;
 	
 	public DrowStyleActions(DocumentView docView) {
-		this.docView = docView;
-		this.styledDocument = docView.getDrowDocument().getStyledDocument();
-		
-		bold = new AbstractAction() {
+		DrowStyleActions.styledDocument = docView.getDrowDocument().getPage().getStyledDocument();
+		DrowStyleActions.document = docView.getDrowDocument();
+	}
+	
+	public static Action boldAction() {
+		return new AbstractAction("B") {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				styledDocument.setCharacterAttributes(document.getLesser(),
+													  document.getDiff(),
+													  DrowStyles.applyStyleBold(),
+													  false);
+			}
+		};
+	}
+	
+	public static Action italicAction() {
+		return new AbstractAction("I") {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				styledDocument.setCharacterAttributes(document.getLesser(),
+						  							  document.getDiff(),
+						  							  DrowStyles.applyStyleItalic(),
+						  							  false);
+			}
+		};
+	}
+	
+	public static Action underlineAction() {
+		return new AbstractAction("U") {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				styledDocument.setCharacterAttributes(document.getLesser(),
+						  							  document.getDiff(),
+						  							  DrowStyles.applyStyleUnderline(),
+						  							  false);
+			}
+		};
+	}
+	
+	public static ActionListener setFontFamily(String s) {
+		return new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				styledDocument.setCharacterAttributes(DrowStyleActions.docView.getDrowDocument().getDot(),
-													  DrowStyleActions.docView.getDrowDocument().getMark() - DrowStyleActions.docView.getDrowDocument().getDot(),
-													  DrowStyles.applyStyleItalic(),
-													  false);
+				// TODO Auto-generated method stub
+				
 			}
 		};
 	}

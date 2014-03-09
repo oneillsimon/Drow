@@ -2,20 +2,28 @@ package drow.gui;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.GraphicsEnvironment;
+import java.awt.event.ActionEvent;
 
+import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.StyledDocument;
 
+import drow.document.DrowDocument;
 import drow.styles.DrowStyleActions;
+import drow.styles.DrowStyles;
 import drow.view.DocumentView;
 
 public class TabbedGUI {
 	
 	private DocumentView docView;
+	private DrowDocument document;
 	
 	private JTabbedPane tabbedPane;
 	private JSplitPane verticalSplitPane;
@@ -29,6 +37,7 @@ public class TabbedGUI {
 	public TabbedGUI(DocumentView docView) {
 		
 		this.docView = docView;
+		this.document = docView.getDrowDocument();
 
 		this.docView.setIconImage(new ImageIcon("res/drow.png").getImage());
 		this.docView.setTitle("drow");
@@ -36,7 +45,7 @@ public class TabbedGUI {
 		tabbedPane = new JTabbedPane();
 		verticalSplitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT,
 										   tabbedPane,
-										   docView.getDrowDocument().getTextPane());
+										   docView.getDrowDocument().getPage().getTextPane());
 		
 		//Instantiate panels
 		panelHome = createPanelHome();
@@ -67,17 +76,18 @@ public class TabbedGUI {
 		JButton buttonUnderline = new JButton("U");
 		
 		//Font Selection
-		String[] fonts = { "Times New Roman", "Calabri", "Helvetica", "Tahom" };
+		String[] fonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
+		//String[] fonts = { "Times New Roman", "Calabri", "Helvetica", "Tahom" };
 		JComboBox<String> fontList = new JComboBox<String>(fonts);
 
 		//Font Selection
 		String[] sizes = { "8", "10", "11", "12", "16" };
 		JComboBox<String> fontSizeList = new JComboBox<String>(sizes);
 
-
-		//NEEDS ACTION LISTENER
-		buttonBold.setAction(DrowStyleActions.bold);
-
+		buttonBold.setAction(DrowStyleActions.boldAction());
+		buttonItalic.setAction(DrowStyleActions.italicAction());
+		buttonUnderline.setAction(DrowStyleActions.underlineAction());
+		fontList.setAction(DrowStyleActions.fontFamilyNameAction(fontList.getSelectedItem().toString()));
 		
 		panel.add(fontList);
 		panel.add(fontSizeList);

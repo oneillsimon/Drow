@@ -21,8 +21,8 @@ public class Exporter {
 	
 	public Exporter(DocumentView docView) {
 		this.docView = docView;
-		this.textPane = docView.getDrowDocument().getTextPane();
-		this.styledDocument = docView.getDrowDocument().getStyledDocument();
+		this.textPane = docView.getDrowDocument().getPage().getTextPane();
+		this.styledDocument = docView.getDrowDocument().getPage().getStyledDocument();
 	}
 	
 	public void exportFile(String fileName, FileFilter fileFilter) {
@@ -83,7 +83,7 @@ public class Exporter {
 	private void asTxt(String fileName) {
 		try {
 			FileWriter writer = new FileWriter(fileName);
-			docView.getDrowDocument().getTextPane().write(writer);
+			docView.getDrowDocument().getPage().getTextPane().write(writer);
 			writer.close();
 
 			docView.setCurrentFileName(fileName);

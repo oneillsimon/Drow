@@ -15,7 +15,6 @@ import javax.swing.JToolBar;
 import javax.swing.text.DefaultEditorKit;
 import drow.io.Filters;
 import drow.manager.DrowDocumentManager;
-import drow.styles.DrowStyles;
 import drow.view.DocumentView;
 
 public class DrowGui {
@@ -47,7 +46,6 @@ public class DrowGui {
 	
 	public DrowGui(DocumentView docView) {
 		
-		
 		this.docView = docView;
 		
 		Filters.setUpFilters();
@@ -57,7 +55,7 @@ public class DrowGui {
 		fileChooser = new JFileChooser(System.getProperty("user.dir"));
 		docManager = docView.getDrowDocumentManager();
 		
-		scroll = new JScrollPane(docView.getDrowDocument().getTextPane(),
+		scroll = new JScrollPane(docView.getDrowDocument().getPage().getTextPane(),
 								 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, 
 								 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		jmb = new JMenuBar();
@@ -69,8 +67,6 @@ public class DrowGui {
 		docView.setJMenuBar(jmb);
 		docView.add(scroll,BorderLayout.CENTER);
 		docView.add(toolBar, BorderLayout.NORTH);
-		
-		
 		
 		actionMap = docView.getDrowDocument().getActionMap();
 		actionCut = actionMap.get(DefaultEditorKit.cutAction);
@@ -168,7 +164,6 @@ public class DrowGui {
 				fileChooser.setDialogTitle("Open a file");
 				
 				if(fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-					
 					String[] split = fileChooser.getSelectedFile().getName().split("\\.");
 					String filePath = fileChooser.getSelectedFile().getAbsolutePath();
 					String extension = split[split.length  -1];
@@ -207,8 +202,7 @@ public class DrowGui {
 			private static final long serialVersionUID = 1L;
 			
 			public void actionPerformed(ActionEvent e) {
-				docView.getDrowDocument().getStyledDocument().setCharacterAttributes(0, 4, DrowStyles.applyStyleItalic(), false);
-				//docView.dispose();
+				docView.dispose();
 			}
 		};
 

@@ -1,76 +1,37 @@
 package drow.document;
 
 import javax.swing.JPanel;
-import javax.swing.JTextPane;
-import javax.swing.event.CaretEvent;
-import javax.swing.event.CaretListener;
-import javax.swing.text.StyleContext;
 
-import sl.docx.DocxDocument;
-import drow.styles.DrowStyleActions;
-import drow.styles.DrowStyles;
-
-public class DrowDocument extends JPanel implements CaretListener {
+public class DrowDocument extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	
-	private StyleContext styleContext;
-    private DocxDocument styledDocument;
-	private JTextPane textPane;
-	
-	private int dot;
-	private int mark;
+	private DrowPage page;
+	private DrowCaretListener listener;
 	
 	public DrowDocument(JPanel view) {
-		
-		new DrowStyles();
-		
-		styleContext = new StyleContext();
-		styledDocument = new DocxDocument(styleContext);
-		styleContext.addStyle("MainStyle", styleContext.getStyle(StyleContext.DEFAULT_STYLE));
-		textPane = new JTextPane(styledDocument);
-
-		view.add(textPane);
-
-		textPane = new JTextPane();
-		view.add(textPane); 
+		page = new DrowPage(this);
+		listener = new DrowCaretListener();
+		page.getTextPane().addCaretListener(listener);
 	}
 	
-	@Override
-	public void caretUpdate(CaretEvent e) {
-		this.dot = e.getDot();
-		this.mark = e.getDot();
-	}
-
-	public StyleContext getStyleContext() {
-		return styleContext;
-	}
-
-	public void setStyleContext(StyleContext styleContext) {
-		this.styleContext = styleContext;
-	}
-
-	public DocxDocument getStyledDocument() {
-		return styledDocument;
-	}
-
-	public void setStyledDocument(DocxDocument styledDocument) {
-		this.styledDocument = styledDocument;
-	}
-	
-	public JTextPane getTextPane() {
-		return textPane;
-	}
-
-	public void setTextPane(JTextPane textPane) {
-		this.textPane = textPane;
+	public DrowPage getPage() {
+		return page;
 	}
 	
 	public int getDot() {
-		return dot;
+		return listener.getDot();
 	}
 	
 	public int getMark() {
-		return mark;
+		return listener.getMark();
+	}
+	
+	public int getLesser() {
+		return listener.getLesser();
+	}
+	
+	public int getDiff() {
+		return listener.getDiff();
 	}
 }

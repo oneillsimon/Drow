@@ -21,7 +21,7 @@ public class Importer {
 	
 	public Importer(DocumentView docView) {
 		this.docView = docView;
-		this.textPane = docView.getDrowDocument().getTextPane();
+		this.textPane = docView.getDrowDocument().getPage().getTextPane();
 	}
 	
 	public void importFile(String filePath, FileFilter fileFilter) {
@@ -55,7 +55,6 @@ public class Importer {
 	}
 
 	private void asDocx(String filePath) {
-		//DocxDocument doc = new DocxDocument(docView.getDrowDocument().getStyleContext());
 		textPane.setEditorKit(new DocxEditorKit());
 		try {
 			textPane.getEditorKit().read(new FileInputStream(filePath), textPane.getStyledDocument(), 0);
@@ -69,10 +68,9 @@ public class Importer {
 	}
 
 	private void asTxt(String filePath) {
-		
 		try {
 			FileReader reader = new FileReader(filePath);
-			docView.getDrowDocument().getTextPane().read(reader, null);
+			docView.getDrowDocument().getPage().getTextPane().read(reader, null);
 			reader.close();
 		} catch (IOException e) {
 			Toolkit.getDefaultToolkit().beep();

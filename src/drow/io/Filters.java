@@ -1,8 +1,6 @@
 package drow.io;
 import java.util.ArrayList;
 
-
-
 public class Filters {
 	public static DrowFileFilter DOC = new DrowFileFilter("doc", "Microsoft Word 97/2000/XP/2003");
 	public static DrowFileFilter DOCX = new DrowFileFilter("docx", "Microsoft Word 2007/2010");
@@ -11,7 +9,6 @@ public class Filters {
 	
 	private static ArrayList<DrowFileFilter> extensions = new ArrayList<DrowFileFilter>();
 	
-	//
 	public static void setUpFilters() {
 		extensions.add(DOC);
 		extensions.add(DOCX);
@@ -20,7 +17,6 @@ public class Filters {
 	}
 	
 	public static DrowFileFilter getFilterFromString(String s) {
-
 		for(int i = 0; i < extensions.size(); i++) {
 			if(extensions.get(i).getExtension().equals(s)) {
 				return extensions.get(i);
