@@ -5,8 +5,8 @@ import javax.swing.JPanel;
 
 import drow.document.DrowDocument;
 import drow.gui.TabbedGUI;
+import drow.io.Filters;
 import drow.manager.DrowDocumentManager;
-import drow.styles.DrowStyleActions;
 import drow.styles.DrowStyles;
 
 public class DocumentView extends JFrame {
@@ -23,6 +23,9 @@ public class DocumentView extends JFrame {
 	private DrowDocument doc;
 
 	public DocumentView() {
+		
+		Filters.setUp();
+		
 		background = new JPanel();
 		
 		doc = new DrowDocument(background);
@@ -32,8 +35,6 @@ public class DocumentView extends JFrame {
 		changed = false;
 		
 		new TabbedGUI(this);
-		new DrowStyles();
-		new DrowStyleActions(this);
 		
 		this.setSize(500, 500);
 		this.setTitle(getCurrentFileName());

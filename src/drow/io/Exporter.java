@@ -9,6 +9,9 @@ import javax.swing.JTextPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.text.*;
 
+import org.docx4j.openpackaging.exceptions.InvalidFormatException;
+import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
+
 import sl.docx.DocxDocument;
 import sl.docx.DocxEditorKit;
 import drow.view.DocumentView;
@@ -98,5 +101,14 @@ public class Exporter {
 
 	private void asRtf(String fileName) {
 
+	}
+	
+	private void test() {
+		 try {
+			WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage.createPackage();
+		} catch (InvalidFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

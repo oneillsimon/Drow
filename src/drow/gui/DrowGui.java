@@ -48,7 +48,7 @@ public class DrowGui {
 		
 		this.docView = docView;
 		
-		Filters.setUpFilters();
+		Filters.setUp();
 		
 		resDirectory = "res/";
 		

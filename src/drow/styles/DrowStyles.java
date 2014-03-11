@@ -10,44 +10,23 @@ public class DrowStyles {
 	
 	//styledDocument.setCharacterAttributes(0, 10, DrowStyles.applyStyleBold(), false);
 	
-	private static StyleContext styleContext;
+	private static StyleContext styleContext = new StyleContext();
 	
-	private static Style styleFontFamily;
-	private static Style styleFontSize;
-	private static Style styleLeftIndent;
-	private static Style styleRightIndent;
-	private static Style styleFirstLineIndent;
-	private static Style styleSpaceAbove;
-	private static Style styleSpaceBelow;
-	private static Style styleBold;
-	private static Style styleItalic;
-	private static Style styleUnderline;
-	private static Style styleStrikeThrough;
-	private static Style styleSuperscript;
-	private static Style styleSubscript;
-	private static Style styleForegroundColor;
-	private static Style styleBackgroundColor;
-	
-	public DrowStyles() {
-		
-		styleContext = new StyleContext();
-		
-		styleFontFamily 	 = styleContext.addStyle("", null);
-		styleFontSize 	 	 = styleContext.addStyle("", null);
-		styleLeftIndent 	 = styleContext.addStyle("", null);
-		styleRightIndent 	 = styleContext.addStyle("", null);
-		styleFirstLineIndent = styleContext.addStyle("", null);
-		styleSpaceAbove 	 = styleContext.addStyle("", null);
-		styleSpaceBelow 	 = styleContext.addStyle("", null);
-		styleBold 			 = styleContext.addStyle("", null);
-		styleItalic 		 = styleContext.addStyle("", null);
-		styleUnderline 		 = styleContext.addStyle("", null);
-		styleStrikeThrough 	 = styleContext.addStyle("", null);
-		styleSuperscript 	 = styleContext.addStyle("", null);
-		styleSubscript 		 = styleContext.addStyle("", null);
-		styleForegroundColor = styleContext.addStyle("", null);
-		styleBackgroundColor = styleContext.addStyle("", null);
-	}
+	private static Style styleFontFamily	  = styleContext.addStyle("", null);
+	private static Style styleFontSize		  = styleContext.addStyle("", null);
+	private static Style styleLeftIndent	  = styleContext.addStyle("", null);
+	private static Style styleRightIndent	  = styleContext.addStyle("", null);
+	private static Style styleFirstLineIndent = styleContext.addStyle("", null);
+	private static Style styleSpaceAbove	  = styleContext.addStyle("", null);
+	private static Style styleSpaceBelow	  = styleContext.addStyle("", null);
+	private static Style styleBold			  = styleContext.addStyle("", null);
+	private static Style styleItalic		  = styleContext.addStyle("", null);
+	private static Style styleUnderline		  = styleContext.addStyle("", null);
+	private static Style styleStrikeThrough	  = styleContext.addStyle("", null);
+	private static Style styleSuperscript	  = styleContext.addStyle("", null);
+	private static Style styleSubscript		  = styleContext.addStyle("", null);
+	private static Style styleForegroundColor = styleContext.addStyle("", null);
+	private static Style styleBackgroundColor = styleContext.addStyle("", null);
 	
 	public static Style applyStyleFontFamily(String s) {
 		DrowStyleConstants.FONT_FAMILY = s;
