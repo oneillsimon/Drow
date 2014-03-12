@@ -22,6 +22,17 @@ public class DrowPage {
 		doc.add(textPane); 
 	}
 	
+	public DrowPage(DrowDocument doc, DocxDocument styledDocument) {
+		styleContext = new StyleContext();
+		this.styledDocument = styledDocument;
+		styleContext.addStyle("MainStyle", styleContext.getStyle(StyleContext.DEFAULT_STYLE));
+		textPane = new JTextPane(this.styledDocument);
+
+		textPane = new JTextPane();
+		textPane.setStyledDocument(this.styledDocument);
+		doc.add(textPane); 
+	}
+	
 	public StyleContext getStyleContext() {
 		return styleContext;
 	}
@@ -36,13 +47,14 @@ public class DrowPage {
 
 	public void setStyledDocument(DocxDocument styledDocument) {
 		this.styledDocument = styledDocument;
+		this.textPane.setStyledDocument(styledDocument);
 	}
 	
 	public JTextPane getTextPane() {
 		return textPane;
 	}
 
-	public void setTextPane(JTextPane textPane) {
-		this.textPane = textPane;
+	public void setTextPane(JTextPane readObject) {
+		this.textPane = readObject;
 	}
 }

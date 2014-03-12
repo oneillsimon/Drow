@@ -8,6 +8,7 @@ public class Filters {
 	public static DrowFileFilter DOCX = new DrowFileFilter("docx", "Microsoft Word 2007/2010");
 	public static DrowFileFilter TXT = new DrowFileFilter("txt", "Text");
 	public static DrowFileFilter RTF = new DrowFileFilter("rtf", "Rich Text Format");
+	public static DrowFileFilter DROW = new DrowFileFilter("drow", "Drow word file");
 	
 	private static ArrayList<DrowFileFilter> extensions = new ArrayList<DrowFileFilter>();
 	
@@ -16,6 +17,7 @@ public class Filters {
 		extensions.add(DOCX);
 		extensions.add(TXT);
 		extensions.add(RTF);
+		extensions.add(DROW);
 	}
 	
 	public static DrowFileFilter getFilterFromString(String s) {

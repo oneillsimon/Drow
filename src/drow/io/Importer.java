@@ -5,13 +5,17 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTextPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.StyledDocument;
 
+import sl.docx.DocxDocument;
 import sl.docx.DocxEditorKit;
+import drow.document.DrowDocument;
 import drow.view.DocumentView;
 
 public class Importer {
@@ -40,6 +44,10 @@ public class Importer {
 		
 		if(fileFilter.equals(Filters.TXT)) {
 			asTxt(filePath);
+		}
+		
+		if(fileFilter.equals(Filters.DROW)) {
+			asDrow(filePath);
 		}
 		
 		String[] split = filePath.split("\\\\");
@@ -81,5 +89,21 @@ public class Importer {
 	private void asRtf(String fileName) {
 
 	}
-
+	
+	private void asDrow(String fileName) {
+		try {
+			ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName));
+			try {
+				docView = new DocumentView((DocxDocument)in.readObject());
+				System.out.println("I'm here");
+				in.close();
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

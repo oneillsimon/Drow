@@ -4,13 +4,11 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 import javax.swing.JTextPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.text.*;
-
-import org.docx4j.openpackaging.exceptions.InvalidFormatException;
-import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
 
 import sl.docx.DocxDocument;
 import sl.docx.DocxEditorKit;
@@ -58,6 +56,10 @@ public class Exporter {
 			asTxt(fileName);
 		}
 		
+		if(fileFilter.equals(Filters.DROW)) {
+			asDrow(fileName);
+		}
+
 		docView.setCurrentFileName(fileName);
 		docView.setTitle(fileName);
 		docView.setChanged(false);
@@ -103,11 +105,14 @@ public class Exporter {
 
 	}
 	
-	private void test() {
-		 try {
-			WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage.createPackage();
-		} catch (InvalidFormatException e) {
-			// TODO Auto-generated catch block
+	private void asDrow(String fileName) {
+		try {
+			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fileName));
+			out.writeObject(styledDocument);
+			out.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
