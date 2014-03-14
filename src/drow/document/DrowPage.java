@@ -3,6 +3,7 @@ package drow.document;
 import javax.swing.JTextPane;
 import javax.swing.text.StyleContext;
 
+import drow.spellchecker.DictionaryListener;
 import sl.docx.DocxDocument;
 
 public class DrowPage {
@@ -10,6 +11,8 @@ public class DrowPage {
 	private StyleContext styleContext;
     private DocxDocument styledDocument;
 	private JTextPane textPane;
+	
+	private DictionaryListener dictionaryListener;
 	
 	public DrowPage(DrowDocument doc) {
 		styleContext = new StyleContext();
@@ -19,7 +22,10 @@ public class DrowPage {
 
 		textPane = new JTextPane();
 		textPane.setStyledDocument(styledDocument);
-		doc.add(textPane); 
+		doc.add(textPane);
+		
+		dictionaryListener = new DictionaryListener(textPane);
+		textPane.addKeyListener(dictionaryListener);
 	}
 	
 	public DrowPage(DrowDocument doc, DocxDocument styledDocument) {

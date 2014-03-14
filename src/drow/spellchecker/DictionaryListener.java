@@ -16,11 +16,12 @@ public class DictionaryListener implements KeyListener {
 	JTextPane typingArea;
 	Dictionary d;
 	
-    public DrowHighlightManager highlightManager = new DrowHighlightManager(Color.red);
+    public DrowHighlightManager highlightManager;
 	
 	public DictionaryListener(JTextPane t) {
 		this.typingArea = t;
-		
+		highlightManager = new DrowHighlightManager(typingArea, Color.red);
+
 		try {
 			this.d = new Dictionary();
 		} catch (IOException e) {
@@ -56,13 +57,9 @@ public class DictionaryListener implements KeyListener {
         	System.out.println("\n word is: " + d.isWord(lastWord)); // "sentence"
         	
         	if(!d.isWord(lastWord)) {
-        		highlightManager.highlight(lastWord);
-    			System.out.println(" this is not a word: " + lastWord);
+        		highlightManager.highlight(0, lastWord.length());
         	}
         	
-        	if (lastWord.matches("\\W")) {
-        		// the last word is not a word
-        	}
 			if (d.isWord(lastWord)) {
 				System.out.println("\n WORDDDD Exists"); // "sentence"
 			}

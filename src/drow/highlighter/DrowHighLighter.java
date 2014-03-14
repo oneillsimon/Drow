@@ -11,8 +11,8 @@ public class DrowHighLighter extends DefaultHighlighter {
 		this.highlightPainter = highlightPainter;
 	}
 	
-	public Object addHighlight(int p0, int p1) throws BadLocationException {
-		return addHighlight(p0, p1, highlightPainter);
+	public Object addHighlight(int offset, int length) throws BadLocationException {
+		return addHighlight(offset, length, highlightPainter);
 	}
 	
 	public void setDrawsLayeredHighlights(boolean b) {

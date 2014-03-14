@@ -2,6 +2,7 @@ package drow.highlighter;
 
 import java.awt.Color;
 
+import javax.swing.JTextPane;
 import javax.swing.text.BadLocationException;
 
 public class DrowHighlightManager {
@@ -9,15 +10,16 @@ public class DrowHighlightManager {
 	private DrowHighlightPainter highlightPainter;
 	private DrowHighLighter highlighter;
 	
-	public DrowHighlightManager(Color color) {
+	public DrowHighlightManager(JTextPane textPane, Color color) {
 		highlightPainter = new DrowHighlightPainter(color);
 		highlighter = new DrowHighLighter(highlightPainter);
+		textPane.setHighlighter(highlighter);
 	}
 	
 	//TODO: take in start and end index of word
-	public void highlight(String text) {
+	public void highlight(int offset, int length) {
 		try {
-			highlighter.addHighlight(0, text.length());
+			highlighter.addHighlight(offset, length);
 		} catch (BadLocationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
