@@ -12,11 +12,11 @@ public class DrowHighLighter extends DefaultHighlighter {
 	}
 	
 	public Object addHighlight(int offset, int length) throws BadLocationException {
-		return addHighlight(offset, length, highlightPainter);
+		return super.addHighlight(offset, offset + length, highlightPainter);
 	}
 	
 	public void setDrawsLayeredHighlights(boolean b) {
-		super.setDrawsLayeredHighlights(b);
+		super.setDrawsLayeredHighlights(true);
 	}
 
 }

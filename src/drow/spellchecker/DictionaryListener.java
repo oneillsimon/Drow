@@ -53,7 +53,9 @@ public class DictionaryListener implements KeyListener {
 			        	lastWord = lastWord.toLowerCase();
 			        	
 			        	if(!d.isWord(lastWord)) {
-			        		highlightManager.highlight(typingArea.getText().lastIndexOf(lastWord), lastWord.length());
+			        		//System.out.println(typingArea.getText().lastIndexOf(lastWord));
+			        		System.out.println(lastWord.length());
+			        		//highlightManager.highlight(typingArea.getText().lastIndexOf(lastWord), lastWord.length());
 			        	}
 					}
 				};

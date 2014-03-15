@@ -16,12 +16,10 @@ public class DrowHighlightManager {
 		textPane.setHighlighter(highlighter);
 	}
 	
-	//TODO: take in start and end index of word
 	public void highlight(int offset, int length) {
 		try {
 			highlighter.addHighlight(offset, length);
 		} catch (BadLocationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
