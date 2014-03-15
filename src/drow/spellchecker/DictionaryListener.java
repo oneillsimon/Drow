@@ -35,8 +35,6 @@ public class DictionaryListener implements KeyListener {
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		// if back key hit we do not run the spell checker
 	    if(e.getKeyCode() == e.VK_BACK_SPACE) {  
 	    	// do nothing
 	    } else {
