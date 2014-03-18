@@ -104,10 +104,13 @@ public class MyDictionaryListener implements DocumentListener, CaretListener {
 					}
 				} else {
 					if (!wordFinished) {
+						if(word.equals(""))
+							return;
+						
 						word = word.substring(0, word.length() - 1);
 					} else {
 						word = "";
-						word = word.substring(0, word.length() - 1);
+						//word = word.substring(0, word.length() - 1);
 						wordFinished = false;
 					}
 				}
