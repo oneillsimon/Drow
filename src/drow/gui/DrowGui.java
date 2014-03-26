@@ -202,7 +202,7 @@ public class DrowGui {
 			private static final long serialVersionUID = 1L;
 			
 			public void actionPerformed(ActionEvent e) {
-				docView.dispose();
+				System.exit(0);
 			}
 		};
 

@@ -1,10 +1,12 @@
 package drow.document;
 
 import javax.swing.JTextPane;
+import javax.swing.text.BadLocationException;
 import javax.swing.text.StyleContext;
 
 import drow.spellchecker.DictionaryListener;
 import drow.spellchecker.MyDictionaryListener;
+import drow.styles.DrowStyles;
 import sl.docx.DocxDocument;
 
 public class DrowPage {
