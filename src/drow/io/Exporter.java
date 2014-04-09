@@ -22,12 +22,19 @@ public class Exporter {
 	
 	public Exporter(DocumentView docView) {
 		this.docView = docView;
-		this.textPane = docView.getDrowDocument().getPage().getTextPane();
+		this.textPane = docView.getDrowDocument().getPage();
 		this.styledDocument = docView.getDrowDocument().getPage().getStyledDocument();
 	}
 	
 	public void exportFile(String fileName, FileFilter fileFilter) {
-		DrowFileFilter dFilter = (DrowFileFilter)fileFilter;
+		
+		DrowFileFilter dFilter;
+		
+		try {
+			dFilter = (DrowFileFilter)fileFilter;
+		} catch(Exception e) {
+			dFilter = Filters.DROW;
+		}
 		
 		// TODO: check if extension exists before adding it
 		
@@ -40,23 +47,23 @@ public class Exporter {
 			}
 		}
 		
-		if(fileFilter.equals(Filters.DOC)) {
+		if(dFilter.equals(Filters.DOC)) {
 			asDoc(fileName);
 		}
 		
-		if(fileFilter.equals(Filters.DOCX)) {
+		if(dFilter.equals(Filters.DOCX)) {
 			asDocx(fileName);
 		}
 
-		if(fileFilter.equals(Filters.RTF)) {
+		if(dFilter.equals(Filters.RTF)) {
 			asRtf(fileName);
 		}
 		
-		if(fileFilter.equals(Filters.TXT)) {
+		if(dFilter.equals(Filters.TXT)) {
 			asTxt(fileName);
 		}
 		
-		if(fileFilter.equals(Filters.DROW)) {
+		if(dFilter.equals(Filters.DROW)) {
 			asDrow(fileName);
 		}
 
@@ -88,7 +95,7 @@ public class Exporter {
 	private void asTxt(String fileName) {
 		try {
 			FileWriter writer = new FileWriter(fileName);
-			docView.getDrowDocument().getPage().getTextPane().write(writer);
+			docView.getDrowDocument().getPage().write(writer);
 			writer.close();
 
 			docView.setCurrentFileName(fileName);

@@ -4,6 +4,8 @@ import javax.swing.JTextField;
 
 public class IntTextField extends JTextField {
 	
+	private static final long serialVersionUID = 1L;
+
 	public IntTextField(int defval, int size) {
 		super("" + defval, size);
 	}

@@ -1,10 +1,14 @@
 package drow.tables;
+
 import java.util.ArrayList;
 
 import javax.swing.text.*;
 
 public class TableDocument extends DefaultStyledDocument {
-    public static final String ELEMENT_NAME_TABLE = "table";
+	
+	private static final long serialVersionUID = 1L;
+	
+	public static final String ELEMENT_NAME_TABLE = "table";
     public static final String ELEMENT_NAME_ROW = "row";
     public static final String ELEMENT_NAME_CELL = "cell";
     public static final String PARAM_CELL_WIDTH = "cell-width";
@@ -17,7 +21,7 @@ public class TableDocument extends DefaultStyledDocument {
         try {
             SimpleAttributeSet attrs = new SimpleAttributeSet();
 
-            ArrayList tableSpecs = new ArrayList();
+            ArrayList<ElementSpec> tableSpecs = new ArrayList<ElementSpec>();
             tableSpecs.add(new ElementSpec(attrs, ElementSpec.EndTagType)); //close paragraph tag
 
             SimpleAttributeSet tableAttrs = new SimpleAttributeSet();
@@ -42,7 +46,7 @@ public class TableDocument extends DefaultStyledDocument {
         }
     }
 
-    protected void fillRowSpecs(ArrayList tableSpecs, int rowCount, int[] colWidths) {
+    protected void fillRowSpecs(ArrayList<ElementSpec> tableSpecs, int rowCount, int[] colWidths) {
         SimpleAttributeSet rowAttrs = new SimpleAttributeSet();
         rowAttrs.addAttribute(ElementNameAttribute, ELEMENT_NAME_ROW);
         for (int i = 0; i < rowCount; i++) {
@@ -57,7 +61,7 @@ public class TableDocument extends DefaultStyledDocument {
 
     }
 
-    protected void fillCellSpecs(ArrayList tableSpecs, int[] colWidths) {
+    protected void fillCellSpecs(ArrayList<ElementSpec> tableSpecs, int[] colWidths) {
         for (int i = 0; i < colWidths.length; i++) {
             SimpleAttributeSet cellAttrs = new SimpleAttributeSet();
             cellAttrs.addAttribute(ElementNameAttribute, ELEMENT_NAME_CELL);

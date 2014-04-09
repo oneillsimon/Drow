@@ -1,12 +1,16 @@
 package drow.styles;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.Style;
+import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
 import drow.document.DrowDocument;
@@ -28,6 +32,8 @@ public class DrowStyleActionManager {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
+				@SuppressWarnings("unchecked")
 				JComboBox<String> comboBox = (JComboBox<String>)e.getSource();
 				Object selectedItem = comboBox.getSelectedItem();
 				styledDocument.setCharacterAttributes(document.getLesser(),
@@ -44,6 +50,8 @@ public class DrowStyleActionManager {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
+				@SuppressWarnings("unchecked")
 				JComboBox<String> comboBox = (JComboBox<String>)e.getSource();
 				Object selectedItem = comboBox.getSelectedItem();
 				styledDocument.setCharacterAttributes(document.getLesser(),
@@ -143,7 +151,7 @@ public class DrowStyleActionManager {
 	}
 	
 	public Action strikeThroughAction() {
-		return new AbstractAction() {
+		return new AbstractAction("t") {
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -154,7 +162,7 @@ public class DrowStyleActionManager {
 	}
 	
 	public Action superScriptAction() {
-		return new AbstractAction() {
+		return new AbstractAction("^") {
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -165,7 +173,7 @@ public class DrowStyleActionManager {
 	}
 	
 	public Action subScriptAction() {
-		return new AbstractAction() {
+		return new AbstractAction("v") {
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -176,23 +184,86 @@ public class DrowStyleActionManager {
 	}
 	
 	public Action foregroundColorAction() {
-		return new AbstractAction() {
+		return new AbstractAction("fc") {
 			private static final long serialVersionUID = 1L;
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				styleDoc(DrowStyles.applyStyleForegroundColor(Color.black));
+				
+				JPanel p = new JPanel();
+				JColorChooser jc = new JColorChooser();
+				p.add(jc);
+				
+				if(JOptionPane.showConfirmDialog(null, p, "Please choose a color", JOptionPane.OK_CANCEL_OPTION) == 
+				   JOptionPane.OK_OPTION)
+				{
+					styleDoc(DrowStyles.applyStyleForegroundColor(jc.getColor()));	
+				}
 			}
 		};
 	}
 	
 	public Action backgroundColorAction() {
-		return new AbstractAction() {
+		return new AbstractAction("hc") {
 			private static final long serialVersionUID = 1L;
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				styleDoc(DrowStyles.applyStyleBackgroundColor(Color.black));
+
+				JPanel p = new JPanel();
+				JColorChooser jc = new JColorChooser();
+				p.add(jc);
+				
+				if(JOptionPane.showConfirmDialog(null, p, "Please choose a color", JOptionPane.OK_CANCEL_OPTION) == 
+				   JOptionPane.OK_OPTION)
+				{
+					styleDoc(DrowStyles.applyStyleBackgroundColor(jc.getColor()));
+				}
+			}
+		};
+	}
+	
+	public Action justifyLeftAction() {
+		return new AbstractAction("Left") {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				SimpleAttributeSet left = new SimpleAttributeSet();
+				StyleConstants.setAlignment(left, StyleConstants.ALIGN_LEFT);
+				styledDocument.setParagraphAttributes(document.getLesser(),
+													  document.getDiff(),
+													  left, false);
+			}
+		};
+	}
+	
+	public Action justifyCenterAction() {
+		return new AbstractAction("Center") {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				SimpleAttributeSet center = new SimpleAttributeSet();
+				StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+				styledDocument.setParagraphAttributes(document.getLesser(),
+													  document.getDiff(),
+													  center, false);
+			}
+		};
+	}
+	
+	public Action justifyRightAction() {
+		return new AbstractAction("Right") {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				SimpleAttributeSet right = new SimpleAttributeSet();
+				StyleConstants.setAlignment(right, StyleConstants.ALIGN_RIGHT);
+				styledDocument.setParagraphAttributes(document.getLesser(),
+													  document.getDiff(),
+													  right, false);
 			}
 		};
 	}

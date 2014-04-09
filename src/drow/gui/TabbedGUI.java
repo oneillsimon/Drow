@@ -23,10 +23,10 @@ public class TabbedGUI {
 		tabbedPane = new JTabbedPane();
 		verticalSplitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT,
 										   tabbedPane,
-										   docView.getDrowDocument().getPage().getTextPane());
+										   docView.getDrowDocument().getPage());
 		
 		//tab names
-		tabbedPane.addTab("Home", new HomePanel(this.docView));
+		tabbedPane.addTab("Home", new HomePanel(docView));
 		tabbedPane.addTab("Insert", new InsertPanel());
 		tabbedPane.addTab("Layout", new LayoutPanel());
 		tabbedPane.addTab("Language", new LanguagePanel());

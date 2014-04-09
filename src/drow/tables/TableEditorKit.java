@@ -5,7 +5,10 @@ import javax.swing.text.StyledEditorKit;
 import javax.swing.text.ViewFactory;
 
 public class TableEditorKit extends StyledEditorKit {
-    ViewFactory defaultFactory = new TableFactory();
+
+	private static final long serialVersionUID = 1L;
+	
+	private ViewFactory defaultFactory = new TableFactory();
     
     public ViewFactory getViewFactory() {
         return defaultFactory;

@@ -1,6 +1,5 @@
 package drow.tables;
 
-import java.awt.*;
 import javax.swing.text.*;
 
 public class CellView extends BoxView {

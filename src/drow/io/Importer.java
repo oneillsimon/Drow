@@ -11,11 +11,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.text.BadLocationException;
-import javax.swing.text.StyledDocument;
 
 import sl.docx.DocxDocument;
 import sl.docx.DocxEditorKit;
-import drow.document.DrowDocument;
 import drow.view.DocumentView;
 
 public class Importer {
@@ -25,37 +23,33 @@ public class Importer {
 	
 	public Importer(DocumentView docView) {
 		this.docView = docView;
-		this.textPane = docView.getDrowDocument().getPage().getTextPane();
+		this.textPane = docView.getDrowDocument().getPage();
 	}
 	
 	public void importFile(String filePath, FileFilter fileFilter) {
 		
-		if(fileFilter.equals(Filters.DOC)) {
+		String[] split = filePath.split("\\.");
+		DrowFileFilter dFilter = Filters.getFilterFromString(split[split.length - 1]);
+		
+		if(dFilter.equals(Filters.DOC)) {
 			asDoc(filePath);
 		}
 		
-		if(fileFilter.equals(Filters.DOCX)) {
+		if(dFilter.equals(Filters.DOCX)) {
 			asDocx(filePath);
 		}
 
-		if(fileFilter.equals(Filters.RTF)) {
+		if(dFilter.equals(Filters.RTF)) {
 			asRtf(filePath);
 		}
 		
-		if(fileFilter.equals(Filters.TXT)) {
+		if(dFilter.equals(Filters.TXT)) {
 			asTxt(filePath);
 		}
 		
-		if(fileFilter.equals(Filters.DROW)) {
+		if(dFilter.equals(Filters.DROW)) {
 			asDrow(filePath);
 		}
-		
-		String[] split = filePath.split("\\\\");
-		String fileName = split[split.length - 1];
-		
-		docView.setCurrentFileName(fileName);
-		//docView.setTitle(fileName);
-		docView.setChanged(false);
 	}
 
 	private void asDoc(String fileName) {
@@ -78,7 +72,7 @@ public class Importer {
 	private void asTxt(String filePath) {
 		try {
 			FileReader reader = new FileReader(filePath);
-			docView.getDrowDocument().getPage().getTextPane().read(reader, null);
+			docView.getDrowDocument().getPage().read(reader, null);
 			reader.close();
 		} catch (IOException e) {
 			Toolkit.getDefaultToolkit().beep();

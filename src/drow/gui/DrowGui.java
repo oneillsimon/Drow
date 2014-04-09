@@ -55,7 +55,7 @@ public class DrowGui {
 		fileChooser = new JFileChooser(System.getProperty("user.dir"));
 		docManager = docView.getDrowDocumentManager();
 		
-		scroll = new JScrollPane(docView.getDrowDocument().getPage().getTextPane(),
+		scroll = new JScrollPane(docView.getDrowDocument().getPage(),
 								 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, 
 								 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		jmb = new JMenuBar();

@@ -2,25 +2,33 @@ package drow.document;
 
 import javax.swing.JPanel;
 
+import drow.view.DocumentView;
 import sl.docx.DocxDocument;
 
 public class DrowDocument extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	
+	private DocumentView docView;
 	private DrowPage page;
 	private DrowCaretListener caretListener;
 	
-	public DrowDocument(JPanel view) {
+	public DrowDocument(DocumentView view) {
+		
 		page = new DrowPage(this);
+		docView = view;
 		caretListener = new DrowCaretListener();
-		page.getTextPane().addCaretListener(caretListener);
+		page.addCaretListener(caretListener);
 	}
 	
-	public DrowDocument(JPanel view, DocxDocument styledDocument) {
+	public DrowDocument(DocumentView view, DocxDocument styledDocument) {
 		page = new DrowPage(this, styledDocument);
 		caretListener = new DrowCaretListener();
-		page.getTextPane().addCaretListener(caretListener);
+		page.addCaretListener(caretListener);
+	}
+	
+	public DocumentView getView() {
+		return docView;
 	}
 	
 	public DrowPage getPage() {

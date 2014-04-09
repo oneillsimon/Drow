@@ -5,10 +5,9 @@ import java.awt.Color;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
+import javax.swing.text.StyledDocument;
 
 public class DrowStyles {
-	
-	//styledDocument.setCharacterAttributes(0, 10, DrowStyles.applyStyleBold(), false);
 	
 	private static StyleContext styleContext = new StyleContext();
 	

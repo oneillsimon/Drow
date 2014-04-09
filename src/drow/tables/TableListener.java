@@ -7,10 +7,11 @@ import drow.gui.InsertPanel;
 import drow.view.DocumentView;
 
 public class TableListener implements ActionListener {
-	
-	DocumentView docView;
-	InsertPanel panel;
+
 	final static int PAGE_WIDHT = 500;
+	
+	private DocumentView docView;
+	private InsertPanel panel;
 	
 	public TableListener(DocumentView view, InsertPanel panel) {
 		this.docView = view;
@@ -19,15 +20,15 @@ public class TableListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
 		// TODO Auto-generated method stub
-		int r = panel.txtRows.getValue();
-		int c = panel.txtColumns.getValue();
-		System.out.println("insert button pressed");
-		initTable(r, c);
+		//int r = panel.txtRows.getValue();
+		//int c = panel.txtColumns.getValue();
+		//initTable(r, c);
 	}
 	
 	private void initTable(int rows, int cols) {
-        TableDocument doc = (TableDocument) docView.getDrowDocument().getPage().getTextPane().getDocument();
+        TableDocument doc = (TableDocument) docView.getDrowDocument().getPage().getDocument();
         // figure out a the total width of the page then break it up.
         int[] colArray = new int[cols];
         int averageCol = PAGE_WIDHT / cols;
