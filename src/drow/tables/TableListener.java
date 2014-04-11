@@ -3,6 +3,7 @@ package drow.tables;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import sl.docx.DocxDocument;
 import drow.gui.InsertPanel;
 import drow.view.DocumentView;
 
@@ -21,14 +22,14 @@ public class TableListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		// TODO Auto-generated method stub
-		//int r = panel.txtRows.getValue();
-		//int c = panel.txtColumns.getValue();
-		//initTable(r, c);
+		int r = panel.getTxtRows().getValue();
+		int c = panel.getTxtColumns().getValue();
+		initTable(r, c);
 	}
 	
 	private void initTable(int rows, int cols) {
-        TableDocument doc = (TableDocument) docView.getDrowDocument().getPage().getDocument();
+		TableDocument doc = (TableDocument) docView.getDrowDocument().getFocusedPage().getDocument();
+        
         // figure out a the total width of the page then break it up.
         int[] colArray = new int[cols];
         int averageCol = PAGE_WIDHT / cols;

@@ -23,7 +23,7 @@ public class Importer {
 	
 	public Importer(DocumentView docView) {
 		this.docView = docView;
-		this.textPane = docView.getDrowDocument().getPage();
+		this.textPane = null;//docView.getDrowDocument().getPage();
 	}
 	
 	public void importFile(String filePath, FileFilter fileFilter) {
@@ -72,7 +72,7 @@ public class Importer {
 	private void asTxt(String filePath) {
 		try {
 			FileReader reader = new FileReader(filePath);
-			docView.getDrowDocument().getPage().read(reader, null);
+			//docView.getDrowDocument().getPage().read(reader, null);
 			reader.close();
 		} catch (IOException e) {
 			Toolkit.getDefaultToolkit().beep();

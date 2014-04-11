@@ -1,6 +1,7 @@
 package drow.styles;
 
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -14,16 +15,19 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
 import drow.document.DrowDocument;
+import drow.document.DrowPage;
 import drow.view.DocumentView;
 
 public class DrowStyleActionManager {
 	
 	private static StyledDocument styledDocument;
 	private static DrowDocument document;
+	private static ArrayList<DrowPage> pages;
 	
 	public DrowStyleActionManager(DocumentView docView) {
-		DrowStyleActionManager.styledDocument = docView.getDrowDocument().getPage().getStyledDocument();
+		DrowStyleActionManager.styledDocument = null;//docView.getDrowDocument().getCurrentPage().getStyledDocument();
 		DrowStyleActionManager.document = docView.getDrowDocument();
+		DrowStyleActionManager.pages = docView.getDrowDocument().getPages();
 	}
 	
 	public Action fontFamilyAction() {
@@ -36,10 +40,7 @@ public class DrowStyleActionManager {
 				@SuppressWarnings("unchecked")
 				JComboBox<String> comboBox = (JComboBox<String>)e.getSource();
 				Object selectedItem = comboBox.getSelectedItem();
-				styledDocument.setCharacterAttributes(document.getLesser(),
-													  document.getDiff(),
-													  DrowStyles.applyStyleFontFamily(selectedItem.toString()),
-													  false);
+				styleDoc(DrowStyles.applyStyleFontFamily(selectedItem.toString()));
 			}
 		};
 	}
@@ -54,10 +55,7 @@ public class DrowStyleActionManager {
 				@SuppressWarnings("unchecked")
 				JComboBox<String> comboBox = (JComboBox<String>)e.getSource();
 				Object selectedItem = comboBox.getSelectedItem();
-				styledDocument.setCharacterAttributes(document.getLesser(),
-													  document.getDiff(),
-													  DrowStyles.applyStyleFontSize(Integer.parseInt(selectedItem.toString())),
-													  false);
+				styleDoc(DrowStyles.applyStyleFontSize(Integer.parseInt(selectedItem.toString())));
 			}
 		};
 	}
@@ -269,7 +267,7 @@ public class DrowStyleActionManager {
 	}
 	
 	private void styleDoc(Style style) {
-		styledDocument.setCharacterAttributes(document.getLesser(),
+		pages.get(DrowDocument.FOCUSED_PAGE_NUMBER).getStyledDocument().setCharacterAttributes(document.getLesser(),
 											  document.getDiff(),
 											  style,
 											  false);

@@ -1,12 +1,13 @@
 package drow.view;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import sl.docx.DocxDocument;
 import drow.document.DrowDocument;
+import drow.document.DrowDocumentManager;
 import drow.gui.TabbedGUI;
 import drow.io.Filters;
-import drow.manager.DrowDocumentManager;
 
 public class DocumentView extends JFrame {
 
@@ -50,6 +51,7 @@ public class DocumentView extends JFrame {
 		
 		this.setTitle(getCurrentFileName());
 		this.setVisible(true);
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	}
 	
 	public DrowDocumentManager getDrowDocumentManager() {

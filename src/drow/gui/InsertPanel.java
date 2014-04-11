@@ -1,66 +1,82 @@
 package drow.gui;
 
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.text.EditorKit;
+
+import drow.tables.TableDocument;
+import drow.tables.TableEditorKit;
+import drow.tables.TableListener;
+import drow.io.DrowIOActionManager;
+import drow.io.ImageImport;
+import drow.styles.DrowStyleActionManager;
+import drow.view.DocumentView;
 
 public class InsertPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	private static final int SIZE = 3;
+	private static final int DEFAULT_VALUE = 3;
 	
-	JButton btnInsertPicture;
-	JButton btnInsertTable;
-	JButton btnBulletPoints;
-	JButton btnNumberPoints;
+	private JButton btnInsert;
+	private IntTextField txtRows, txtColumns;
+	private JLabel lblRows, lblCols;
+	private DocumentView docView;
+	private TableListener listener;
 	
-	GridBagConstraints gbc_btnInsertPicture;
-	GridBagConstraints gbc_btnInsertTable;
-	GridBagConstraints gbc_btnBulletPoints;
-	GridBagConstraints gbc_btnNumberPoints;
-	GridBagLayout gridBagLayout;
+	private DrowStyleActionManager styleActionManager;
+	private DrowIOActionManager ioActionManager;
 	
-	public InsertPanel() {
+	private JButton btnImage;	 
+	//private DrowIOActionManager ioActionManager;
+	private ImageImport imageImport;
+	
+	public InsertPanel(DocumentView docView) {
+		 
 		
-		gridBagLayout = new GridBagLayout();
+		btnImage = new JButton(new ImageIcon("res/picture.gif"));
+		imageImport = new ImageImport();
+		btnImage.addActionListener(imageImport.insertActionPerformed(docView.getDrowDocument().getFocusedPage()));
 		
-		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
-		this.setLayout(gridBagLayout);
+		this.docView = docView;
+		listener = new TableListener(docView, this);
 		
-		btnInsertPicture = new JButton("Insert Picture");
-		btnInsertTable = new JButton("Insert Table");
-		btnBulletPoints = new JButton("b");
-		btnNumberPoints = new JButton("n");
+		EditorKit e = docView.getDrowDocument().getFocusedPage().getEditorKit();
+		//docView.getDrowDocument().getFocusedPage().setEditorKit(new TableEditorKit());
+		btnInsert = new JButton("Insert");
+		btnInsert.setActionCommand("insert");
+		lblRows = new JLabel("Number of Rows");
+		lblCols = new JLabel("Number of Columns");
+		txtRows = new IntTextField(DEFAULT_VALUE, SIZE);
+		txtColumns = new IntTextField(DEFAULT_VALUE, SIZE);
 		
-		gbc_btnInsertPicture = new GridBagConstraints();
-		gbc_btnInsertTable = new GridBagConstraints();
-		gbc_btnBulletPoints = new GridBagConstraints();
-		gbc_btnNumberPoints = new GridBagConstraints();
-		
-		gbc_btnInsertPicture.insets = new Insets(0, 0, 5, 5);
-		gbc_btnInsertPicture.gridx = 0;
-		gbc_btnInsertPicture.gridy = 0;
-		
-		gbc_btnInsertTable.insets = new Insets(0, 0, 0, 5);
-		gbc_btnInsertTable.gridx = 0;
-		gbc_btnInsertTable.gridy = 1;
-		
-		gbc_btnBulletPoints.insets = new Insets(0, 0, 5, 5);
-		gbc_btnBulletPoints.gridx = 1;
-		gbc_btnBulletPoints.gridy = 0;
-		
-		gbc_btnNumberPoints.insets = new Insets(0, 0, 0, 5);
-		gbc_btnNumberPoints.gridx = 1;
-		gbc_btnNumberPoints.gridy = 1;
-		
-		this.add(btnInsertPicture, gbc_btnInsertPicture);
-		this.add(btnInsertTable, gbc_btnInsertTable);
-		this.add(btnBulletPoints, gbc_btnBulletPoints);
-		this.add(btnNumberPoints, gbc_btnNumberPoints);
+		btnInsert.addActionListener(listener);
+		this.add(lblCols);
+		this.add(txtColumns);
+		this.add(lblRows);
+		this.add(txtRows);
+		this.add(btnInsert);
+		this.add(btnImage);	
+	}
+
+	public IntTextField getTxtRows() {
+		return txtRows;
+	}
+
+	public IntTextField getTxtColumns() {
+		return txtColumns;
+	}
+
+	public JLabel getLblRows() {
+		return lblRows;
+	}
+
+	public JLabel getLblCols() {
+		return lblCols;
 	}
 }

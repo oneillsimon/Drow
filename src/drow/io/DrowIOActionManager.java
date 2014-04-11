@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.text.DefaultEditorKit;
 
-import drow.manager.DrowDocumentManager;
+import drow.document.DrowDocumentManager;
 import drow.view.DocumentView;
 
 public class DrowIOActionManager {

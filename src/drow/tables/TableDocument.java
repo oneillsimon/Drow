@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 import javax.swing.text.*;
 
-public class TableDocument extends DefaultStyledDocument {
+import sl.docx.DocxDocument;
+
+public class TableDocument extends DocxDocument {
 	
 	private static final long serialVersionUID = 1L;
 	

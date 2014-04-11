@@ -62,7 +62,6 @@ public class DictionaryListener implements DocumentListener, CaretListener {
 		int ascii = (int)typedChar.toCharArray()[0];
 		
 		if((ascii >= 64 && ascii <= 90) || (ascii >= 97 && ascii <= 122)) {
-			System.out.println("ascii is " + ascii);
 			if(wordStart == -1) {
 				wordStart = e.getOffset();
 				wordEnd = -1;
