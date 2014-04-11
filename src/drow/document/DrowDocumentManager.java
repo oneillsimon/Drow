@@ -1,4 +1,4 @@
-package drow.manager;
+package drow.document;
 
 import javax.swing.JFrame;
 import javax.swing.filechooser.FileFilter;

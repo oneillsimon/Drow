@@ -1,13 +1,20 @@
 package drow.gui;
 
+import java.awt.Event;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 
+import javax.swing.AbstractAction;
+import javax.swing.ImageIcon;
+import javax.swing.InputMap;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
+import javax.swing.KeyStroke;
 
 import drow.io.DrowIOActionManager;
 import drow.styles.DrowStyleActionManager;
@@ -77,14 +84,14 @@ public class HomePanel extends JPanel {
 		fontFamilies = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
 		fontSizes = new String[] { "8", "9", "10", "11", "12", "14", "16", "18", "20", "22", "24", "26", "28", "36", "48", "72" };
 		
-		btnSave = new JButton("Save");
-		btnOpen = new JButton("Open");
-		btnBold = new JButton("B");
+		btnSave = new JButton(new ImageIcon("res/save.gif"));
+		btnOpen = new JButton(new ImageIcon("res/open.gif"));
+		btnBold = new JButton(new ImageIcon("res/bold.png"));
 		btnCopy = new JButton("C");
 		btnPaste = new JButton("P");
 		btnCut = new JButton("X");
-		btnItalic = new JButton("I");
-		btnUnderline = new JButton("U");
+		btnItalic = new JButton(new ImageIcon("res/italic.png"));
+		btnUnderline = new JButton(new ImageIcon("res/underline.png"));
 		btnStrikethrough = new JButton("s");
 		btnJustifyLeft = new JButton("JL");
 		btnJustifyCenter = new JButton("JC");
@@ -201,7 +208,7 @@ public class HomePanel extends JPanel {
 		btnHighlightColour.setAction(styleActionManager.backgroundColorAction());
 		btnSuperScript.setAction(styleActionManager.superScriptAction());
 		btnSubScript.setAction(styleActionManager.subScriptAction());
-		
+
 		comboBoxFontFamily.setAction(styleActionManager.fontFamilyAction());
 		comboBoxFontSize.setAction(styleActionManager.fontSizeAction());
 		
@@ -213,6 +220,26 @@ public class HomePanel extends JPanel {
 		gbc_comboBoxFontSize.fill = GridBagConstraints.HORIZONTAL;
 		gbc_comboBoxFontSize.gridx = 10;
 		gbc_comboBoxFontSize.gridy = 2;
+		
+		InputMap inputMap = btnSave.getInputMap(JButton.WHEN_IN_FOCUSED_WINDOW);
+		KeyStroke s = KeyStroke.getKeyStroke(KeyEvent.VK_S, Event.CTRL_MASK);
+		inputMap.put(s, "S");
+		
+		btnSave.getActionMap().put("S", new ClickAction(btnSave));
+		InputMap inputMap1 = btnOpen.getInputMap(JButton.WHEN_IN_FOCUSED_WINDOW);
+		KeyStroke o = KeyStroke.getKeyStroke(KeyEvent.VK_O, Event.CTRL_MASK);
+		inputMap1.put(o, "O");
+		
+		btnOpen.getActionMap().put("O", new ClickAction(btnOpen));
+		InputMap inputMap2 = btnBold.getInputMap(JButton.WHEN_IN_FOCUSED_WINDOW);
+		KeyStroke b = KeyStroke.getKeyStroke(KeyEvent.VK_B, Event.CTRL_MASK);
+		inputMap2.put(b, "B");
+		btnBold.getActionMap().put("B", new ClickAction(btnBold));
+		
+		InputMap inputMap3 = btnItalic.getInputMap(JButton.WHEN_IN_FOCUSED_WINDOW);
+		KeyStroke i = KeyStroke.getKeyStroke(KeyEvent.VK_I, Event.CTRL_MASK);
+		inputMap3.put(i, "I");
+		btnItalic.getActionMap().put("I", new ClickAction(btnItalic));
 			
 		this.add(btnSave, gbc_btnSave);
 		this.add(btnOpen, gbc_btnOpen);
@@ -233,5 +260,17 @@ public class HomePanel extends JPanel {
 		
 		this.add(comboBoxFontFamily, gbc_comboBoxFontFamily);
 		this.add(comboBoxFontSize, gbc_comboBoxFontSize);
+	}
+	
+	public class ClickAction extends AbstractAction {
+		private JButton button;
+
+		public ClickAction(JButton button) {
+		    this.button = button;
+		}
+
+		public void actionPerformed(ActionEvent e) {
+		    button.doClick();
+		}
 	}
 }

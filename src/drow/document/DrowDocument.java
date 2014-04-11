@@ -1,53 +1,70 @@
 package drow.document;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.util.ArrayList;
+
 import javax.swing.JPanel;
 
-import drow.view.DocumentView;
 import sl.docx.DocxDocument;
+import drow.view.DocumentView;
 
 public class DrowDocument extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	
-	private DocumentView docView;
-	private DrowPage page;
-	private DrowCaretListener caretListener;
+	public static int FOCUSED_PAGE_NUMBER = 0;
 	
-	public DrowDocument(DocumentView view) {
+	private ArrayList<DrowPage> pages;
+	public int pageIndex = 0;
+	
+	public DrowDocument(DocumentView docView) {
 		
-		page = new DrowPage(this);
-		docView = view;
-		caretListener = new DrowCaretListener();
-		page.addCaretListener(caretListener);
+		pages = new ArrayList<DrowPage>();
+		
+		this.setLayout(new BorderLayout());
+		this.setBackground(Color.darkGray);
 	}
 	
 	public DrowDocument(DocumentView view, DocxDocument styledDocument) {
-		page = new DrowPage(this, styledDocument);
-		caretListener = new DrowCaretListener();
-		page.addCaretListener(caretListener);
+		pages = new ArrayList<DrowPage>();
+		pages.add(new DrowPage(styledDocument));
 	}
 	
-	public DocumentView getView() {
-		return docView;
+	public ArrayList<DrowPage> getPages() {
+		return pages;
 	}
 	
-	public DrowPage getPage() {
-		return page;
+	public int getPageCount() {
+		return pages.size();
+	}
+	
+	public DrowPage newPage(DocumentView docView)
+	{
+		pages.add(new DrowPage(pageIndex));
+		repaint();
+		pages.get(pageIndex).requestFocusInWindow();
+		
+		return pages.get(pageIndex++);
+	}
+	
+	public DrowPage getFocusedPage() {
+		return pages.get(FOCUSED_PAGE_NUMBER);
 	}
 	
 	public int getDot() {
-		return caretListener.getDot();
+		return pages.get(FOCUSED_PAGE_NUMBER).getDot();
 	}
 	
 	public int getMark() {
-		return caretListener.getMark();
+		return pages.get(FOCUSED_PAGE_NUMBER).getMark();
 	}
 	
 	public int getLesser() {
-		return caretListener.getLesser();
+		return pages.get(FOCUSED_PAGE_NUMBER).getCaretListener().getLesser();
 	}
 	
 	public int getDiff() {
-		return caretListener.getDiff();
+		return pages.get(FOCUSED_PAGE_NUMBER).getCaretListener().getDiff();
 	}
 }
