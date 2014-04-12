@@ -31,21 +31,26 @@ public class DrowDocument extends JPanel {
 		pages.add(new DrowPage(styledDocument));
 	}
 	
+	public DrowPage newPage(DocumentView docView) {
+		pages.add(new DrowPage(pageIndex));
+		repaint();
+		pages.get(pageIndex).requestFocusInWindow();
+		
+		return pages.get(pageIndex++);
+	}
+	
+	public void determinePageX() {
+		for(DrowPage page : pages) {
+			page.determineX();
+		}
+	}
+	
 	public ArrayList<DrowPage> getPages() {
 		return pages;
 	}
 	
 	public int getPageCount() {
 		return pages.size();
-	}
-	
-	public DrowPage newPage(DocumentView docView)
-	{
-		pages.add(new DrowPage(pageIndex));
-		repaint();
-		pages.get(pageIndex).requestFocusInWindow();
-		
-		return pages.get(pageIndex++);
 	}
 	
 	public DrowPage getFocusedPage() {

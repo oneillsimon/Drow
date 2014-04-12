@@ -3,13 +3,16 @@ package drow.tables;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.text.EditorKit;
+
 import sl.docx.DocxDocument;
+import drow.document.DrowPage;
 import drow.gui.InsertPanel;
 import drow.view.DocumentView;
 
 public class TableListener implements ActionListener {
 
-	final static int PAGE_WIDHT = 500;
+	final static int PAGE_WIDHT = DrowPage.WIDTH;
 	
 	private DocumentView docView;
 	private InsertPanel panel;

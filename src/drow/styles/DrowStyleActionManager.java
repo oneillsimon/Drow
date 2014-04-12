@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import javax.swing.ImageIcon;
 import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -25,7 +26,7 @@ public class DrowStyleActionManager {
 	private static ArrayList<DrowPage> pages;
 	
 	public DrowStyleActionManager(DocumentView docView) {
-		DrowStyleActionManager.styledDocument = null;//docView.getDrowDocument().getCurrentPage().getStyledDocument();
+		DrowStyleActionManager.styledDocument = docView.getDrowDocument().getFocusedPage().getStyledDocument();
 		DrowStyleActionManager.document = docView.getDrowDocument();
 		DrowStyleActionManager.pages = docView.getDrowDocument().getPages();
 	}
@@ -116,7 +117,7 @@ public class DrowStyleActionManager {
 	}
 	
 	public Action boldAction() {
-		return new AbstractAction("B") {
+		return new AbstractAction("", new ImageIcon("res/bold.png")) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -127,7 +128,7 @@ public class DrowStyleActionManager {
 	}
 	
 	public Action italicAction() {
-		return new AbstractAction("I") {
+		return new AbstractAction("", new ImageIcon("res/italic.png")) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -138,7 +139,7 @@ public class DrowStyleActionManager {
 	}
 	
 	public Action underlineAction() {
-		return new AbstractAction("U") {
+		return new AbstractAction("", new ImageIcon("res/underline.png")) {
 			private static final long serialVersionUID = 1L;
 
 			@Override

@@ -46,7 +46,6 @@ public class InsertPanel extends JPanel {
 		this.docView = docView;
 		listener = new TableListener(docView, this);
 		
-		EditorKit e = docView.getDrowDocument().getFocusedPage().getEditorKit();
 		//docView.getDrowDocument().getFocusedPage().setEditorKit(new TableEditorKit());
 		btnInsert = new JButton("Insert");
 		btnInsert.setActionCommand("insert");

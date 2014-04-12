@@ -1,5 +1,7 @@
 package drow.document;
 
+import java.awt.Insets;
+import java.awt.Rectangle;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
@@ -8,13 +10,14 @@ import javax.swing.text.StyleContext;
 
 import sl.docx.DocxDocument;
 import drow.spellchecker.DictionaryListener;
+import drow.view.DocumentView;
 
 public class DrowPage extends JTextPane {
 	
-	public static final int X = 100;
-	public static final int Y_OFFSET = 10;
-	public static final int WIDTH = 200;
-	public static final int HEIGHT = 300;
+	public static int X;
+	public static int Y_OFFSET = 10;
+	public static int WIDTH;
+	public static int HEIGHT;
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -28,7 +31,9 @@ public class DrowPage extends JTextPane {
 	
 	public DrowPage(int pageNumber) {
 		
+		this.setPageDimensions(PageDimensions.A4);
 		this.setBounds(X, Y_OFFSET + (HEIGHT * pageNumber) + (Y_OFFSET * pageNumber), WIDTH, HEIGHT);
+		this.setMargin(new Insets(10, 10, 10, 10));
 		
 		styleContext = new StyleContext();
 		styledDocument = new DocxDocument(styleContext);
@@ -48,13 +53,11 @@ public class DrowPage extends JTextPane {
 			
 			@Override
 			public void focusLost(FocusEvent arg0) {
-				System.out.println("I lost focus");
 			}
 			
 			@Override
 			public void focusGained(FocusEvent arg0) {
 				DrowDocument.FOCUSED_PAGE_NUMBER = number;
-				System.out.println("I have focus");
 			}
 		});
 	}
@@ -64,6 +67,17 @@ public class DrowPage extends JTextPane {
 		this.styledDocument = styledDocument;
 		styleContext.addStyle("MainStyle", styleContext.getStyle(StyleContext.DEFAULT_STYLE));
 		this.setStyledDocumentf(this.styledDocument);
+	}
+	
+	public void determineX() {
+		X = (DocumentView.WINDOW_WIDTH / 2) - (WIDTH / 2);
+		setBounds(X, Y_OFFSET, WIDTH, HEIGHT);
+		repaint();
+	}
+	
+	public void setPageDimensions(Rectangle r) {
+		WIDTH = r.width;
+		HEIGHT = r.height;
 	}
 	
 	public StyleContext getStyleContext() {

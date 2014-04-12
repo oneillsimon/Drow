@@ -1,5 +1,8 @@
 package drow.view;
 
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
@@ -12,6 +15,9 @@ import drow.io.Filters;
 public class DocumentView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	
+	public static int WINDOW_WIDTH = 750;
+	public static int WINDOW_HEIGHT = 500;
 	
 	private String currentFileName;
 	private boolean changed;
@@ -32,9 +38,39 @@ public class DocumentView extends JFrame {
 		currentFileName = "Untitled Document";
 		changed = false;
 		
-		this.setSize(750, 500);
+		this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 		this.setTitle(getCurrentFileName());
 		this.setVisible(true);
+		
+		this.addComponentListener(new ComponentListener() {
+			
+			@Override
+			public void componentShown(ComponentEvent arg0) {
+				WINDOW_WIDTH = getWidth();
+				WINDOW_HEIGHT = getHeight();
+			}
+			
+			@Override
+			public void componentResized(ComponentEvent arg0) {
+				WINDOW_WIDTH = getWidth();
+				WINDOW_HEIGHT = getHeight();
+				doc.determinePageX();
+			}
+			
+			@Override
+			public void componentMoved(ComponentEvent arg0) {
+				WINDOW_WIDTH = getWidth();
+				WINDOW_HEIGHT = getHeight();
+			}
+			
+			@Override
+			public void componentHidden(ComponentEvent arg0) {
+				WINDOW_WIDTH = getWidth();
+				WINDOW_HEIGHT = getHeight();
+			}
+		});
+		
+		doc.determinePageX();
 	}
 	
 	public DocumentView(DocxDocument styledDocument) {
