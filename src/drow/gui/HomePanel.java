@@ -31,9 +31,6 @@ public class HomePanel extends JPanel {
 	
 	private JButton btnSave;
 	private JButton btnOpen;
-	private JButton btnCopy;
-	private JButton btnPaste;
-	private JButton btnCut;
 	private JButton btnBold;
 	private JButton btnItalic;
 	private JButton btnUnderline;
@@ -48,9 +45,6 @@ public class HomePanel extends JPanel {
 	
 	GridBagConstraints gbc_btnSave;
 	GridBagConstraints gbc_btnOpen;
-	GridBagConstraints gbc_btnCopy;
-	GridBagConstraints gbc_btnPaste;
-	GridBagConstraints gbc_btnCut;
 	GridBagConstraints gbc_btnBold;
 	GridBagConstraints gbc_btnItalic;
 	GridBagConstraints gbc_btnUnderline;
@@ -87,9 +81,6 @@ public class HomePanel extends JPanel {
 		btnSave = new JButton(new ImageIcon("res/save.gif"));
 		btnOpen = new JButton(new ImageIcon("res/open.gif"));
 		btnBold = new JButton(new ImageIcon("res/bold.png"));
-		btnCopy = new JButton("C");
-		btnPaste = new JButton("P");
-		btnCut = new JButton("X");
 		btnItalic = new JButton(new ImageIcon("res/italic.png"));
 		btnUnderline = new JButton(new ImageIcon("res/underline.png"));
 		btnStrikethrough = new JButton("s");
@@ -103,9 +94,6 @@ public class HomePanel extends JPanel {
 		
 		gbc_btnSave = new GridBagConstraints();
 		gbc_btnOpen = new GridBagConstraints();
-		gbc_btnCopy = new GridBagConstraints();
-		gbc_btnPaste = new GridBagConstraints();
-		gbc_btnCut = new GridBagConstraints();
 		gbc_btnBold = new GridBagConstraints();
 		gbc_btnItalic = new GridBagConstraints();
 		gbc_btnUnderline = new GridBagConstraints(); 
@@ -132,18 +120,6 @@ public class HomePanel extends JPanel {
 		gbc_btnOpen.insets = new Insets(0, 0, 5, 5);
 		gbc_btnOpen.gridx = 0;
 		gbc_btnOpen.gridy = 1;
-		
-		gbc_btnCopy.insets = new Insets(0, 0, 5, 5);
-		gbc_btnCopy.gridx = 1;
-		gbc_btnCopy.gridy = 1;
-		
-		gbc_btnPaste.insets = new Insets(0, 0, 5, 5);
-		gbc_btnPaste.gridx = 2;
-		gbc_btnPaste.gridy = 1;
-		
-		gbc_btnCut.insets = new Insets(0, 0, 0, 5);
-		gbc_btnCut.gridx = 1;
-		gbc_btnCut.gridy = 2;
 		
 		gbc_btnBold.insets = new Insets(0, 0, 5, 5);
 		gbc_btnBold.gridx = 3;
@@ -194,9 +170,6 @@ public class HomePanel extends JPanel {
 		
 		btnSave.setAction(ioActionManager.saveAction());
 		btnOpen.setAction(ioActionManager.openAction());
-		btnCopy.setAction(ioActionManager.copyAction());
-		btnPaste.setAction(ioActionManager.pasteAction());
-		btnCut.setAction(ioActionManager.cutAction());
 		btnBold.setAction(styleActionManager.boldAction());
 		btnItalic.setAction(styleActionManager.italicAction());
 		btnUnderline.setAction(styleActionManager.underlineAction());
@@ -252,9 +225,6 @@ public class HomePanel extends JPanel {
 		this.add(btnSave, gbc_btnSave);
 		this.add(btnOpen, gbc_btnOpen);
 		this.add(btnBold, gbc_btnBold);
-		this.add(btnCopy, gbc_btnCopy);
-		this.add(btnPaste, gbc_btnPaste);
-		this.add(btnCut, gbc_btnCut);
 		this.add(btnItalic, gbc_btnItalic);
 		this.add(btnUnderline, gbc_btnUnderline);
 		this.add(btnStrikethrough, gbc_btnStrikethrough);
