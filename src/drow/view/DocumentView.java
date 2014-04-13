@@ -33,15 +33,13 @@ public class DocumentView extends JFrame {
 	private DrowDocumentManager docManager;
 	
 	private DrowDocument doc;
-	private TabbedGUI Gui;
-	
 	public DocumentView() {
 		
 		Filters.setUp();
 		
 		doc = new DrowDocument(this);
 		docManager = new DrowDocumentManager(this);
-		Gui = new TabbedGUI(this);
+		new TabbedGUI(this);
 		
 		currentFileName = "Untitled Document";
 		changed = false;
@@ -86,6 +84,7 @@ public class DocumentView extends JFrame {
 		Filters.setUp();
 		
 		doc = new DrowDocument(this, styledDocument);
+		
 		docManager = new DrowDocumentManager(this);
 		
 		currentFileName = "Untitled Document";

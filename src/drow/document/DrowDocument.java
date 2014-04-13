@@ -22,7 +22,7 @@ public class DrowDocument extends JPanel {
 	public DrowDocument(DocumentView docView) {
 		pages = new ArrayList<DrowPage>();
 		this.setBackground(Color.darkGray);
-		this.setPreferredSize(new Dimension(DocumentView.WINDOW_WIDTH, DrowPage.BOTTOM_OF_LAST));
+		this.setPreferredSize(new Dimension(DrowPage.WIDTH, DrowPage.BOTTOM_OF_LAST));
 	}
 	
 	public DrowDocument(DocumentView view, DocxDocument styledDocument) {
@@ -33,6 +33,7 @@ public class DrowDocument extends JPanel {
 	public DrowPage newPage(DocumentView docView) {
 		pages.add(new DrowPage(pageIndex));
 		pages.get(pageIndex).requestFocusInWindow();
+		setPreferredSize(new Dimension(DrowPage.WIDTH, DrowDocument.BOTTOM_OF_LAST_PAGE));
 		repaint();
 		
 		return pages.get(pageIndex++);
