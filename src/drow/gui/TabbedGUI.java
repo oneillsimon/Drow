@@ -24,8 +24,11 @@ public class TabbedGUI {
 		tabbedPane = new JTabbedPane();
 		docView.getDrowDocument().setLayout(null);
 		
-		JScrollPane sp = new JScrollPane(docView.getDrowDocument(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		docView.add(sp, BorderLayout.CENTER);
+		JScrollPane scrollPane = new JScrollPane(docView.getDrowDocument(),
+												 JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+												 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		scrollPane.setBorder(null);
+		docView.add(scrollPane, BorderLayout.CENTER);
 		docView.add(tabbedPane, BorderLayout.NORTH);
 		
 		docView.getDrowDocument().add(docView.getDrowDocument().newPage(docView), BorderLayout.CENTER);
