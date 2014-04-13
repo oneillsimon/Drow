@@ -9,6 +9,8 @@ import javax.swing.UIManager;
 
 public class ModePanel extends JPanel implements ActionListener {
 
+	private static final long serialVersionUID = 1L;
+	
 	private JButton metalButton = new JButton("    Normal    ");
 	private JButton motifButton = new JButton("Developer Mode");
 

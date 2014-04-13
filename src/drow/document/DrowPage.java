@@ -1,6 +1,5 @@
 package drow.document;
 
-import java.awt.Insets;
 import java.awt.Rectangle;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
@@ -18,6 +17,7 @@ public class DrowPage extends JTextPane {
 	public static int Y_OFFSET = 10;
 	public static int WIDTH;
 	public static int HEIGHT;
+	public static int BOTTOM_OF_LAST;
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -31,23 +31,24 @@ public class DrowPage extends JTextPane {
 	
 	public DrowPage(int pageNumber) {
 		
-		this.setPageDimensions(PageDimensions.A4);
-		this.setBounds(X, Y_OFFSET + (HEIGHT * pageNumber) + (Y_OFFSET * pageNumber), WIDTH, HEIGHT);
-		//this.setMargin(new Insets(10, 10, 10, 10));
+		setPageDimensions(PageDimensions.A4);
+		setBounds(X, Y_OFFSET + (HEIGHT * pageNumber) + (Y_OFFSET * pageNumber), WIDTH, HEIGHT);
+		BOTTOM_OF_LAST = Y_OFFSET + (HEIGHT * pageNumber) + (Y_OFFSET * pageNumber) + HEIGHT + Y_OFFSET;
+		DrowDocument.BOTTOM_OF_LAST_PAGE = BOTTOM_OF_LAST;
 		
 		styleContext = new StyleContext();
 		styledDocument = new DocxDocument(styleContext);
 		styleContext.addStyle("MainStyle", styleContext.getStyle(StyleContext.DEFAULT_STYLE));
 
-		this.setStyledDocumentf(styledDocument);
+		setStyledDocumentf(styledDocument);
 		
 		caretListener = new DrowCaretListener();
-		this.addCaretListener(caretListener);
+		addCaretListener(caretListener);
 		
 		dictionaryListener = new DictionaryListener(this);
 		styledDocument.addDocumentListener(dictionaryListener);
 		
-		this.number = pageNumber;
+		number = pageNumber;
 		
 		this.addFocusListener(new FocusListener() {
 			

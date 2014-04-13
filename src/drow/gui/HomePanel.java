@@ -271,6 +271,9 @@ public class HomePanel extends JPanel {
 	}
 	
 	public class ClickAction extends AbstractAction {
+		
+		private static final long serialVersionUID = 1L;
+		
 		private JButton button;
 
 		public ClickAction(JButton button) {

@@ -1,13 +1,10 @@
 package drow.document;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.util.ArrayList;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
 
 import sl.docx.DocxDocument;
 import drow.view.DocumentView;
@@ -17,14 +14,15 @@ public class DrowDocument extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 	public static int FOCUSED_PAGE_NUMBER = 0;
+	public static int BOTTOM_OF_LAST_PAGE;
 	
 	private ArrayList<DrowPage> pages;
 	public int pageIndex = 0;
 	
 	public DrowDocument(DocumentView docView) {
-		
 		pages = new ArrayList<DrowPage>();
 		this.setBackground(Color.darkGray);
+		this.setPreferredSize(new Dimension(DocumentView.WINDOW_WIDTH, DrowPage.BOTTOM_OF_LAST));
 	}
 	
 	public DrowDocument(DocumentView view, DocxDocument styledDocument) {

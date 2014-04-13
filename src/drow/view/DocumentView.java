@@ -2,8 +2,11 @@ package drow.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,6 +16,7 @@ import javax.swing.JScrollPane;
 import sl.docx.DocxDocument;
 import drow.document.DrowDocument;
 import drow.document.DrowDocumentManager;
+import drow.document.DrowPage;
 import drow.gui.TabbedGUI;
 import drow.io.Filters;
 
@@ -29,20 +33,15 @@ public class DocumentView extends JFrame {
 	private DrowDocumentManager docManager;
 	
 	private DrowDocument doc;
+	private TabbedGUI Gui;
 	
 	public DocumentView() {
 		
 		Filters.setUp();
 		
 		doc = new DrowDocument(this);
-		
-		//doc.add(new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS));
 		docManager = new DrowDocumentManager(this);
-		
-		new TabbedGUI(this);
-		
-		//JScrollPane scrollPane = new JScrollPane(doc);
-		//this.getContentPane().add(scrollPane);
+		Gui = new TabbedGUI(this);
 		
 		currentFileName = "Untitled Document";
 		changed = false;
@@ -57,6 +56,8 @@ public class DocumentView extends JFrame {
 			public void componentShown(ComponentEvent arg0) {
 				WINDOW_WIDTH = getWidth();
 				WINDOW_HEIGHT = getHeight();
+				doc.determinePageX();
+				doc.setPreferredSize(new Dimension(DrowPage.WIDTH, DrowDocument.BOTTOM_OF_LAST_PAGE));
 			}
 			
 			@Override
@@ -64,18 +65,15 @@ public class DocumentView extends JFrame {
 				WINDOW_WIDTH = getWidth();
 				WINDOW_HEIGHT = getHeight();
 				doc.determinePageX();
+				doc.setPreferredSize(new Dimension(DrowPage.WIDTH, DrowDocument.BOTTOM_OF_LAST_PAGE));
 			}
 			
 			@Override
 			public void componentMoved(ComponentEvent arg0) {
-				WINDOW_WIDTH = getWidth();
-				WINDOW_HEIGHT = getHeight();
 			}
 			
 			@Override
 			public void componentHidden(ComponentEvent arg0) {
-				WINDOW_WIDTH = getWidth();
-				WINDOW_HEIGHT = getHeight();
 			}
 		});
 		
