@@ -5,6 +5,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import drow.tables.TableEditorKit;
 import drow.tables.TableListener;
 import drow.io.ImageImport;
 import drow.view.DocumentView;
@@ -25,7 +26,7 @@ public class InsertPanel extends JPanel {
 	
 	public InsertPanel(DocumentView docView) {
 		 
-		
+		//docView.getDrowDocument().getFocusedPage().setEditorKit(new TableEditorKit());
 		btnImage = new JButton(new ImageIcon("res/picture.gif"));
 		imageImport = new ImageImport();
 		btnImage.addActionListener(imageImport.insertActionPerformed(docView.getDrowDocument().getFocusedPage()));
