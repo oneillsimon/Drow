@@ -31,8 +31,9 @@ public class DrowPage extends JTextPane {
 	
 	public DrowPage(int pageNumber) {
 		
-		this.setPageDimensions(PageDimensions.A8);
+		this.setPageDimensions(PageDimensions.A4);
 		this.setBounds(X, Y_OFFSET + (HEIGHT * pageNumber) + (Y_OFFSET * pageNumber), WIDTH, HEIGHT);
+		//this.setMargin(new Insets(10, 10, 10, 10));
 		
 		styleContext = new StyleContext();
 		styledDocument = new DocxDocument(styleContext);
@@ -62,9 +63,9 @@ public class DrowPage extends JTextPane {
 	}
 	
 	public DrowPage(DocxDocument styledDocument) {
-		styleContext = new StyleContext();
+		this.styleContext = new StyleContext();
 		this.styledDocument = styledDocument;
-		styleContext.addStyle("MainStyle", styleContext.getStyle(StyleContext.DEFAULT_STYLE));
+		this.styleContext.addStyle("MainStyle", styleContext.getStyle(StyleContext.DEFAULT_STYLE));
 		this.setStyledDocumentf(this.styledDocument);
 	}
 	

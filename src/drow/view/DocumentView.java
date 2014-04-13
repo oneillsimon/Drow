@@ -1,10 +1,13 @@
 package drow.view;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import sl.docx.DocxDocument;
@@ -32,10 +35,14 @@ public class DocumentView extends JFrame {
 		Filters.setUp();
 		
 		doc = new DrowDocument(this);
+		
 		//doc.add(new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS));
 		docManager = new DrowDocumentManager(this);
 		
 		new TabbedGUI(this);
+		
+		//JScrollPane scrollPane = new JScrollPane(doc);
+		//this.getContentPane().add(scrollPane);
 		
 		currentFileName = "Untitled Document";
 		changed = false;
@@ -73,6 +80,7 @@ public class DocumentView extends JFrame {
 		});
 		
 		doc.determinePageX();
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	
 	public DocumentView(DocxDocument styledDocument) {
@@ -89,7 +97,7 @@ public class DocumentView extends JFrame {
 		
 		this.setTitle(getCurrentFileName());
 		this.setVisible(true);
-		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	
 	public DrowDocumentManager getDrowDocumentManager() {

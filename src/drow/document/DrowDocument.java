@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
@@ -23,12 +24,7 @@ public class DrowDocument extends JPanel {
 	public DrowDocument(DocumentView docView) {
 		
 		pages = new ArrayList<DrowPage>();
-		
-		this.setLayout(new BorderLayout());
-		//this.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		//this.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		this.setBackground(Color.darkGray);
-		docView.add(this);
 	}
 	
 	public DrowDocument(DocumentView view, DocxDocument styledDocument) {
