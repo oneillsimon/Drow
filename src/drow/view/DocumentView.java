@@ -5,6 +5,7 @@ import java.awt.event.ComponentListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 
 import sl.docx.DocxDocument;
 import drow.document.DrowDocument;
@@ -31,6 +32,7 @@ public class DocumentView extends JFrame {
 		Filters.setUp();
 		
 		doc = new DrowDocument(this);
+		//doc.add(new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS));
 		docManager = new DrowDocumentManager(this);
 		
 		new TabbedGUI(this);

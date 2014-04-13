@@ -40,6 +40,7 @@ public class TabbedGUI {
 //		docView.getDrowDocument().add(left);
 //		docView.getDrowDocument().add(right);
 		docView.getDrowDocument().add(docView.getDrowDocument().newPage(docView), BorderLayout.CENTER);
+		//docView.getDrowDocument().add(docView.getDrowDocument().newPage(docView), BorderLayout.CENTER);
 		
 		//tab names
 		tabbedPane.addTab("Home", new HomePanel(docView));

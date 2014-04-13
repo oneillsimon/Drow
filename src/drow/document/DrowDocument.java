@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 
 import sl.docx.DocxDocument;
 import drow.view.DocumentView;
@@ -23,7 +25,10 @@ public class DrowDocument extends JPanel {
 		pages = new ArrayList<DrowPage>();
 		
 		this.setLayout(new BorderLayout());
+		//this.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		//this.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		this.setBackground(Color.darkGray);
+		docView.add(this);
 	}
 	
 	public DrowDocument(DocumentView view, DocxDocument styledDocument) {
@@ -33,15 +38,15 @@ public class DrowDocument extends JPanel {
 	
 	public DrowPage newPage(DocumentView docView) {
 		pages.add(new DrowPage(pageIndex));
-		repaint();
 		pages.get(pageIndex).requestFocusInWindow();
+		repaint();
 		
 		return pages.get(pageIndex++);
 	}
 	
 	public void determinePageX() {
-		for(DrowPage page : pages) {
-			page.determineX();
+		for(int i = 0; i < pages.size(); i++) {
+			pages.get(i).determineX();
 		}
 	}
 	

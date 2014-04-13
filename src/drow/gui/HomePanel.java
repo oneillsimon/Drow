@@ -207,7 +207,15 @@ public class HomePanel extends JPanel {
 		btnFontColour.setAction(styleActionManager.foregroundColorAction());
 		btnHighlightColour.setAction(styleActionManager.backgroundColorAction());
 		btnSuperScript.setAction(styleActionManager.superScriptAction());
-		btnSubScript.setAction(styleActionManager.subScriptAction());
+		//btnSubScript.setAction(styleActionManager.subScriptAction());
+		
+		btnSubScript.setAction(new AbstractAction("New page") {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				docView.getDrowDocument().add(docView.getDrowDocument().newPage(docView));
+			}
+		});
 
 		comboBoxFontFamily.setAction(styleActionManager.fontFamilyAction());
 		comboBoxFontSize.setAction(styleActionManager.fontSizeAction());
