@@ -31,7 +31,8 @@ public class TableListener implements ActionListener {
 	}
 	
 	private void initTable(int rows, int cols) {
-		TableDocument doc = (TableDocument) docView.getDrowDocument().getFocusedPage().getDocument();
+		//TableDocument doc = (TableDocument) docView.getDrowDocument().getFocusedPage().getStyledDocument();
+		DocxDocument tabledoc = new TableDocument();
         
         // figure out a the total width of the page then break it up.
         int[] colArray = new int[cols];
@@ -43,6 +44,7 @@ public class TableListener implements ActionListener {
         
         // get the caret ??? can we make a static class that tracks the caret array
         
-        doc.insertTable(0, rows, colArray);
+        //tabledoc.insertTable(0, rows, colArray);
+        //
     }
 }

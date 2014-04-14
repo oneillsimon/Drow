@@ -26,7 +26,7 @@ public class InsertPanel extends JPanel {
 	
 	public InsertPanel(DocumentView docView) {
 		 
-		docView.getDrowDocument().getFocusedPage().setEditorKit(new TableEditorKit());
+		//docView.getDrowDocument().getFocusedPage().setEditorKit(new TableEditorKit());
 		btnImage = new JButton(new ImageIcon("res/picture.gif"));
 		imageImport = new ImageImport();
 		btnImage.addActionListener(imageImport.insertActionPerformed(docView.getDrowDocument().getFocusedPage()));

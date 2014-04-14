@@ -31,8 +31,8 @@ public class DocumentView extends JFrame {
 	private boolean changed;
 	
 	private DrowDocumentManager docManager;
-	
 	private DrowDocument doc;
+	
 	public DocumentView() {
 		
 		Filters.setUp();

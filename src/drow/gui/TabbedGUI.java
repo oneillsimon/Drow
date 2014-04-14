@@ -13,6 +13,7 @@ public class TabbedGUI {
 	private DocumentView docView;
 	
 	private JTabbedPane tabbedPane;
+	private JScrollPane scrollPane;
 	
 	public TabbedGUI(DocumentView docView) {
 		
@@ -24,14 +25,14 @@ public class TabbedGUI {
 		tabbedPane = new JTabbedPane();
 		docView.getDrowDocument().setLayout(null);
 		
-		JScrollPane scrollPane = new JScrollPane(docView.getDrowDocument(),
+		scrollPane = new JScrollPane(docView.getDrowDocument(),
 												 JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 												 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollPane.setBorder(null);
 		docView.add(scrollPane, BorderLayout.CENTER);
 		docView.add(tabbedPane, BorderLayout.NORTH);
 		
-		docView.getDrowDocument().add(docView.getDrowDocument().newPage(docView), BorderLayout.CENTER);
+		docView.getDrowDocument().add(docView.getDrowDocument().newPage(docView));
 		
 		//tab names
 		tabbedPane.addTab("Home", new HomePanel(docView));
