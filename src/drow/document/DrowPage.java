@@ -31,7 +31,7 @@ public class DrowPage extends JTextPane {
 	
 	public DrowPage(int pageNumber) {
 		
-		setPageDimensions(PageDimensions.A4);
+		setPageDimensions(PageDimensions.A6);
 		setBounds(X, Y_OFFSET + (HEIGHT * pageNumber) + (Y_OFFSET * pageNumber), WIDTH, HEIGHT);
 		BOTTOM_OF_LAST = Y_OFFSET + (HEIGHT * pageNumber) + (Y_OFFSET * pageNumber) + HEIGHT + Y_OFFSET;
 		DrowDocument.BOTTOM_OF_LAST_PAGE = BOTTOM_OF_LAST;
