@@ -48,10 +48,15 @@ public class DrowIOActionManager {
 			private static final long serialVersionUID = 1L;
 			
 			public void actionPerformed(ActionEvent e) {
-				if(docView.getCurrentFileName().equals("Untitled"))
-					docManager.saveFileAs();
-				else
-					docManager.saveFile(docView.getCurrentFileName(), fileChooser.getFileFilter());
+				fileChooser.setDialogTitle("Save a file");
+				
+				if(fileChooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+					String[] split = fileChooser.getSelectedFile().getName().split("\\.");
+					String filePath = fileChooser.getSelectedFile().getAbsolutePath();
+					String extension = split[split.length  -1];
+					
+					docManager.saveFile(filePath, Filters.getFilterFromString(extension));
+				}
 			}
 		};
 	}

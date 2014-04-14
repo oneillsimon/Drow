@@ -1,8 +1,10 @@
 package drow.document;
 
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.filechooser.FileFilter;
 
+import drow.io.DrowFileFilter;
 import drow.io.Exporter;
 import drow.io.Importer;
 import drow.view.DocumentView;
@@ -24,8 +26,9 @@ public class DrowDocumentManager extends JFrame {
 	}
 
 	public void saveFileAs() {
-		// saveFile(textPanel.getCurrentFile(),
-		// (DrowFileFilter)fileChooser.getFileFilter());
+	//	 JFileChooser fileChooser = new JFileChooser("Save as...");
+	//	saveFile(textPanel.getCurrentFile(),
+	//	 (DrowFileFilter)fileChooser.getFileFilter());
 	}
 
 	public void openFile(String fileName, FileFilter filter) {

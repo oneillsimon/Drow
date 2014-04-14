@@ -12,8 +12,8 @@ import javax.swing.JTextPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.text.BadLocationException;
 
-import sl.docx.DocxDocument;
 import sl.docx.DocxEditorKit;
+import drow.document.PageCollection;
 import drow.view.DocumentView;
 
 public class Importer {
@@ -88,8 +88,10 @@ public class Importer {
 		try {
 			ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName));
 			try {
-				docView = new DocumentView((DocxDocument)in.readObject());
-				System.out.println("I'm here");
+				PageCollection collection = (PageCollection)in.readObject();
+				docView.getDrowDocument().removeAllPages();
+				collection.applyToDocument(docView);
+				docView.getDrowDocument().determinePageX();
 				in.close();
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();

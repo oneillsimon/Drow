@@ -29,6 +29,13 @@ public class DrowPage extends JTextPane {
 	
 	private int number;
 	
+	public DrowPage() {
+		setPageDimensions(PageDimensions.A6);
+		setBounds(X, Y_OFFSET + (HEIGHT * 0) + (Y_OFFSET * 0), WIDTH, HEIGHT);
+		BOTTOM_OF_LAST = Y_OFFSET + (HEIGHT * 0) + (Y_OFFSET * 0) + HEIGHT + Y_OFFSET;
+		DrowDocument.BOTTOM_OF_LAST_PAGE = BOTTOM_OF_LAST;
+	}
+	
 	public DrowPage(int pageNumber) {
 		
 		setPageDimensions(PageDimensions.A6);
@@ -42,11 +49,7 @@ public class DrowPage extends JTextPane {
 
 		setStyledDocumentf(styledDocument);
 		
-		caretListener = new DrowCaretListener();
-		addCaretListener(caretListener);
-		
-		dictionaryListener = new DictionaryListener(this);
-		styledDocument.addDocumentListener(dictionaryListener);
+		addListeners();
 		
 		number = pageNumber;
 		
@@ -112,5 +115,18 @@ public class DrowPage extends JTextPane {
 	
 	public int getNumber() {
 		return number;
+	}
+	
+	public void removeListeners() {
+		removeCaretListener(caretListener);
+		styledDocument.removeDocumentListener(dictionaryListener);
+	}
+	
+	public void addListeners() {
+		caretListener = new DrowCaretListener();
+		addCaretListener(caretListener);
+		
+		dictionaryListener = new DictionaryListener(this);
+		styledDocument.addDocumentListener(dictionaryListener);
 	}
 }

@@ -5,8 +5,11 @@ import java.awt.Dimension;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
+import javax.swing.JTextPane;
+import javax.swing.text.BadLocationException;
 
 import sl.docx.DocxDocument;
+import drow.document.helpers.DrowDocumentHelper;
 import drow.view.DocumentView;
 
 public class DrowDocument extends JPanel {
@@ -25,6 +28,13 @@ public class DrowDocument extends JPanel {
 		this.setPreferredSize(new Dimension(DrowPage.WIDTH, DrowPage.BOTTOM_OF_LAST));
 	}
 	
+	public DrowDocument(DrowDocument doc) {
+		System.out.println(doc.getPages().size());
+		pages = doc.getPages();
+		this.setBackground(Color.darkGray);
+		this.setPreferredSize(new Dimension(DrowPage.WIDTH, DrowPage.BOTTOM_OF_LAST));
+	}
+	
 	public DrowDocument(DocumentView view, DocxDocument styledDocument) {
 		pages = new ArrayList<DrowPage>();
 		pages.add(new DrowPage(styledDocument));
@@ -34,6 +44,7 @@ public class DrowDocument extends JPanel {
 		pages.add(new DrowPage(pageIndex));
 		pages.get(pageIndex).requestFocusInWindow();
 		setPreferredSize(new Dimension(DrowPage.WIDTH, DrowDocument.BOTTOM_OF_LAST_PAGE));
+		determinePageX();
 		repaint();
 		
 		return pages.get(pageIndex++);
@@ -49,12 +60,49 @@ public class DrowDocument extends JPanel {
 		return pages;
 	}
 	
+	public DrowPage getCombinedPage() {
+		DrowPage combinedPage = new DrowPage(0);
+		
+		for(int i = 0; i < pages.size(); i++) {
+			try {
+				DrowDocumentHelper.mergeDocument(pages.get(i).getStyledDocument(),
+												 combinedPage.getStyledDocument());
+			} catch (BadLocationException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return combinedPage;
+	}
+	
+	public void removeAllPages() {
+		pages.clear();
+		pageIndex = 0;
+		repaint();
+	}
+	
+	public void removeListeners() {
+		for(int i = 0; i < pages.size(); i++) {
+			pages.get(i).removeListeners();
+		}
+	}
+	
+	public void addListeners() {
+		for(int i = 0; i < pages.size(); i++) {
+			pages.get(i).addListeners();
+		}
+	}
+	
 	public int getPageCount() {
 		return pages.size();
 	}
 	
 	public DrowPage getFocusedPage() {
-		return pages.get(FOCUSED_PAGE_NUMBER);
+		try {
+			return pages.get(FOCUSED_PAGE_NUMBER);
+		} catch (Exception e) {
+			return new DrowPage();
+		}
 	}
 	
 	public int getDot() {

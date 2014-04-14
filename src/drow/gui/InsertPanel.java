@@ -5,7 +5,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import drow.tables.TableEditorKit;
 import drow.tables.TableListener;
 import drow.io.ImageImport;
 import drow.view.DocumentView;

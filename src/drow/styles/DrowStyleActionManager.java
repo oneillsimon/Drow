@@ -13,7 +13,6 @@ import javax.swing.JPanel;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
-import javax.swing.text.StyledDocument;
 
 import drow.document.DrowDocument;
 import drow.document.DrowPage;
@@ -21,12 +20,10 @@ import drow.view.DocumentView;
 
 public class DrowStyleActionManager {
 	
-	private static StyledDocument styledDocument;
 	private static DrowDocument document;
 	private static ArrayList<DrowPage> pages;
 	
 	public DrowStyleActionManager(DocumentView docView) {
-		DrowStyleActionManager.styledDocument = docView.getDrowDocument().getFocusedPage().getStyledDocument();
 		DrowStyleActionManager.document = docView.getDrowDocument();
 		DrowStyleActionManager.pages = docView.getDrowDocument().getPages();
 	}
@@ -230,9 +227,7 @@ public class DrowStyleActionManager {
 			public void actionPerformed(ActionEvent e) {
 				SimpleAttributeSet left = new SimpleAttributeSet();
 				StyleConstants.setAlignment(left, StyleConstants.ALIGN_LEFT);
-				styledDocument.setParagraphAttributes(document.getLesser(),
-													  document.getDiff(),
-													  left, false);
+				styleDoc(left);
 			}
 		};
 	}
@@ -245,9 +240,7 @@ public class DrowStyleActionManager {
 			public void actionPerformed(ActionEvent e) {
 				SimpleAttributeSet center = new SimpleAttributeSet();
 				StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
-				styledDocument.setParagraphAttributes(document.getLesser(),
-													  document.getDiff(),
-													  center, false);
+				styleDoc(center);
 			}
 		};
 	}
@@ -260,9 +253,7 @@ public class DrowStyleActionManager {
 			public void actionPerformed(ActionEvent e) {
 				SimpleAttributeSet right = new SimpleAttributeSet();
 				StyleConstants.setAlignment(right, StyleConstants.ALIGN_RIGHT);
-				styledDocument.setParagraphAttributes(document.getLesser(),
-													  document.getDiff(),
-													  right, false);
+				styleDoc(right);
 			}
 		};
 	}
@@ -272,5 +263,11 @@ public class DrowStyleActionManager {
 											  document.getDiff(),
 											  style,
 											  false);
+	}
+	
+	private void styleDoc(SimpleAttributeSet attribSet) {
+		pages.get(DrowDocument.FOCUSED_PAGE_NUMBER).getStyledDocument().setParagraphAttributes(document.getLesser(),
+											  document.getDiff(),
+											  attribSet, false);
 	}
 }

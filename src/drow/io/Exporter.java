@@ -12,18 +12,20 @@ import javax.swing.text.*;
 
 import sl.docx.DocxDocument;
 import sl.docx.DocxEditorKit;
+import drow.document.PageCollection;
 import drow.view.DocumentView;
 
 public class Exporter {
 	
 	private DocumentView docView;
-	private JTextPane textPane;
+	private JTextPane textPane = new JTextPane();
 	private DocxDocument styledDocument;
 	
 	public Exporter(DocumentView docView) {
 		this.docView = docView;
-		this.textPane = null;//docView.getDrowDocument().getPage();
-		this.styledDocument = null;//docView.getDrowDocument().getPage().getStyledDocument();
+		//this.textPane = docView.getDrowDocument().getCombinedPage();
+		this.styledDocument = docView.getDrowDocument().getCombinedPage().getStyledDocument();
+		textPane.setText("Hello I am hardcoded");
 	}
 	
 	public void exportFile(String fileName, FileFilter fileFilter) {
@@ -78,10 +80,24 @@ public class Exporter {
 	}
 
 	private void asDocx(String fileName) {
+		//docView.getDrowDocument().getFocusedPage().setEditorKit(new DocxEditorKit());
 		textPane.setEditorKit(new DocxEditorKit());
+		try {
+			System.out.println(docView.getDrowDocument().getCombinedPage().getText(0, docView.getDrowDocument().getCombinedPage().getDocument().getLength()));
+		} catch (BadLocationException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		try {
-			textPane.getEditorKit().write(new FileOutputStream(fileName), styledDocument, 0, styledDocument.getLength());
+			FileOutputStream writer = new FileOutputStream(fileName);
+            textPane.getEditorKit().write(writer,
+            									textPane.getDocument(),
+            									0,
+            									textPane.getDocument().getLength());
+
+            writer.flush();
+            writer.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -89,19 +105,17 @@ public class Exporter {
 		} catch (BadLocationException e) {
 			e.printStackTrace();
 		}
-		textPane.setStyledDocument(styledDocument);
+		docView.getDrowDocument().getCombinedPage().setStyledDocument(styledDocument);
 	}
 
 	private void asTxt(String fileName) {
 		try {
 			FileWriter writer = new FileWriter(fileName);
-			//docView.getDrowDocument().getPage().write(writer);
+			docView.getDrowDocument().getCombinedPage().write(writer);
 			writer.close();
 
 			docView.setCurrentFileName(fileName);
-			//docView.setTitle(fileName);
 			docView.setChanged(false);
-			//docView.getDrowGui().getActionSave().setEnabled(false);
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -114,9 +128,15 @@ public class Exporter {
 	
 	private void asDrow(String fileName) {
 		try {
+			PageCollection collection = new PageCollection();
+			collection.setPages(docView.getDrowDocument());
+			
+			docView.getDrowDocument().removeListeners();
 			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fileName));
-			out.writeObject(styledDocument);
+			out.writeObject(collection);
 			out.close();
+			
+			docView.getDrowDocument().addListeners();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

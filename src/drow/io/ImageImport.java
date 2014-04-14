@@ -1,15 +1,14 @@
 package drow.io;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 
-
 public class ImageImport extends JFrame
 {
+	private static final long serialVersionUID = 1L;
 
-    public ActionListener insertActionPerformed(final JTextPane textPane)
+	public ActionListener insertActionPerformed(final JTextPane textPane)
     {
         
 			return new ActionListener() {

@@ -181,7 +181,7 @@ public class HomePanel extends JPanel {
 		btnHighlightColour.setAction(styleActionManager.backgroundColorAction());
 		btnSuperScript.setAction(styleActionManager.superScriptAction());
 		//btnSubScript.setAction(styleActionManager.subScriptAction());
-		
+
 		btnSubScript.setAction(new AbstractAction("New page") {
 			
 			@Override
