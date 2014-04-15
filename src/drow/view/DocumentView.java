@@ -21,7 +21,7 @@ public class DocumentView extends JFrame {
 	
 	private String currentFileName;
 	private boolean changed;
-	
+	// simon is gay
 	private DrowDocumentManager docManager;
 	private DrowDocument doc;
 
