@@ -30,7 +30,7 @@ public class DrowPage extends JTextPane {
 	private int number;
 	
 	public DrowPage() {
-		setPageDimensions(PageDimensions.A6);
+		setPageDimensions(PageDimensions.A4);
 		setBounds(X, Y_OFFSET + (HEIGHT * 0) + (Y_OFFSET * 0), WIDTH, HEIGHT);
 		BOTTOM_OF_LAST = Y_OFFSET + (HEIGHT * 0) + (Y_OFFSET * 0) + HEIGHT + Y_OFFSET;
 		DrowDocument.BOTTOM_OF_LAST_PAGE = BOTTOM_OF_LAST;
@@ -64,13 +64,6 @@ public class DrowPage extends JTextPane {
 				DrowDocument.FOCUSED_PAGE_NUMBER = number;
 			}
 		});
-	}
-	
-	public DrowPage(DocxDocument styledDocument) {
-		this.styleContext = new StyleContext();
-		this.styledDocument = styledDocument;
-		this.styleContext.addStyle("MainStyle", styleContext.getStyle(StyleContext.DEFAULT_STYLE));
-		this.setStyledDocumentf(this.styledDocument);
 	}
 	
 	public void determineX() {

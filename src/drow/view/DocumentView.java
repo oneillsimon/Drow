@@ -21,7 +21,7 @@ public class DocumentView extends JFrame {
 	
 	private String currentFileName;
 	private boolean changed;
-	// simon is gay
+	// simon is a cool guy
 	private DrowDocumentManager docManager;
 	private DrowDocument doc;
 
@@ -56,51 +56,6 @@ public class DocumentView extends JFrame {
 				WINDOW_HEIGHT = getHeight();
 				doc.determinePageX();
 				doc.setPreferredSize(new Dimension(DrowPage.WIDTH, DrowDocument.BOTTOM_OF_LAST_PAGE));
-			}
-			
-			@Override
-			public void componentMoved(ComponentEvent arg0) {
-			}
-			
-			@Override
-			public void componentHidden(ComponentEvent arg0) {
-			}
-		});
-		
-		doc.determinePageX();
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-	}
-	
-	public DocumentView(DrowDocument doc) {
-		Filters.setUp();
-		
-		docManager = new DrowDocumentManager(this);
-		this.doc = new DrowDocument(doc);
-		new TabbedGUI(this);
-		
-		currentFileName = "Untitled Document";
-		changed = false;
-		
-		this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-		this.setTitle(getCurrentFileName());
-		this.setVisible(true);
-		
-		this.addComponentListener(new ComponentListener() {
-			
-			@Override
-			public void componentShown(ComponentEvent arg0) {
-				WINDOW_WIDTH = getWidth();
-				WINDOW_HEIGHT = getHeight();
-				getRoot().doc.determinePageX();
-				getRoot().doc.setPreferredSize(new Dimension(DrowPage.WIDTH, DrowDocument.BOTTOM_OF_LAST_PAGE));
-			}
-			
-			@Override
-			public void componentResized(ComponentEvent arg0) {
-				WINDOW_WIDTH = getWidth();
-				WINDOW_HEIGHT = getHeight();
-				getRoot().doc.determinePageX();
-				getRoot().doc.setPreferredSize(new Dimension(DrowPage.WIDTH, DrowDocument.BOTTOM_OF_LAST_PAGE));
 			}
 			
 			@Override

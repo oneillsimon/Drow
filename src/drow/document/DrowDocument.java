@@ -35,11 +35,6 @@ public class DrowDocument extends JPanel {
 		this.setPreferredSize(new Dimension(DrowPage.WIDTH, DrowPage.BOTTOM_OF_LAST));
 	}
 	
-	public DrowDocument(DocumentView view, DocxDocument styledDocument) {
-		pages = new ArrayList<DrowPage>();
-		pages.add(new DrowPage(styledDocument));
-	}
-	
 	public DrowPage newPage(DocumentView docView) {
 		pages.add(new DrowPage(pageIndex));
 		pages.get(pageIndex).requestFocusInWindow();
