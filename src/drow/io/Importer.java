@@ -19,11 +19,9 @@ import drow.view.DocumentView;
 public class Importer {
 	
 	private DocumentView docView;
-	private JTextPane textPane;
 	
 	public Importer(DocumentView docView) {
 		this.docView = docView;
-		this.textPane = null;//docView.getDrowDocument().getPage();
 	}
 	
 	public void importFile(String filePath, FileFilter fileFilter) {
@@ -57,9 +55,13 @@ public class Importer {
 	}
 
 	private void asDocx(String filePath) {
-		textPane.setEditorKit(new DocxEditorKit());
+		docView.getDrowDocument().removeAllPages();
+		docView.getDrowDocument().add(docView.getDrowDocument().newPage());
+		docView.getDrowDocument().getFocusedPage().setEditorKit(new DocxEditorKit());
 		try {
-			textPane.getEditorKit().read(new FileInputStream(filePath), textPane.getStyledDocument(), 0);
+			docView.getDrowDocument().getFocusedPage().getEditorKit().read(new FileInputStream(filePath),
+																		   docView.getDrowDocument().getFocusedPage().getStyledDocument(),
+																		   0);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -72,7 +74,9 @@ public class Importer {
 	private void asTxt(String filePath) {
 		try {
 			FileReader reader = new FileReader(filePath);
-			//docView.getDrowDocument().getPage().read(reader, null);
+			docView.getDrowDocument().removeAllPages();
+			docView.getDrowDocument().add(docView.getDrowDocument().newPage());
+			docView.getDrowDocument().getFocusedPage().read(reader, null);
 			reader.close();
 		} catch (IOException e) {
 			Toolkit.getDefaultToolkit().beep();
