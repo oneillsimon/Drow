@@ -9,6 +9,7 @@ import java.io.ObjectOutputStream;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.text.*;
+import javax.swing.text.rtf.RTFEditorKit;
 
 import sl.docx.DocxDocument;
 import sl.docx.DocxEditorKit;
@@ -107,7 +108,20 @@ public class Exporter {
 	}
 
 	private void asRtf(String fileName) {
-
+		StyledDocument doc = docView.getDrowDocument().getCombinedPage().getStyledDocument();
+		RTFEditorKit kit = new RTFEditorKit();
+		
+		try {
+			FileOutputStream out = new FileOutputStream(fileName);
+			kit.write(out, doc, 0, doc.getLength());
+			out.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (BadLocationException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private void asDrow(String fileName) {

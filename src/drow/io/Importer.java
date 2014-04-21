@@ -3,6 +3,7 @@ package drow.io;
 import java.awt.Toolkit;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -11,6 +12,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
+import javax.swing.text.StyledDocument;
+import javax.swing.text.rtf.RTFEditorKit;
 
 import sl.docx.DocxEditorKit;
 import drow.document.PageCollection;
@@ -85,7 +89,21 @@ public class Importer {
 	}
 
 	private void asRtf(String fileName) {
-
+		RTFEditorKit kit = new RTFEditorKit();
+		docView.getDrowDocument().removeAllPages();
+		docView.getDrowDocument().add(docView.getDrowDocument().newPage());
+		docView.getDrowDocument().getFocusedPage().setEditorKit(kit);
+		
+		FileInputStream in = null;		
+		try {
+			in = new FileInputStream(fileName);
+			kit.read(in, (Document)docView.getDrowDocument().getFocusedPage().getDocument(), 0);
+			in.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (BadLocationException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private void asDrow(String fileName) {
