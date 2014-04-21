@@ -32,7 +32,7 @@ public class TabbedGUI {
 		docView.add(scrollPane, BorderLayout.CENTER);
 		docView.add(tabbedPane, BorderLayout.NORTH);
 		
-		//docView.getDrowDocument().add(docView.getDrowDocument().newPage(docView));
+		docView.getDrowDocument().add(docView.getDrowDocument().newPage());
 		//docView.getDrowDocument().add(docView.getDrowDocument().newPage(docView));
 		//docView.getDrowDocument().add(docView.getDrowDocument().newPage(docView));
 		

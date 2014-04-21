@@ -7,7 +7,6 @@ import java.awt.Point;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JFrame;
-import javax.swing.JTextPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.text.BadLocationException;
@@ -16,6 +15,8 @@ import drow.document.helpers.DrowDocumentHelper;
 import drow.view.DocumentView;
 
 public class FullScreenDocument extends JFrame {
+	
+	private static final long serialVersionUID = 1L;
 	
 	private DrowDocument document;
 	private DocumentView docView;
@@ -76,7 +77,7 @@ public class FullScreenDocument extends JFrame {
 		}
 	}
 	
-	public FullScreenDocument(DocumentView docView, DrowDocument document) {
+	public FullScreenDocument(DocumentView docView) {
 		
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -86,8 +87,9 @@ public class FullScreenDocument extends JFrame {
 		}
 		
 		this.docView = docView;
-		this.document = document;
+		this.document = docView.getDrowDocument();
 		this.pageIndex = 0;
+		
 		try {
 			this.textPane = new DrowPage(0);
 			DrowDocumentHelper.mergeDocument(document.getPages().get(pageIndex).getStyledDocument(), textPane.getStyledDocument());

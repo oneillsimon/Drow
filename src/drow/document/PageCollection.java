@@ -20,7 +20,7 @@ public class PageCollection implements Serializable {
 	public ArrayList<StyledDocument> getPages() {
 		return pages;
 	}
-	// simon loves graham :) 
+	// graham loves simon :) 
 	public void setPages(DrowDocument doc) {
 		for(int i = 0; i < doc.getPages().size(); i++) {
 			pages.add(doc.getPages().get(i).getStyledDocument());
@@ -28,9 +28,8 @@ public class PageCollection implements Serializable {
 	}
 	
 	public void applyToDocument(DocumentView docView) {
-		
 		for(int i = 0; i < pages.size(); i++) {
-			docView.getDrowDocument().add(docView.getDrowDocument().newPage(docView));
+			docView.getDrowDocument().add(docView.getDrowDocument().newPage());
 			docView.getDrowDocument().getPages().get(i).setStyledDocumentf((DocxDocument)pages.get(i));
 		}
 	}

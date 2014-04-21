@@ -13,12 +13,9 @@ import javax.swing.ImageIcon;
 import javax.swing.InputMap;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
-import drow.document.FullScreenDocument;
 import drow.io.DrowIOActionManager;
 import drow.styles.DrowStyleActionManager;
 import drow.view.DocumentView;
@@ -37,12 +34,12 @@ public class HomePanel extends JPanel {
 	private JButton btnBold;
 	private JButton btnItalic;
 	private JButton btnUnderline;
-	private JButton btnStrikethrough;
+	private JButton btnStrikeThrough;
 	private JButton btnJustifyLeft;
 	private JButton btnJustifyCenter;
 	private JButton btnJustifyRight;
 	private JButton btnFontColour;
-	private JButton btnHighlightColour;
+	private JButton btnHighlightColour;	
 	private JButton btnSuperScript;
 	private JButton btnSubScript;
 	
@@ -51,7 +48,7 @@ public class HomePanel extends JPanel {
 	GridBagConstraints gbc_btnBold;
 	GridBagConstraints gbc_btnItalic;
 	GridBagConstraints gbc_btnUnderline;
-	GridBagConstraints gbc_btnStrikethrough;
+	GridBagConstraints gbc_btnStrikeThrough;	
 	GridBagConstraints gbc_btnJustifyLeft;
 	GridBagConstraints gbc_btnJustifyCenter;
 	GridBagConstraints gbc_btnJustifyRight;
@@ -86,12 +83,12 @@ public class HomePanel extends JPanel {
 		btnBold = new JButton(new ImageIcon("res/bold.png"));
 		btnItalic = new JButton(new ImageIcon("res/italic.png"));
 		btnUnderline = new JButton(new ImageIcon("res/underline.png"));
-		btnStrikethrough = new JButton("s");
+		btnStrikeThrough = new JButton("Hcol");		
 		btnJustifyLeft = new JButton("JL");
 		btnJustifyCenter = new JButton("JC");
 		btnJustifyRight = new JButton("JR");
 		btnFontColour = new JButton("Fcol");
-		btnHighlightColour = new JButton("Hcol");
+		btnHighlightColour = new JButton("s");
 		btnSuperScript = new JButton("sS");
 		btnSubScript = new JButton("Ss");
 		
@@ -100,12 +97,12 @@ public class HomePanel extends JPanel {
 		gbc_btnBold = new GridBagConstraints();
 		gbc_btnItalic = new GridBagConstraints();
 		gbc_btnUnderline = new GridBagConstraints(); 
-		gbc_btnStrikethrough = new GridBagConstraints();
+		gbc_btnStrikeThrough = new GridBagConstraints();
 		gbc_btnJustifyLeft = new GridBagConstraints();
 		gbc_btnJustifyCenter = new GridBagConstraints();
 		gbc_btnJustifyRight = new GridBagConstraints();
 		gbc_btnFontColour = new GridBagConstraints();
-		gbc_btnHighlightColour = new GridBagConstraints();
+		gbc_btnHighlightColour = new GridBagConstraints();		
 		gbc_btnSuperScript = new GridBagConstraints();
 		gbc_btnSubScript = new GridBagConstraints();
 		
@@ -136,9 +133,9 @@ public class HomePanel extends JPanel {
 		gbc_btnItalic.gridx = 4;
 		gbc_btnItalic.gridy = 1;
 		
-		gbc_btnStrikethrough.insets = new Insets(0, 0, 5, 5);
-		gbc_btnStrikethrough.gridx = 5;
-		gbc_btnStrikethrough.gridy = 1;
+		gbc_btnStrikeThrough.insets = new Insets(0, 0, 0, 5);
+		gbc_btnStrikeThrough.gridx = 5;
+		gbc_btnStrikeThrough.gridy = 2;
 		
 		gbc_btnJustifyLeft.insets = new Insets(0, 0, 5, 5);
 		gbc_btnJustifyLeft.gridx = 7;
@@ -156,9 +153,9 @@ public class HomePanel extends JPanel {
 		gbc_btnFontColour.gridx = 4;
 		gbc_btnFontColour.gridy = 2;
 		
-		gbc_btnHighlightColour.insets = new Insets(0, 0, 0, 5);
+		gbc_btnHighlightColour.insets = new Insets(0, 0, 5, 5);
 		gbc_btnHighlightColour.gridx = 5;
-		gbc_btnHighlightColour.gridy = 2;
+		gbc_btnHighlightColour.gridy = 1;
 		
 		gbc_btnSuperScript.insets = new Insets(0, 0, 0, 5);
 		gbc_btnSuperScript.gridx = 8;
@@ -176,23 +173,14 @@ public class HomePanel extends JPanel {
 		btnBold.setAction(styleActionManager.boldAction());
 		btnItalic.setAction(styleActionManager.italicAction());
 		btnUnderline.setAction(styleActionManager.underlineAction());
-		btnStrikethrough.setAction(styleActionManager.strikeThroughAction());
+		btnStrikeThrough.setAction(styleActionManager.backgroundColorAction());
 		btnJustifyLeft.setAction(styleActionManager.justifyLeftAction());
 		btnJustifyCenter.setAction(styleActionManager.justifyCenterAction());
 		btnJustifyRight.setAction(styleActionManager.justifyRightAction());
 		btnFontColour.setAction(styleActionManager.foregroundColorAction());
-		btnHighlightColour.setAction(styleActionManager.backgroundColorAction());
+		btnHighlightColour.setAction(styleActionManager.strikeThroughAction());
 		btnSuperScript.setAction(styleActionManager.superScriptAction());
-		//btnSubScript.setAction(styleActionManager.subScriptAction());
-
-		btnSubScript.setAction(new AbstractAction("New page") {
-			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				//docView.getDrowDocument().add(docView.getDrowDocument().newPage(docView));
-				new FullScreenDocument(docView, docView.getDrowDocument());
-			}
-		});
+		btnSubScript.setAction(styleActionManager.subScriptAction());
 		
 		comboBoxFontFamily.setAction(styleActionManager.fontFamilyAction());
 		comboBoxFontSize.setAction(styleActionManager.fontSizeAction());
@@ -209,13 +197,13 @@ public class HomePanel extends JPanel {
 		InputMap inputMap = btnSave.getInputMap(JButton.WHEN_IN_FOCUSED_WINDOW);
 		KeyStroke s = KeyStroke.getKeyStroke(KeyEvent.VK_S, Event.CTRL_MASK);
 		inputMap.put(s, "S");
-		
 		btnSave.getActionMap().put("S", new ClickAction(btnSave));
+		
 		InputMap inputMap1 = btnOpen.getInputMap(JButton.WHEN_IN_FOCUSED_WINDOW);
 		KeyStroke o = KeyStroke.getKeyStroke(KeyEvent.VK_O, Event.CTRL_MASK);
 		inputMap1.put(o, "O");
-		
 		btnOpen.getActionMap().put("O", new ClickAction(btnOpen));
+		
 		InputMap inputMap2 = btnBold.getInputMap(JButton.WHEN_IN_FOCUSED_WINDOW);
 		KeyStroke b = KeyStroke.getKeyStroke(KeyEvent.VK_B, Event.CTRL_MASK);
 		inputMap2.put(b, "B");
@@ -225,18 +213,23 @@ public class HomePanel extends JPanel {
 		KeyStroke i = KeyStroke.getKeyStroke(KeyEvent.VK_I, Event.CTRL_MASK);
 		inputMap3.put(i, "I");
 		btnItalic.getActionMap().put("I", new ClickAction(btnItalic));
+		
+		InputMap inputMap4 = btnUnderline.getInputMap(JButton.WHEN_IN_FOCUSED_WINDOW);
+		KeyStroke u = KeyStroke.getKeyStroke(KeyEvent.VK_U, Event.CTRL_MASK);
+		inputMap4.put(u, "U");
+		btnUnderline.getActionMap().put("U", new ClickAction(btnUnderline));
 			
 		this.add(btnSave, gbc_btnSave);
 		this.add(btnOpen, gbc_btnOpen);
 		this.add(btnBold, gbc_btnBold);
 		this.add(btnItalic, gbc_btnItalic);
 		this.add(btnUnderline, gbc_btnUnderline);
-		this.add(btnStrikethrough, gbc_btnStrikethrough);
+		this.add(btnHighlightColour, gbc_btnHighlightColour);
 		this.add(btnJustifyLeft, gbc_btnJustifyLeft);
 		this.add(btnJustifyCenter, gbc_btnJustifyCenter);
 		this.add(btnJustifyRight, gbc_btnJustifyRight);
 		this.add(btnFontColour, gbc_btnFontColour);
-		this.add(btnHighlightColour, gbc_btnHighlightColour);
+		this.add(btnStrikeThrough, gbc_btnStrikeThrough);
 		this.add(btnSuperScript, gbc_btnSuperScript);
 		this.add(btnSubScript, gbc_btnSubScript);
 		
