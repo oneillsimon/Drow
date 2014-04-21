@@ -7,11 +7,10 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 
 import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileFilter;
-import javax.swing.text.*;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.StyledDocument;
 import javax.swing.text.rtf.RTFEditorKit;
 
-import sl.docx.DocxDocument;
 import sl.docx.DocxEditorKit;
 import drow.document.PageCollection;
 import drow.view.DocumentView;
@@ -42,10 +41,6 @@ public class Exporter {
 			dFilter = Filters.getFilterFromString(split[split.length - 1]);
 		}
 		
-		if(dFilter.equals(Filters.DOC)) {
-			asDoc(fileName);
-		}
-		
 		if(dFilter.equals(Filters.DOCX)) {
 			asDocx(fileName);
 		}
@@ -62,14 +57,8 @@ public class Exporter {
 			asDrow(fileName);
 		}
 
-		docView.setCurrentFileName(fileName);
-		docView.setTitle(fileName);
-		docView.setChanged(false);
-		docView.setChanged(!docView.getChanged());
-	}
-
-	private void asDoc(String fileName) {
-
+		split = fileName.split("\\\\");
+		docView.setTitle(split[split.length - 1]);
 	}
 
 	private void asDocx(String fileName) {
@@ -98,9 +87,6 @@ public class Exporter {
 			FileWriter writer = new FileWriter(fileName);
 			docView.getDrowDocument().getCombinedPage().write(writer);
 			writer.close();
-
-			docView.setCurrentFileName(fileName);
-			docView.setChanged(false);
 
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -1,11 +1,9 @@
 package drow.document;
 
-import java.io.Serializable;
-
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 
-public class DrowCaretListener implements CaretListener, Serializable {
+public class DrowCaretListener implements CaretListener {
 
 	private int dot;
 	private int mark;

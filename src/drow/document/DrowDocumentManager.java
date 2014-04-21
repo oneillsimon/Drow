@@ -4,7 +4,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.filechooser.FileFilter;
 
-import drow.io.DrowFileFilter;
 import drow.io.Exporter;
 import drow.io.Importer;
 import drow.view.DocumentView;

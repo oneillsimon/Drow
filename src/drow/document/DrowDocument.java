@@ -5,10 +5,8 @@ import java.awt.Dimension;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
-import javax.swing.JTextPane;
 import javax.swing.text.BadLocationException;
 
-import sl.docx.DocxDocument;
 import drow.document.helpers.DrowDocumentHelper;
 import drow.view.DocumentView;
 

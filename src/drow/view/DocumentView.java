@@ -1,7 +1,6 @@
 package drow.view;
 
 import java.awt.Dimension;
-import java.awt.Frame;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 
@@ -20,8 +19,6 @@ public class DocumentView extends JFrame {
 	public static int WINDOW_WIDTH = 750;
 	public static int WINDOW_HEIGHT = 500;
 	
-	private String currentFileName;
-	private boolean changed;
 	// simon is a cool guy
 	private DrowDocumentManager docManager;
 	private DrowDocument doc;
@@ -34,11 +31,8 @@ public class DocumentView extends JFrame {
 		docManager = new DrowDocumentManager(this);
 		new TabbedGUI(this);
 		
-		currentFileName = "Untitled Document";
-		changed = false;
-		
 		this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-		this.setTitle(getCurrentFileName());
+		this.setTitle("Drow Word");
 		this.setVisible(true);
 		
 		this.addComponentListener(new ComponentListener() {
@@ -81,22 +75,6 @@ public class DocumentView extends JFrame {
 		return doc;
 	}
 
-	public String getCurrentFileName() {
-		return currentFileName;
-	}
-
-	public void setCurrentFileName(String currentFileName) {
-		this.currentFileName = currentFileName;
-	}
-
-	public boolean getChanged() {
-		return changed;
-	}
-
-	public void setChanged(boolean changed) {
-		this.changed = changed;
-	}
-	
 	public DocumentView getRoot() {
 		return this;
 	}

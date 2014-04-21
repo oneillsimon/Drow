@@ -6,7 +6,6 @@ import javax.swing.JFileChooser;
 public class Filters {
 	
 	public static DrowFileFilter ANY = new DrowFileFilter(".", "All files");
-	public static DrowFileFilter DOC = new DrowFileFilter("doc", "Microsoft Word 97/2000/XP/2003");
 	public static DrowFileFilter DOCX = new DrowFileFilter("docx", "Microsoft Word 2007/2010");
 	public static DrowFileFilter TXT = new DrowFileFilter("txt", "Text");
 	public static DrowFileFilter RTF = new DrowFileFilter("rtf", "Rich Text Format");
@@ -16,7 +15,6 @@ public class Filters {
 	
 	public static void setUp() {
 		extensions.add(ANY);
-		extensions.add(DOC);
 		extensions.add(DOCX);
 		extensions.add(TXT);
 		extensions.add(RTF);

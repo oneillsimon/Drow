@@ -3,17 +3,14 @@ package drow.io;
 import java.awt.Toolkit;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
 import javax.swing.JOptionPane;
-import javax.swing.JTextPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
-import javax.swing.text.StyledDocument;
 import javax.swing.text.rtf.RTFEditorKit;
 
 import sl.docx.DocxEditorKit;
@@ -33,10 +30,6 @@ public class Importer {
 		String[] split = filePath.split("\\.");
 		DrowFileFilter dFilter = Filters.getFilterFromString(split[split.length - 1]);
 		
-		if(dFilter.equals(Filters.DOC)) {
-			asDoc(filePath);
-		}
-		
 		if(dFilter.equals(Filters.DOCX)) {
 			asDocx(filePath);
 		}
@@ -52,10 +45,9 @@ public class Importer {
 		if(dFilter.equals(Filters.DROW)) {
 			asDrow(filePath);
 		}
-	}
-
-	private void asDoc(String fileName) {
-
+		
+		split = filePath.split("\\\\");
+		docView.setTitle(split[split.length - 1]);
 	}
 
 	private void asDocx(String filePath) {
