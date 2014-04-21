@@ -1,6 +1,7 @@
 package drow.view;
 
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 
@@ -68,6 +69,7 @@ public class DocumentView extends JFrame {
 		});
 		
 		doc.determinePageX();
+		
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	

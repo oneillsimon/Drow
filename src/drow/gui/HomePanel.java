@@ -13,9 +13,12 @@ import javax.swing.ImageIcon;
 import javax.swing.InputMap;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
+import drow.document.FullScreenDocument;
 import drow.io.DrowIOActionManager;
 import drow.styles.DrowStyleActionManager;
 import drow.view.DocumentView;
@@ -186,10 +189,11 @@ public class HomePanel extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				docView.getDrowDocument().add(docView.getDrowDocument().newPage(docView));
+				//docView.getDrowDocument().add(docView.getDrowDocument().newPage(docView));
+				new FullScreenDocument(docView, docView.getDrowDocument());
 			}
 		});
-
+		
 		comboBoxFontFamily.setAction(styleActionManager.fontFamilyAction());
 		comboBoxFontSize.setAction(styleActionManager.fontSizeAction());
 		
