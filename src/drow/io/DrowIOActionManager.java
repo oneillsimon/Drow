@@ -51,11 +51,8 @@ public class DrowIOActionManager {
 				fileChooser.setDialogTitle("Save a file");
 				
 				if(fileChooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
-					String[] split = fileChooser.getSelectedFile().getName().split("\\.");
 					String filePath = fileChooser.getSelectedFile().getAbsolutePath();
-					String extension = split[split.length  -1];
-					
-					docManager.saveFile(filePath, Filters.getFilterFromString(extension));
+					docManager.saveFile(filePath, fileChooser);
 				}
 			}
 		};

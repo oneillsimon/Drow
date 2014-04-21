@@ -21,8 +21,8 @@ public class DrowDocumentManager extends JFrame {
 		this.exporter = new Exporter(docView);
 	}
 
-	public void saveFile(String fileName, FileFilter filter) {
-		exporter.exportFile(fileName, filter);
+	public void saveFile(String fileName, JFileChooser fileChooser) {
+		exporter.exportFile(fileName, fileChooser);
 	}
 
 	public void saveFileAs() {

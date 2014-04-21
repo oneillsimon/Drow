@@ -33,6 +33,16 @@ public class Filters {
 		return TXT;
 	}
 	
+	public static boolean isStringFileFilter(String s) {
+		for(int i = 0; i < extensions.size(); i++) {
+			if(s.equals(extensions.get(i).getExtension())) {
+					return true;
+			}
+		}
+		
+		return false;
+	}
+	
 	public static void addFiltersToFileChooser(JFileChooser fileChooser) {
 		for(int i = 0; i < extensions.size(); i++) {
 			fileChooser.addChoosableFileFilter(extensions.get(i));
