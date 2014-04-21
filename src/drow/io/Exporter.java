@@ -6,7 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
-import javax.swing.JTextPane;
+import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.text.*;
 
@@ -18,35 +18,27 @@ import drow.view.DocumentView;
 public class Exporter {
 	
 	private DocumentView docView;
-	private JTextPane textPane = new JTextPane();
-	private DocxDocument styledDocument;
 	
 	public Exporter(DocumentView docView) {
 		this.docView = docView;
-		//this.textPane = docView.getDrowDocument().getCombinedPage();
-		this.styledDocument = docView.getDrowDocument().getCombinedPage().getStyledDocument();
-		textPane.setText("Hello I am hardcoded");
 	}
 	
-	public void exportFile(String fileName, FileFilter fileFilter) {
+	public void exportFile(String fileName, JFileChooser fileChooser) {
 		
 		DrowFileFilter dFilter;
 		
 		try {
-			dFilter = (DrowFileFilter)fileFilter;
+			dFilter = (DrowFileFilter)fileChooser.getFileFilter();
 		} catch(Exception e) {
 			dFilter = Filters.DROW;
 		}
 		
-		// TODO: check if extension exists before adding it
-		
 		String[] split = fileName.split("\\.");
 		
-		for(int i = 0; i < Filters.getExtensions().size(); i++) {
-			if(!split[split.length - 1].equals(Filters.getExtensionString(i))) {
-				fileName += dFilter.getFullExtension();
-				break;
-			}
+		if(!Filters.isStringFileFilter(split[split.length - 1])) {
+			fileName += dFilter.getFullExtension();
+		} else {
+			dFilter = Filters.getFilterFromString(split[split.length - 1]);
 		}
 		
 		if(dFilter.equals(Filters.DOC)) {
@@ -80,21 +72,14 @@ public class Exporter {
 	}
 
 	private void asDocx(String fileName) {
-		//docView.getDrowDocument().getFocusedPage().setEditorKit(new DocxEditorKit());
-		textPane.setEditorKit(new DocxEditorKit());
-		try {
-			System.out.println(docView.getDrowDocument().getCombinedPage().getText(0, docView.getDrowDocument().getCombinedPage().getDocument().getLength()));
-		} catch (BadLocationException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		docView.getDrowDocument().getCombinedPage().setEditorKit(new DocxEditorKit());
 		
 		try {
 			FileOutputStream writer = new FileOutputStream(fileName);
-            textPane.getEditorKit().write(writer,
-            									textPane.getDocument(),
-            									0,
-            									textPane.getDocument().getLength());
+			docView.getDrowDocument().getCombinedPage().getEditorKit().write(writer,
+																			 docView.getDrowDocument().getCombinedPage().getDocument(),
+																			 0,
+																			 docView.getDrowDocument().getCombinedPage().getDocument().getLength());
 
             writer.flush();
             writer.close();
@@ -105,7 +90,6 @@ public class Exporter {
 		} catch (BadLocationException e) {
 			e.printStackTrace();
 		}
-		docView.getDrowDocument().getCombinedPage().setStyledDocument(styledDocument);
 	}
 
 	private void asTxt(String fileName) {
