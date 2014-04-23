@@ -6,9 +6,14 @@ import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import javax.swing.text.DefaultEditorKit;
 
 import drow.document.DrowDocumentManager;
+import drow.document.FullScreenDocument;
+import drow.gui.DeveloperTabs;
+import drow.gui.WordTabs;
 import drow.view.DocumentView;
 
 public class DrowIOActionManager {
@@ -54,6 +59,58 @@ public class DrowIOActionManager {
 					String filePath = fileChooser.getSelectedFile().getAbsolutePath();
 					docManager.saveFile(filePath, fileChooser);
 				}
+			}
+		};
+	}
+	
+	public Action newAction() {
+		return new AbstractAction("New", new ImageIcon("res/new.gif")) {
+			
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				docView.getDrowDocument().add(docView.getDrowDocument().newPage());
+			}
+		};
+	}
+	
+	public Action fullScreenAction() {
+		return new AbstractAction("", new ImageIcon("res/fullscreen.png")) {
+			
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				new FullScreenDocument(docView);
+			}
+		};
+	}
+	
+	public Action devModeAction(final boolean b) {
+		return new AbstractAction("", new ImageIcon("res/Developer.png")) {
+			
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String s = "";
+				if(!b) {
+					s = "com.jtattoo.plaf.hifi.HiFiLookAndFeel";
+					docView.getGui().setTabbedPane(new DeveloperTabs(docView));
+				} else {
+					s = "com.jtattoo.plaf.graphite.GraphiteLookAndFeel";
+					docView.getGui().setTabbedPane(new WordTabs(docView));
+				}
+				
+				try {
+					UIManager.setLookAndFeel(s);
+					SwingUtilities.updateComponentTreeUI(docView);
+				} catch (Exception e) {
+				}
+				
+				docView.repaint();
+				docView.revalidate();
 			}
 		};
 	}

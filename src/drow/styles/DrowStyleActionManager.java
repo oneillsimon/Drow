@@ -147,7 +147,7 @@ public class DrowStyleActionManager {
 	}
 	
 	public Action strikeThroughAction() {
-		return new AbstractAction("t") {
+		return new AbstractAction("", new ImageIcon("res/strike.png")) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -158,7 +158,7 @@ public class DrowStyleActionManager {
 	}
 	
 	public Action superScriptAction() {
-		return new AbstractAction("^") {
+		return new AbstractAction("", new ImageIcon("res/superscript.png")) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -169,7 +169,7 @@ public class DrowStyleActionManager {
 	}
 	
 	public Action subScriptAction() {
-		return new AbstractAction("v") {
+		return new AbstractAction("", new ImageIcon("res/subscript.png")) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -180,7 +180,7 @@ public class DrowStyleActionManager {
 	}
 	
 	public Action foregroundColorAction() {
-		return new AbstractAction("fc") {
+		return new AbstractAction("", new ImageIcon("res/fontcolour.png")) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -200,7 +200,7 @@ public class DrowStyleActionManager {
 	}
 	
 	public Action backgroundColorAction() {
-		return new AbstractAction("hc") {
+		return new AbstractAction("", new ImageIcon("res/fonthighlight.png")) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -220,7 +220,7 @@ public class DrowStyleActionManager {
 	}
 	
 	public Action justifyLeftAction() {
-		return new AbstractAction("Left") {
+		return new AbstractAction("", new ImageIcon("res/align_left.png")) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -233,7 +233,7 @@ public class DrowStyleActionManager {
 	}
 	
 	public Action justifyCenterAction() {
-		return new AbstractAction("Center") {
+		return new AbstractAction("", new ImageIcon("res/align_centre.png")) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -246,7 +246,7 @@ public class DrowStyleActionManager {
 	}
 	
 	public Action justifyRightAction() {
-		return new AbstractAction("Right") {
+		return new AbstractAction("", new ImageIcon("res/align_right.png")) {
 			private static final long serialVersionUID = 1L;
 
 			@Override

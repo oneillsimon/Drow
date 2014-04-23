@@ -9,7 +9,8 @@ import javax.swing.JFrame;
 import drow.document.DrowDocument;
 import drow.document.DrowDocumentManager;
 import drow.document.DrowPage;
-import drow.gui.TabbedGUI;
+import drow.gui.DrowGui;
+import drow.gui.WordTabs;
 import drow.io.Filters;
 
 public class DocumentView extends JFrame {
@@ -22,6 +23,8 @@ public class DocumentView extends JFrame {
 	// simon is a cool guy
 	private DrowDocumentManager docManager;
 	private DrowDocument doc;
+	
+	private DrowGui gui;
 
 	public DocumentView() {
 		
@@ -29,7 +32,8 @@ public class DocumentView extends JFrame {
 		
 		doc = new DrowDocument(this);
 		docManager = new DrowDocumentManager(this);
-		new TabbedGUI(this);
+		
+		gui = new DrowGui(this, new WordTabs(this));
 		
 		this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 		this.setTitle("Drow Word");
@@ -73,6 +77,10 @@ public class DocumentView extends JFrame {
 	
 	public DrowDocument getDrowDocument() {
 		return doc;
+	}
+	
+	public DrowGui getGui() {
+		return gui;
 	}
 
 	public DocumentView getRoot() {

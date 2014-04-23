@@ -1,4 +1,3 @@
-import javax.swing.LookAndFeel;
 import javax.swing.UIManager;
 
 import drow.view.DocumentView;

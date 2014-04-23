@@ -1,179 +1,115 @@
 package drow.gui;
 
+import javax.swing.JPanel;
+
 import java.awt.Event;
 import java.awt.GraphicsEnvironment;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import javax.swing.AbstractAction;
-import javax.swing.ImageIcon;
 import javax.swing.InputMap;
 import javax.swing.JButton;
+import javax.swing.JToggleButton;
 import javax.swing.JComboBox;
-import javax.swing.JPanel;
+import javax.swing.JLabel;
 import javax.swing.KeyStroke;
 
+import drow.gui.CopyOfHomePanel.ClickAction;
 import drow.io.DrowIOActionManager;
 import drow.styles.DrowStyleActionManager;
 import drow.view.DocumentView;
 
 public class HomePanel extends JPanel {
-	
+
 	private static final long serialVersionUID = 1L;
-	
-	private GridBagLayout gridBagLayout;
 	
 	private String[] fontFamilies;
 	private String[] fontSizes;
 	
-	private JButton btnSave;
 	private JButton btnOpen;
+	private JButton btnSave;
+	private JButton btnSaveAs;
+	private JButton btnNew;
+	private JButton btnFullScreen;
 	private JButton btnBold;
 	private JButton btnItalic;
 	private JButton btnUnderline;
-	private JButton btnStrikeThrough;
+	private JButton btnStrikethrough;
+	private JButton btnFontColour;
+	private JButton btnHighlightColour;
+	private JButton btnSuperScript;
+	private JButton btnSubScript;
+	private JToggleButton tglbtnDev;
 	private JButton btnJustifyLeft;
 	private JButton btnJustifyCenter;
 	private JButton btnJustifyRight;
-	private JButton btnFontColour;
-	private JButton btnHighlightColour;	
-	private JButton btnSuperScript;
-	private JButton btnSubScript;
-	
-	GridBagConstraints gbc_btnSave;
-	GridBagConstraints gbc_btnOpen;
-	GridBagConstraints gbc_btnBold;
-	GridBagConstraints gbc_btnItalic;
-	GridBagConstraints gbc_btnUnderline;
-	GridBagConstraints gbc_btnStrikeThrough;	
-	GridBagConstraints gbc_btnJustifyLeft;
-	GridBagConstraints gbc_btnJustifyCenter;
-	GridBagConstraints gbc_btnJustifyRight;
-	GridBagConstraints gbc_btnFontColour;
-	GridBagConstraints gbc_btnHighlightColour;
-	GridBagConstraints gbc_btnSuperScript;
-	GridBagConstraints gbc_btnSubScript;
-	
-	private JComboBox<String> comboBoxFontFamily;
-	private JComboBox<String> comboBoxFontSize;
-	
-	GridBagConstraints gbc_comboBoxFontFamily;
-	GridBagConstraints gbc_comboBoxFontSize;
+	private JComboBox<String> comboBoxFontFamilies;
+	private JComboBox<String> comboBoxFontSizes;
+	private JLabel lblNull;
+	private JLabel lblNull_1;
+	private JLabel lblNull_2;
+	private JLabel lblNull_3;
+	private JLabel lblNull_4;
+	private JLabel lblNull_5;
+	private JLabel lblNull_6;
+	private JLabel lblNull_7;
+	private JLabel lblNull_8;
 	
 	private DrowStyleActionManager styleActionManager;
 	private DrowIOActionManager ioActionManager;
 	
-	public HomePanel(final DocumentView docView) {
-		gridBagLayout = new GridBagLayout();
-		
-		gridBagLayout.columnWidths = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{5, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 5.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-		this.setLayout(gridBagLayout);
+	
+	public HomePanel(DocumentView docView) {
+		setLayout(new GridLayout(2, 9, 0, 0));
 		
 		fontFamilies = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
 		fontSizes = new String[] { "8", "9", "10", "11", "12", "14", "16", "18", "20", "22", "24", "26", "28", "36", "48", "72" };
 		
-		btnSave = new JButton(new ImageIcon("res/save.gif"));
-		btnOpen = new JButton(new ImageIcon("res/open.gif"));
-		btnBold = new JButton(new ImageIcon("res/bold.png"));
-		btnItalic = new JButton(new ImageIcon("res/italic.png"));
-		btnUnderline = new JButton(new ImageIcon("res/underline.png"));
-		btnStrikeThrough = new JButton("Hcol");		
-		btnJustifyLeft = new JButton("JL");
-		btnJustifyCenter = new JButton("JC");
-		btnJustifyRight = new JButton("JR");
-		btnFontColour = new JButton("Fcol");
-		btnHighlightColour = new JButton("s");
-		btnSuperScript = new JButton("sS");
-		btnSubScript = new JButton("Ss");
+		btnOpen = new JButton("Open");
+		btnSave = new JButton("Save");
+		btnSaveAs = new JButton("Save As");
+		btnNew = new JButton("New");
+		btnFullScreen = new JButton("Fullscreen");
+		btnBold = new JButton("Bold");
+		btnItalic = new JButton("Italic");
+		btnUnderline = new JButton("Underline");
+		btnStrikethrough = new JButton("Strikethrough");
+		btnFontColour = new JButton("fCol");
+		btnHighlightColour = new JButton("hCol");
+		btnJustifyLeft = new JButton("Left");
+		btnJustifyCenter = new JButton("Center");
+		btnJustifyRight = new JButton("Right");
+		btnSuperScript = new JButton("Sup");
+		btnSubScript = new JButton("Sub");
+		tglbtnDev = new JToggleButton("Dev");
 		
-		gbc_btnSave = new GridBagConstraints();
-		gbc_btnOpen = new GridBagConstraints();
-		gbc_btnBold = new GridBagConstraints();
-		gbc_btnItalic = new GridBagConstraints();
-		gbc_btnUnderline = new GridBagConstraints(); 
-		gbc_btnStrikeThrough = new GridBagConstraints();
-		gbc_btnJustifyLeft = new GridBagConstraints();
-		gbc_btnJustifyCenter = new GridBagConstraints();
-		gbc_btnJustifyRight = new GridBagConstraints();
-		gbc_btnFontColour = new GridBagConstraints();
-		gbc_btnHighlightColour = new GridBagConstraints();		
-		gbc_btnSuperScript = new GridBagConstraints();
-		gbc_btnSubScript = new GridBagConstraints();
+		comboBoxFontFamilies = new JComboBox<String>(fontFamilies);
+		comboBoxFontSizes = new JComboBox<String>(fontSizes);
+		comboBoxFontSizes.setEditable(true);
 		
-		comboBoxFontFamily = new JComboBox<String>(fontFamilies);
-		comboBoxFontSize = new JComboBox<String>(fontSizes);
-		comboBoxFontSize.setEditable(true);
-		
-		gbc_comboBoxFontFamily = new GridBagConstraints();
-		gbc_comboBoxFontSize = new GridBagConstraints();
-		
-		gbc_btnSave.insets = new Insets(0, 0, 0, 5);
-		gbc_btnSave.gridx = 0;
-		gbc_btnSave.gridy = 2;
-		
-		gbc_btnOpen.insets = new Insets(0, 0, 5, 5);
-		gbc_btnOpen.gridx = 0;
-		gbc_btnOpen.gridy = 1;
-		
-		gbc_btnBold.insets = new Insets(0, 0, 5, 5);
-		gbc_btnBold.gridx = 3;
-		gbc_btnBold.gridy = 1;
-		
-		gbc_btnUnderline.insets = new Insets(0, 0, 0, 5);
-		gbc_btnUnderline.gridx = 3;
-		gbc_btnUnderline.gridy = 2;
-		
-		gbc_btnItalic.insets = new Insets(0, 0, 5, 5);
-		gbc_btnItalic.gridx = 4;
-		gbc_btnItalic.gridy = 1;
-		
-		gbc_btnStrikeThrough.insets = new Insets(0, 0, 0, 5);
-		gbc_btnStrikeThrough.gridx = 5;
-		gbc_btnStrikeThrough.gridy = 2;
-		
-		gbc_btnJustifyLeft.insets = new Insets(0, 0, 5, 5);
-		gbc_btnJustifyLeft.gridx = 7;
-		gbc_btnJustifyLeft.gridy = 1;
-		
-		gbc_btnJustifyCenter.insets = new Insets(0, 0, 5, 5);
-		gbc_btnJustifyCenter.gridx = 8;
-		gbc_btnJustifyCenter.gridy = 1;
-		
-		gbc_btnJustifyRight.insets = new Insets(0, 0, 5, 5);
-		gbc_btnJustifyRight.gridx = 9;
-		gbc_btnJustifyRight.gridy = 1;
-		
-		gbc_btnFontColour.insets = new Insets(0, 0, 0, 5);
-		gbc_btnFontColour.gridx = 4;
-		gbc_btnFontColour.gridy = 2;
-		
-		gbc_btnHighlightColour.insets = new Insets(0, 0, 5, 5);
-		gbc_btnHighlightColour.gridx = 5;
-		gbc_btnHighlightColour.gridy = 1;
-		
-		gbc_btnSuperScript.insets = new Insets(0, 0, 0, 5);
-		gbc_btnSuperScript.gridx = 8;
-		gbc_btnSuperScript.gridy = 2;
-		
-		gbc_btnSubScript.insets = new Insets(0, 0, 0, 5);
-		gbc_btnSubScript.gridx = 9;
-		gbc_btnSubScript.gridy = 2;
+		lblNull = new JLabel("");
+		lblNull_1 = new JLabel("");
+		lblNull_2 = new JLabel("");
+		lblNull_3 = new JLabel("");
+		lblNull_4 = new JLabel("");
+		lblNull_5 = new JLabel("");
+		lblNull_6 = new JLabel("");
+		lblNull_7 = new JLabel("");
+		lblNull_8 = new JLabel("");
 		
 		styleActionManager = new DrowStyleActionManager(docView);
 		ioActionManager = new DrowIOActionManager(docView);
 		
 		btnSave.setAction(ioActionManager.saveAction());
 		btnOpen.setAction(ioActionManager.openAction());
+		btnNew.setAction(ioActionManager.newAction());
+		btnFullScreen.setAction(ioActionManager.fullScreenAction());
 		btnBold.setAction(styleActionManager.boldAction());
 		btnItalic.setAction(styleActionManager.italicAction());
 		btnUnderline.setAction(styleActionManager.underlineAction());
-		btnStrikeThrough.setAction(styleActionManager.backgroundColorAction());
+		btnStrikethrough.setAction(styleActionManager.backgroundColorAction());
 		btnJustifyLeft.setAction(styleActionManager.justifyLeftAction());
 		btnJustifyCenter.setAction(styleActionManager.justifyCenterAction());
 		btnJustifyRight.setAction(styleActionManager.justifyRightAction());
@@ -181,18 +117,7 @@ public class HomePanel extends JPanel {
 		btnHighlightColour.setAction(styleActionManager.strikeThroughAction());
 		btnSuperScript.setAction(styleActionManager.superScriptAction());
 		btnSubScript.setAction(styleActionManager.subScriptAction());
-		
-		comboBoxFontFamily.setAction(styleActionManager.fontFamilyAction());
-		comboBoxFontSize.setAction(styleActionManager.fontSizeAction());
-		
-		gbc_comboBoxFontFamily.insets = new Insets(0, 0, 5, 0);
-		gbc_comboBoxFontFamily.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBoxFontFamily.gridx = 10;
-		gbc_comboBoxFontFamily.gridy = 1;
-		
-		gbc_comboBoxFontSize.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBoxFontSize.gridx = 10;
-		gbc_comboBoxFontSize.gridy = 2;
+		tglbtnDev.setAction(ioActionManager.devModeAction(tglbtnDev.isSelected()));
 		
 		InputMap inputMap = btnSave.getInputMap(JButton.WHEN_IN_FOCUSED_WINDOW);
 		KeyStroke s = KeyStroke.getKeyStroke(KeyEvent.VK_S, Event.CTRL_MASK);
@@ -218,23 +143,41 @@ public class HomePanel extends JPanel {
 		KeyStroke u = KeyStroke.getKeyStroke(KeyEvent.VK_U, Event.CTRL_MASK);
 		inputMap4.put(u, "U");
 		btnUnderline.getActionMap().put("U", new ClickAction(btnUnderline));
-			
-		this.add(btnSave, gbc_btnSave);
-		this.add(btnOpen, gbc_btnOpen);
-		this.add(btnBold, gbc_btnBold);
-		this.add(btnItalic, gbc_btnItalic);
-		this.add(btnUnderline, gbc_btnUnderline);
-		this.add(btnHighlightColour, gbc_btnHighlightColour);
-		this.add(btnJustifyLeft, gbc_btnJustifyLeft);
-		this.add(btnJustifyCenter, gbc_btnJustifyCenter);
-		this.add(btnJustifyRight, gbc_btnJustifyRight);
-		this.add(btnFontColour, gbc_btnFontColour);
-		this.add(btnStrikeThrough, gbc_btnStrikeThrough);
-		this.add(btnSuperScript, gbc_btnSuperScript);
-		this.add(btnSubScript, gbc_btnSubScript);
 		
-		this.add(comboBoxFontFamily, gbc_comboBoxFontFamily);
-		this.add(comboBoxFontSize, gbc_comboBoxFontSize);
+		InputMap inputMap5 = btnFullScreen.getInputMap(JButton.WHEN_IN_FOCUSED_WINDOW);
+		KeyStroke fS = KeyStroke.getKeyStroke(KeyEvent.VK_F5, Event.CTRL_MASK);
+		inputMap5.put(fS, "fS");
+		btnFullScreen.getActionMap().put("fS", new ClickAction(btnFullScreen));
+
+		add(btnOpen);
+		add(btnNew);
+		add(btnFullScreen);
+		add(lblNull);
+		add(btnBold);
+		add(btnItalic);
+		add(btnFontColour);
+		add(lblNull_2);
+		add(lblNull_3);
+		add(btnJustifyLeft);
+		add(btnJustifyCenter);
+		add(btnJustifyRight);
+		add(lblNull_6);
+		add(comboBoxFontFamilies);
+		add(btnSave);
+		add(btnSaveAs);
+		add(lblNull_8);
+		add(lblNull_1);
+		add(btnUnderline);
+		add(btnStrikethrough);
+		add(btnHighlightColour);
+		add(lblNull_4);
+		add(lblNull_5);
+		add(btnSuperScript);
+		add(btnSubScript);
+		add(tglbtnDev);
+		add(lblNull_7);
+		add(comboBoxFontSizes);
+
 	}
 	
 	public class ClickAction extends AbstractAction {
@@ -251,4 +194,5 @@ public class HomePanel extends JPanel {
 		    button.doClick();
 		}
 	}
+
 }
