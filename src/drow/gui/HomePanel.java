@@ -5,10 +5,8 @@ import javax.swing.JPanel;
 import java.awt.Event;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
-import javax.swing.AbstractAction;
 import javax.swing.InputMap;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -19,6 +17,26 @@ import drow.io.DrowIOActionManager;
 import drow.styles.DrowStyleActionManager;
 import drow.view.DocumentView;
 
+/**
+ * <h1>HomePanel</h1>
+ * This class contains the controls present on the HomeTab of the GUI.
+ * It contains buttons to open, save and create new documents. It also has controls to change various aspects
+ * about the text. Such as:
+ * <br>-Bold.
+ * <br>-Italic.
+ * <br>-StrikeThrough.
+ * <br>-Underline.
+ * <br>-Font Colour.
+ * <br>-BackGround Colour.
+ * <br>-Full Screen.
+ * <br>-SubScript.
+ * <br>-SuperScript.
+ * <br>-Justify Left.
+ * <br>-Justify Centre.
+ * <br>-Justify Right.
+ * <br>-Font Family.
+ * <br>-Font Size.
+ */
 public class HomePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -55,11 +73,17 @@ public class HomePanel extends JPanel {
 	private JLabel lblNull_7;
 	private JLabel lblNull_8;
 	
+	/** Manager for controlling styles. */
 	private DrowStyleActionManager styleActionManager;
+	
+	/** Manager for controlling IO actions. */
 	private DrowIOActionManager ioActionManager;
 	
-	
-	public HomePanel(DocumentView docView) {
+	/**
+	 * <h1>Constructor</h1>
+	 * @param documentView - The view containing the document.
+	 */
+	public HomePanel(DocumentView documentView) {
 		setLayout(new GridLayout(2, 9, 0, 0));
 		
 		fontFamilies = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
@@ -97,8 +121,8 @@ public class HomePanel extends JPanel {
 		lblNull_7 = new JLabel("");
 		lblNull_8 = new JLabel("");
 		
-		styleActionManager = new DrowStyleActionManager(docView);
-		ioActionManager = new DrowIOActionManager(docView);
+		styleActionManager = new DrowStyleActionManager(documentView);
+		ioActionManager = new DrowIOActionManager(documentView);
 		
 		btnSave.setAction(ioActionManager.saveAction());
 		btnOpen.setAction(ioActionManager.openAction());
@@ -175,22 +199,5 @@ public class HomePanel extends JPanel {
 		add(btnDev);
 		add(lblNull_7);
 		add(comboBoxFontSizes);
-
 	}
-	
-	public class ClickAction extends AbstractAction {
-		
-		private static final long serialVersionUID = 1L;
-		
-		private JButton button;
-
-		public ClickAction(JButton button) {
-		    this.button = button;
-		}
-
-		public void actionPerformed(ActionEvent e) {
-		    button.doClick();
-		}
-	}
-
 }

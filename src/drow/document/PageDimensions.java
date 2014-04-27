@@ -1,3 +1,8 @@
+/**
+ * <h1>PageDimensions</h1>
+ * This is a static class containing all the dimensions for a variety of page sizes and standards.
+ */
+
 package drow.document;
 
 import java.awt.Rectangle;

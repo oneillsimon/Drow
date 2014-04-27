@@ -1,3 +1,8 @@
+/**
+ * <h1>DrowDocumentHelper</h1>
+ * This class contains a method to merge to JTextPanes into one, retaining styles and text.
+ */
+
 package drow.document.helpers;
 
 import java.lang.reflect.Method;
@@ -26,8 +31,6 @@ public class DrowDocumentHelper {
  
     protected static void insertSpecs(DefaultStyledDocument doc, int offset, DefaultStyledDocument.ElementSpec[] specs) {
         try {
-//            doc.insert(0, specs);  method is protected so we have to
-            //extend document or use such a hack
             Method m=DefaultStyledDocument.class.getDeclaredMethod("insert", new Class[] {int.class, DefaultStyledDocument.ElementSpec[].class});
             m.setAccessible(true);
             m.invoke(doc, new Object[] {offset, specs});

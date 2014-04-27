@@ -23,7 +23,7 @@ public class DocumentView extends JFrame {
 	public static boolean IS_IN_DEV_MODE = false;
 	
 	private DrowDocumentManager docManager;
-	private DrowDocument wordDoc;
+	private DrowDocument doc;
 	
 	private DrowGui gui;
 
@@ -31,7 +31,7 @@ public class DocumentView extends JFrame {
 		
 		Filters.setUp();
 		
-		wordDoc = new DrowDocument();
+		doc = new DrowDocument();
 		
 		docManager = new DrowDocumentManager(this);
 		
@@ -47,16 +47,16 @@ public class DocumentView extends JFrame {
 			public void componentShown(ComponentEvent arg0) {
 				WINDOW_WIDTH = getWidth();
 				WINDOW_HEIGHT = getHeight();
-				wordDoc.determinePageX();
-				wordDoc.setPreferredSize(new Dimension(DrowPage.WIDTH, DrowDocument.BOTTOM_OF_LAST_PAGE));
+				doc.determinePageX();
+				doc.setPreferredSize(new Dimension(DrowPage.WIDTH, DrowDocument.BOTTOM_OF_LAST_PAGE));
 			}
 			
 			@Override
 			public void componentResized(ComponentEvent arg0) {
 				WINDOW_WIDTH = getWidth();
 				WINDOW_HEIGHT = getHeight();
-				wordDoc.determinePageX();
-				wordDoc.setPreferredSize(new Dimension(DrowPage.WIDTH, DrowDocument.BOTTOM_OF_LAST_PAGE));
+				doc.determinePageX();
+				doc.setPreferredSize(new Dimension(DrowPage.WIDTH, DrowDocument.BOTTOM_OF_LAST_PAGE));
 			}
 			
 			@Override
@@ -68,7 +68,7 @@ public class DocumentView extends JFrame {
 			}
 		});
 		
-		wordDoc.determinePageX();
+		doc.determinePageX();
 		
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
@@ -78,7 +78,7 @@ public class DocumentView extends JFrame {
 	}
 	
 	public DrowDocument getDrowDocument() {
-		return wordDoc;
+		return doc;
 	}
 	
 	public DrowGui getGui() {

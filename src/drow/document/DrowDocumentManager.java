@@ -1,3 +1,9 @@
+/**
+ * <h1>DrowDocumentManager</h1>
+ * <p>
+ * This class manages the importing and exporting of documents.
+ */
+
 package drow.document;
 
 import javax.swing.JFileChooser;
@@ -12,24 +18,35 @@ public class DrowDocumentManager extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
+	/** Importer for importing files. */
 	private Importer importer;
+	
+	/** Exporter for exporting files. */
 	private Exporter exporter;
 
-	public DrowDocumentManager(DocumentView docView) {
-		this.importer = new Importer(docView);
-		this.exporter = new Exporter(docView);
+	/**
+	 * <h1>Constructor</h1>
+	 * @param documentView - The view containing the DrowDocument.
+	 */
+	public DrowDocumentManager(DocumentView documentView) {
+		this.importer = new Importer(documentView);
+		this.exporter = new Exporter(documentView);
 	}
 
+	/**
+	 * Saves a file, calling Exporter.exportFile().
+	 * @param fileName - The name of the file to save.
+	 * @param fileChooser - The fileChooser which will tell us where to save the file.
+	 */
 	public void saveFile(String fileName, JFileChooser fileChooser) {
 		exporter.exportFile(fileName, fileChooser);
 	}
 
-	public void saveFileAs() {
-	//	 JFileChooser fileChooser = new JFileChooser("Save as...");
-	//	saveFile(textPanel.getCurrentFile(),
-	//	 (DrowFileFilter)fileChooser.getFileFilter());
-	}
-
+	/**
+	 * Opens a file, calling Importer.import().
+	 * @param fileName - The name of the file to open.
+	 * @param filter - The extension of the file being opened.
+	 */
 	public void openFile(String fileName, FileFilter filter) {
 		importer.importFile(fileName, filter);
 	}

@@ -8,45 +8,57 @@ import javax.swing.JTabbedPane;
 
 import drow.view.DocumentView;
 
+/**
+ * <h1>DrowGui</h1>
+ * This class controls the GUI and JTabbedPane.
+ */
 public class DrowGui {
-
-	private DocumentView docView;
 	
-	protected JTabbedPane tabbedPane;
+	/** The document view containing the document. */
+	private DocumentView documentView;
+	
+	/** The JTabbedPane containing the panels. */
+	private JTabbedPane tabbedPane;
+	
+	/** The scroll pane in which the document sits. */
 	private JScrollPane scrollPane;
 	
-	protected HomePanel homePanel;
-	protected InsertPanel insertPanel;
-	protected LanguagePanel languagePanel;
-	protected DevHomePanel modePanel;
-	
-	public DrowGui(DocumentView docView, JTabbedPane tabbedPane) {
-		this.docView = docView;
+	/**
+	 * <h1>Constructor</h1>
+	 * This constructor sets the JFrame title and icon image,
+	 * It also sets the document view layout to null so we can position the document with
+	 * absolute coordinates.
+	 * @param documentView - The view containing the document.
+	 * @param tabbedPane - The JTabbedPane containing the panels.
+	 * 
+	 * 
+	 */
+	public DrowGui(DocumentView documentView, JTabbedPane tabbedPane) {
+		this.documentView = documentView;
 		
-		homePanel = new HomePanel(docView);
-		insertPanel = new InsertPanel(docView);
-		languagePanel = new LanguagePanel();
-		modePanel = new DevHomePanel(docView);
-
-		this.docView.setTitle("drow");
-		this.docView.setIconImage(new ImageIcon("res/drow.png").getImage());
+		this.documentView.setTitle("drow");
+		this.documentView.setIconImage(new ImageIcon("res/drow.png").getImage());
 		
-		docView.getDrowDocument().setLayout(null);
+		this.documentView.getDrowDocument().setLayout(null);
 		
-		scrollPane = new JScrollPane(docView.getDrowDocument(),
+		scrollPane = new JScrollPane(documentView.getDrowDocument(),
 									 JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 									 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollPane.setBorder(null);
 		this.tabbedPane = tabbedPane;
 		
-		docView.add(scrollPane, BorderLayout.CENTER);
-		docView.add(tabbedPane, BorderLayout.NORTH);
+		this.documentView.add(scrollPane, BorderLayout.CENTER);
+		this.documentView.add(tabbedPane, BorderLayout.NORTH);
 	}
 	
+	/**
+	 * Sets the JTabbedPane.
+	 * @param tabbedPane - The JTabbedPane to set.
+	 */
 	public void setTabbedPane(JTabbedPane tabbedPane) {
-		docView.remove(this.tabbedPane);
+		documentView.remove(this.tabbedPane);
 		this.tabbedPane = tabbedPane;
-		docView.add(this.tabbedPane, BorderLayout.NORTH);
+		documentView.add(this.tabbedPane, BorderLayout.NORTH);
 		tabbedPane.revalidate();
 		tabbedPane.repaint();
 	}

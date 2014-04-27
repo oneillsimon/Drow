@@ -1,3 +1,8 @@
+/**
+ * <h1>PageCollection</h1>
+ * This class takes the document and converts to a format to be serialised and exported.
+ */
+
 package drow.document;
 
 import java.io.Serializable;
@@ -11,26 +16,42 @@ import drow.view.DocumentView;
 public class PageCollection implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	/** A list of DrowPages. */
 	private ArrayList<StyledDocument> pages;
 
+	/**
+	 * <h1>Constructor</h1>
+	 */
 	public PageCollection() {
 		pages = new ArrayList<StyledDocument>();
 	}
 	
+	/**
+	 * Gets the pages in the collection.
+	 * @return ArrayList<DrowPage> - The list of pages in the collection.
+	 */
 	public ArrayList<StyledDocument> getPages() {
 		return pages;
 	}
-	// graham loves simon :) 
-	public void setPages(DrowDocument doc) {
-		for(int i = 0; i < doc.getPages().size(); i++) {
-			pages.add(doc.getPages().get(i).getStyledDocument());
+
+	/**
+	 * Sets the pages in this collection to the pages in the document.
+	 * @param document - The DrowDocument containing the pages.
+	 */
+	public void setPages(DrowDocument document) {
+		for(int i = 0; i < document.getPages().size(); i++) {
+			pages.add(document.getPages().get(i).getStyledDocument());
 		}
 	}
 	
-	public void applyToDocument(DocumentView docView) {
+	/**
+	 * Applies the pages in this collection to the document.
+	 * @param documentView - The document view containing the document.
+	 */
+	public void applyToDocument(DocumentView documentView) {
 		for(int i = 0; i < pages.size(); i++) {
-			docView.getDrowDocument().add(docView.getDrowDocument().newPage());
-			docView.getDrowDocument().getPages().get(i).setStyledDocumentf((DocxDocument)pages.get(i));
+			documentView.getDrowDocument().add(documentView.getDrowDocument().newPage());
+			documentView.getDrowDocument().getPages().get(i).setStyledDocumentf((DocxDocument)pages.get(i));
 		}
 	}
 }

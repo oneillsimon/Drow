@@ -1,3 +1,10 @@
+/**
+ * <h1>FullScreenDocument</h1>
+ * <p>
+ * This class creates a JFrame and JTextPane based off the documents and current document's pages.
+ * Then makes a full screen JPanel and displays the pages in full screen, with keyboard navigation to cycle through them.
+ */
+
 package drow.document;
 
 import java.awt.GraphicsDevice;
@@ -18,27 +25,45 @@ public class FullScreenDocument extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	
+	/** The document. */
 	private DrowDocument document;
-	private DocumentView docView;
+	
+	/** The document view. */
+	private DocumentView documentView;
+	
+	/** Integer marking the current page. */
 	private int pageIndex;
+	
+	/** The page to display in full screen. */
 	private DrowPage textPane;
 	
+	/**
+	 * Inner class to invoke the full screen JFrame and handle keyboard input.
+	 *
+	 */
 	private class KeyDispatcher implements KeyEventDispatcher {
 
 		@Override
 		public boolean dispatchKeyEvent(KeyEvent e) {
 			
+			/**
+			 * Exits full screen if the ESC key is pressed.
+			 */
 			if(e.getID() == KeyEvent.KEY_PRESSED) {
 			
 				if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 					try {
 						UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel");
-						SwingUtilities.updateComponentTreeUI(docView);
+						SwingUtilities.updateComponentTreeUI(documentView);
 					} catch (Exception e1) {
 					}
 					dispose();
 				}
 				
+				/**
+				 * If the Left key is pressed, decrement the page index, remove the page from the frame,
+				 * merge it with the previous page and add it back to the frame.
+				 */
 				if(e.getKeyCode() == KeyEvent.VK_LEFT) {
 					if(pageIndex > 0) {
 						pageIndex--;
@@ -54,6 +79,10 @@ public class FullScreenDocument extends JFrame {
 					}
 				}
 				
+				/**
+				 * If the Right key is pressed, increment the page index, remove the page from the frame,
+				 * merge it with the next page and add it back to the frame.
+				 */
 				if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
 					if(pageIndex < document.getPages().size() - 1) {
 						pageIndex++;
@@ -75,7 +104,11 @@ public class FullScreenDocument extends JFrame {
 		}
 	}
 	
-	public FullScreenDocument(DocumentView docView) {
+	/**
+	 * <h1>Constructor</h1>
+	 * @param documentView - The document view containing the document.
+	 */
+	public FullScreenDocument(DocumentView documentView) {
 		
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -84,8 +117,8 @@ public class FullScreenDocument extends JFrame {
 			System.out.println(e.getStackTrace());
 		}
 		
-		this.docView = docView;
-		this.document = docView.getDrowDocument();
+		this.documentView = documentView;
+		this.document = documentView.getDrowDocument();
 		this.pageIndex = 0;
 		
 		try {
@@ -97,6 +130,9 @@ public class FullScreenDocument extends JFrame {
 		textPane.setEditable(false);
 		getContentPane().add(textPane);
 		
+		/**
+		 * Set the frame to maximised and remove all decoration.
+		 */
 		this.setUndecorated(true);
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		GraphicsDevice graphicsDevice = this.getGraphicsConfiguration().getDevice();
@@ -106,6 +142,9 @@ public class FullScreenDocument extends JFrame {
 		setResizable(false);
 		setVisible(true);
 
+		/**
+		 * Launch the new full screen JFrame.
+		 */
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				Point p = new Point(0, 0);

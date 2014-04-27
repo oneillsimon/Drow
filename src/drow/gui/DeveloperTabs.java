@@ -4,11 +4,19 @@ import javax.swing.JTabbedPane;
 
 import drow.view.DocumentView;
 
+/**
+ * <h1>DeveloperTabs</h1>
+ * This class contains the JTabbedPane to be used while in developer mode.
+ */
 public class DeveloperTabs extends JTabbedPane {
 
 	private static final long serialVersionUID = 1L;
 
-	public DeveloperTabs(DocumentView docView) {
-		this.addTab("Home", new DevHomePanel(docView));
+	/**
+	 * <h1>Constructor</h1>
+	 * @param documentView - The document view containing the document.
+	 */
+	public DeveloperTabs(DocumentView documentView) {
+		this.addTab("Home", new DevHomePanel(documentView));
 	}
 }

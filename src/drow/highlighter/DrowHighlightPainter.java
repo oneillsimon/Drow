@@ -22,7 +22,7 @@ public class DrowHighlightPainter extends LayeredHighlighter.LayerPainter {
 	
 	@Override
 	public void paint(Graphics g, int offset1, int offset2, Shape bounds, JTextComponent component) {
-		// This method won't be called
+		// This method won't be called.
 	}
 
 	@Override
