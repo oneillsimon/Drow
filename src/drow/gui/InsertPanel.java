@@ -6,7 +6,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import drow.tables.TableListener;
-import drow.io.ImageImport;
+import drow.io.DrowIOActionManager;
 import drow.view.DocumentView;
 
 public class InsertPanel extends JPanel {
@@ -21,16 +21,14 @@ public class InsertPanel extends JPanel {
 	private TableListener listener;
 	
 	private JButton btnImage;	 
-	private ImageImport imageImport;
+	private DrowIOActionManager actionManager;
 	
 	public InsertPanel(DocumentView docView) {
 		 
-		//docView.getDrowDocument().getFocusedPage().setEditorKit(new TableEditorKit());
 		btnImage = new JButton(new ImageIcon("res/picture.gif"));
-		imageImport = new ImageImport();
-		btnImage.addActionListener(imageImport.insertActionPerformed(docView.getDrowDocument().getFocusedPage()));
+		actionManager = new DrowIOActionManager(docView);
 		
-		listener = new TableListener(docView, this);
+		listener = new TableListener(this);
 		
 		btnInsert = new JButton("Insert");
 		btnInsert.setActionCommand("insert");
@@ -38,6 +36,8 @@ public class InsertPanel extends JPanel {
 		lblCols = new JLabel("Number of Columns");
 		txtRows = new IntTextField(DEFAULT_VALUE, SIZE);
 		txtColumns = new IntTextField(DEFAULT_VALUE, SIZE);
+		
+		btnImage.setAction(actionManager.insertImageAction());
 		
 		btnInsert.addActionListener(listener);
 		this.add(lblCols);

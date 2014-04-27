@@ -1,6 +1,7 @@
 package drow.io;
 
 import java.awt.event.ActionEvent;
+import java.io.File;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -8,7 +9,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-import javax.swing.text.DefaultEditorKit;
 
 import drow.document.DrowDocumentManager;
 import drow.document.FullScreenDocument;
@@ -87,24 +87,18 @@ public class DrowIOActionManager {
 		};
 	}
 	
-	public Action devModeAction(final boolean b) {
+	public Action devModeAction() {
 		return new AbstractAction("", new ImageIcon("res/Developer.png")) {
 			
 			private static final long serialVersionUID = 1L;
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				String s = "";
-				if(!b) {
-					s = "com.jtattoo.plaf.hifi.HiFiLookAndFeel";
 					docView.getGui().setTabbedPane(new DeveloperTabs(docView));
-				} else {
-					s = "com.jtattoo.plaf.graphite.GraphiteLookAndFeel";
-					docView.getGui().setTabbedPane(new WordTabs(docView));
-				}
-				
+					docView.getDrowDocument().swapToDevListeners();
+					DocumentView.IS_IN_DEV_MODE = true;
 				try {
-					UIManager.setLookAndFeel(s);
+					UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
 					SwingUtilities.updateComponentTreeUI(docView);
 				} catch (Exception e) {
 				}
@@ -114,42 +108,43 @@ public class DrowIOActionManager {
 			}
 		};
 	}
-
-	public Action copyAction() {
-		return new AbstractAction("", new ImageIcon("res/copy.gif")) {
+	
+	public Action wordModeAction() {
+		return new AbstractAction("", new ImageIcon("res/Developer.png")) {
 			
 			private static final long serialVersionUID = 1L;
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				docView.getDrowDocument().getActionMap().get(DefaultEditorKit.copyAction);
-				System.out.println("Copy");
+					docView.getGui().setTabbedPane(new WordTabs(docView));
+					docView.getDrowDocument().swapToWordListeners();
+					DocumentView.IS_IN_DEV_MODE = false;
+				try {
+					UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel");
+					SwingUtilities.updateComponentTreeUI(docView);
+				} catch (Exception e) {
+				}
+				
+				docView.repaint();
+				docView.revalidate();
 			}
 		};
 	}
 	
-	public Action cutAction() {
-		return new AbstractAction("", new ImageIcon("res/cut.gif")) {
-
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				docView.getDrowDocument().getActionMap().get(DefaultEditorKit.cutAction);
-				System.out.println("Cut");
-			}
-		};
-	}
-	
-	public Action pasteAction() {
-		return new AbstractAction("", new ImageIcon("res/paste.gif")) {
+	public Action insertImageAction() {
+		return new AbstractAction() {
 			
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				docView.getDrowDocument().getActionMap().get(DefaultEditorKit.pasteAction);
-				System.out.println("paste");
+			public void actionPerformed(ActionEvent e) {
+				fileChooser.setDialogTitle("Insert an image");
+				
+				if(fileChooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+					File file = fileChooser.getSelectedFile();
+					docView.getDrowDocument().getFocusedPage().insertIcon(new ImageIcon(file.getAbsolutePath()));
+					System.out.println(file.getAbsolutePath());
+				}
 			}
 		};
 	}
