@@ -8,7 +8,6 @@ import javax.swing.JPanel;
 import javax.swing.text.BadLocationException;
 
 import drow.document.helpers.DrowDocumentHelper;
-import drow.view.DocumentView;
 
 public class DrowDocument extends JPanel {
 
@@ -19,15 +18,14 @@ public class DrowDocument extends JPanel {
 	
 	private ArrayList<DrowPage> pages;
 	public int pageIndex = 0;
-	
-	public DrowDocument(DocumentView docView) {
+
+	public DrowDocument() {
 		pages = new ArrayList<DrowPage>();
 		this.setBackground(Color.darkGray);
 		this.setPreferredSize(new Dimension(DrowPage.WIDTH, DrowPage.BOTTOM_OF_LAST));
 	}
 	
 	public DrowDocument(DrowDocument doc) {
-		System.out.println(doc.getPages().size());
 		pages = doc.getPages();
 		this.setBackground(Color.darkGray);
 		this.setPreferredSize(new Dimension(DrowPage.WIDTH, DrowPage.BOTTOM_OF_LAST));
@@ -44,6 +42,10 @@ public class DrowDocument extends JPanel {
 	}
 	
 	public void determinePageX() {
+		
+		if(pages == null)
+			return;
+		
 		for(int i = 0; i < pages.size(); i++) {
 			pages.get(i).determineX();
 		}
@@ -80,10 +82,27 @@ public class DrowDocument extends JPanel {
 		}
 	}
 	
-	public void addListeners() {
+	public void addWordListeners() {
 		for(int i = 0; i < pages.size(); i++) {
-			pages.get(i).addListeners();
+			pages.get(i).addWordListeners();
 		}
+	}
+	
+	public void addDevListeners() {
+		for(int i = 0; i < pages.size(); i++) {
+			pages.get(i).addDevListeners();
+		}
+	}
+	
+	public void swapToWordListeners() {
+		removeListeners();
+		addWordListeners();
+	}
+	
+	public void swapToDevListeners() {
+		removeListeners();
+		addDevListeners();
+		System.out.println("here");
 	}
 	
 	public int getPageCount() {

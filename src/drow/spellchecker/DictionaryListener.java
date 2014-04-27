@@ -11,13 +11,17 @@ import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
 
 import drow.highlighter.DrowHighlightManager;
+import drow.styles.DrowStyleActionManager;
+import drow.styles.DrowStyles;
 
 public class DictionaryListener implements DocumentListener, CaretListener {
 
-	private JTextPane textPane;
 	private Dictionary dictionary;
 	private DrowHighlightManager highlightManager;
+	private DrowStyleActionManager actionManager;
 	private String wordAtCaret;
+	private String highlightWhat;
+	private JTextPane textPane;
 	
 	private int dot;
 	
@@ -26,18 +30,42 @@ public class DictionaryListener implements DocumentListener, CaretListener {
 	
 	DocumentEvent docEvent;
 	
-	public DictionaryListener(JTextPane textPane) {
-		this.textPane = textPane;
-		this.textPane.addCaretListener(this);
+	public DictionaryListener(JTextPane textPane, String fileName) {
+		this(textPane, fileName, "underline", Color.red);
+	}
+	
+	public DictionaryListener(JTextPane textPane, String fileName, String highlightWhat, Color highlightColor) {
+		textPane.addCaretListener(this);
 		
 		try {
-			dictionary = new Dictionary();
+			dictionary = new Dictionary(fileName);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
-		highlightManager = new DrowHighlightManager(textPane, Color.red);
+		highlightManager = new DrowHighlightManager(textPane, highlightColor);
 		wordAtCaret = "";
+		
+		this.actionManager = new DrowStyleActionManager(null);
+		this.highlightWhat = highlightWhat;
+		this.textPane = textPane;
+	}
+	
+	void paintWord(int offset, int length) {
+	    class OneShotTask implements Runnable {
+	        int offset;
+	        int length;
+	        
+	        private OneShotTask(int o, int l) {
+	        	offset = o;
+	        	length = l;
+	        	}
+	        public void run() {
+	        	actionManager.styleText(textPane, DrowStyles.applyStyleForegroundColor(highlightManager.getColor()), offset, length);
+	        }
+	    }
+	    Thread t = new Thread(new OneShotTask(offset, length));
+	    t.start();
 	}
 	
 	@Override
@@ -46,8 +74,6 @@ public class DictionaryListener implements DocumentListener, CaretListener {
 
 	@Override
 	public void insertUpdate(DocumentEvent e) {
-		//determineWord(e, false);
-		//cleanLists();
 		
 		docEvent = e;
 		
@@ -89,8 +115,18 @@ public class DictionaryListener implements DocumentListener, CaretListener {
 			word = word.replaceAll("[\\W]|_", "");
 			wordEnd = wordStart + word.length() - 1;
 			
-			if(!dictionary.isWord(word) && !word.equals("")) {
-				highlightManager.highlight(wordStart, wordEnd - wordStart + 1);
+			if(highlightWhat.equals("underline")) {
+				if(!dictionary.isWord(word) && !word.equals("")) {
+					highlightManager.highlight(wordStart, wordEnd - wordStart + 1);
+				}
+			}
+			
+			if(highlightWhat.equals("word")) {
+				if(dictionary.isWord(word)) {
+					int offset = wordStart;
+					int length = (wordEnd - wordStart + 1);
+					paintWord(offset, length);
+				}
 			}
 			
 			word = "";
@@ -102,7 +138,7 @@ public class DictionaryListener implements DocumentListener, CaretListener {
 	@Override
 	public void removeUpdate(DocumentEvent e) {
 	}
-
+	
 	@Override
 	public void caretUpdate(CaretEvent e) {
 		dot = e.getDot();
@@ -110,5 +146,9 @@ public class DictionaryListener implements DocumentListener, CaretListener {
 	
 	public String getWordAtCaret() {
 		return wordAtCaret;
+	}
+	
+	public Dictionary getDictionary() {
+		return dictionary;
 	}
 }

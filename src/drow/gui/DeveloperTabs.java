@@ -9,6 +9,6 @@ public class DeveloperTabs extends JTabbedPane {
 	private static final long serialVersionUID = 1L;
 
 	public DeveloperTabs(DocumentView docView) {
-		this.addTab("Mode", new ModePanel(docView));
+		this.addTab("Home", new DevHomePanel(docView));
 	}
 }

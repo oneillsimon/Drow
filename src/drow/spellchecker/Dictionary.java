@@ -56,9 +56,9 @@ public class Dictionary {
         return false;
     }
 
-    public Dictionary() throws IOException {
+    public Dictionary(String fileName) throws IOException {
         
-    	BufferedReader br = new BufferedReader(new FileReader(resDirectory + "englishDictionary.txt"));
+    	BufferedReader br = new BufferedReader(new FileReader(resDirectory + fileName));
     	String line;
     	while ((line = br.readLine()) != null) {
 

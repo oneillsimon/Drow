@@ -120,7 +120,7 @@ public class Exporter {
 			out.writeObject(collection);
 			out.close();
 			
-			docView.getDrowDocument().addListeners();
+			docView.getDrowDocument().addWordListeners();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

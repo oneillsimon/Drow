@@ -10,6 +10,7 @@ import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextPane;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
@@ -24,8 +25,11 @@ public class DrowStyleActionManager {
 	private static ArrayList<DrowPage> pages;
 	
 	public DrowStyleActionManager(DocumentView docView) {
-		DrowStyleActionManager.document = docView.getDrowDocument();
-		DrowStyleActionManager.pages = docView.getDrowDocument().getPages();
+		
+		if(docView != null) {
+			DrowStyleActionManager.document = docView.getDrowDocument();
+			DrowStyleActionManager.pages = docView.getDrowDocument().getPages();
+		}
 	}
 	
 	public Action fontFamilyAction() {
@@ -256,6 +260,10 @@ public class DrowStyleActionManager {
 				styleDoc(right);
 			}
 		};
+	}
+	
+	public void styleText(JTextPane textPane, Style style, int offset, int length) {
+		textPane.getStyledDocument().setCharacterAttributes(offset, length, style, false);
 	}
 	
 	private void styleDoc(Style style) {

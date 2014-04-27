@@ -11,12 +11,10 @@ import java.awt.event.KeyEvent;
 import javax.swing.AbstractAction;
 import javax.swing.InputMap;
 import javax.swing.JButton;
-import javax.swing.JToggleButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.KeyStroke;
 
-import drow.gui.CopyOfHomePanel.ClickAction;
 import drow.io.DrowIOActionManager;
 import drow.styles.DrowStyleActionManager;
 import drow.view.DocumentView;
@@ -41,7 +39,7 @@ public class HomePanel extends JPanel {
 	private JButton btnHighlightColour;
 	private JButton btnSuperScript;
 	private JButton btnSubScript;
-	private JToggleButton tglbtnDev;
+	private JButton btnDev;
 	private JButton btnJustifyLeft;
 	private JButton btnJustifyCenter;
 	private JButton btnJustifyRight;
@@ -83,7 +81,7 @@ public class HomePanel extends JPanel {
 		btnJustifyRight = new JButton("Right");
 		btnSuperScript = new JButton("Sup");
 		btnSubScript = new JButton("Sub");
-		tglbtnDev = new JToggleButton("Dev");
+		btnDev = new JButton("Dev");
 		
 		comboBoxFontFamilies = new JComboBox<String>(fontFamilies);
 		comboBoxFontSizes = new JComboBox<String>(fontSizes);
@@ -117,7 +115,7 @@ public class HomePanel extends JPanel {
 		btnHighlightColour.setAction(styleActionManager.strikeThroughAction());
 		btnSuperScript.setAction(styleActionManager.superScriptAction());
 		btnSubScript.setAction(styleActionManager.subScriptAction());
-		tglbtnDev.setAction(ioActionManager.devModeAction(tglbtnDev.isSelected()));
+		btnDev.setAction(ioActionManager.devModeAction());
 		
 		InputMap inputMap = btnSave.getInputMap(JButton.WHEN_IN_FOCUSED_WINDOW);
 		KeyStroke s = KeyStroke.getKeyStroke(KeyEvent.VK_S, Event.CTRL_MASK);
@@ -174,7 +172,7 @@ public class HomePanel extends JPanel {
 		add(lblNull_5);
 		add(btnSuperScript);
 		add(btnSubScript);
-		add(tglbtnDev);
+		add(btnDev);
 		add(lblNull_7);
 		add(comboBoxFontSizes);
 

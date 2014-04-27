@@ -35,7 +35,6 @@ public class FullScreenDocument extends JFrame {
 						UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel");
 						SwingUtilities.updateComponentTreeUI(docView);
 					} catch (Exception e1) {
-						System.out.println(e1.getStackTrace());
 					}
 					dispose();
 				}
@@ -51,7 +50,6 @@ public class FullScreenDocument extends JFrame {
 							getContentPane().add(textPane);
 							repaint();
 						} catch (BadLocationException e1) {
-							e1.printStackTrace();
 						}
 					}
 				}

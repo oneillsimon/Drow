@@ -17,18 +17,16 @@ public class DrowGui {
 	
 	protected HomePanel homePanel;
 	protected InsertPanel insertPanel;
-	protected LayoutPanel layoutPanel;
 	protected LanguagePanel languagePanel;
-	protected ModePanel modePanel;
+	protected DevHomePanel modePanel;
 	
 	public DrowGui(DocumentView docView, JTabbedPane tabbedPane) {
 		this.docView = docView;
 		
 		homePanel = new HomePanel(docView);
 		insertPanel = new InsertPanel(docView);
-		layoutPanel = new LayoutPanel();
 		languagePanel = new LanguagePanel();
-		modePanel = new ModePanel(docView);
+		modePanel = new DevHomePanel(docView);
 
 		this.docView.setTitle("drow");
 		this.docView.setIconImage(new ImageIcon("res/drow.png").getImage());

@@ -69,4 +69,8 @@ public class DrowHighlightPainter extends LayeredHighlighter.LayerPainter {
 		return rectangle;
 	}
 
+	public Color getColor() {
+		return color;
+	}
+
 }

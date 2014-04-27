@@ -1,5 +1,6 @@
 package drow.document;
 
+import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
@@ -49,7 +50,11 @@ public class DrowPage extends JTextPane {
 
 		setStyledDocumentf(styledDocument);
 		
-		addListeners();
+		if(DocumentView.IS_IN_DEV_MODE) {
+			addDevListeners();
+		} else {
+			addWordListeners();
+		}
 		
 		number = pageNumber;
 		
@@ -115,11 +120,19 @@ public class DrowPage extends JTextPane {
 		styledDocument.removeDocumentListener(dictionaryListener);
 	}
 	
-	public void addListeners() {
+	public void addWordListeners() {
 		caretListener = new DrowCaretListener();
 		addCaretListener(caretListener);
 		
-		dictionaryListener = new DictionaryListener(this);
+		dictionaryListener = new DictionaryListener(this, "englishDictionary.txt");
+		styledDocument.addDocumentListener(dictionaryListener);
+	}
+	
+	public void addDevListeners() {
+		caretListener = new DrowCaretListener();
+		addCaretListener(caretListener);
+		
+		dictionaryListener = new DictionaryListener(this, "/dev/java.txt", "word", Color.blue);
 		styledDocument.addDocumentListener(dictionaryListener);
 	}
 }
