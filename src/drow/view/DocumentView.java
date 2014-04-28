@@ -10,6 +10,7 @@ import drow.document.DrowDocument;
 import drow.document.DrowDocumentManager;
 import drow.document.DrowPage;
 import drow.gui.DrowGui;
+import drow.gui.MouseMenu;
 import drow.gui.WordTabs;
 import drow.io.Filters;
 
@@ -36,6 +37,9 @@ public class DocumentView extends JFrame {
 		docManager = new DrowDocumentManager(this);
 		
 		gui = new DrowGui(this, new WordTabs(this));
+		
+		//Adding mouse listener to document via MouseMenu.java
+		doc.addMouseListener(new MouseMenu(this));
 		
 		this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 		this.setTitle("Drow Word");
