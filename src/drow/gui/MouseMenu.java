@@ -8,25 +8,23 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.AbstractAction;
-import javax.swing.Action;
 import javax.swing.JPopupMenu;
 import javax.swing.JTextPane;
 import javax.swing.text.JTextComponent;
 
 import drow.view.DocumentView;
 
-/**mouse menu is the class for a popup menu when a user right 
- * clicks around the page. the right click currently doesn't work 
- * on the page because of the styled document we use.
- * 
- * **/
+/**
+ * <h1>MouseMenu</h1>
+ * This class is for a pop up menu when a user right 
+ * clicks around the page.
+ * <p>
+ * @author Graham Wolfe
+ * <p> 
+ */
 public class MouseMenu extends MouseAdapter {
-	/** 
-	 * creating new popup menu
-	 */
-	private JPopupMenu popup = new JPopupMenu();
-
-	//creating new abstract actions instead
+	
+	private JPopupMenu popup;
 	private AbstractAction cutAction;
 	private AbstractAction copyAction;
 	private AbstractAction pasteAction;
@@ -38,31 +36,36 @@ public class MouseMenu extends MouseAdapter {
 	private String savedString = "";
 	private Actions lastActionSelected;
 
-	//define different actions which are passed into each action method
 	private enum Actions { UNDO, CUT, COPY, PASTE, SELECT_ALL };
 
 	/**
-	 * each method holds an action and the method takes in the parameter of docView 
-	 * @param docView
+	 * <h1>Constructor</h1> 
+	 * @param documentView - The view containing the document.
 	 */
-	//undo action in popup menu
-	public MouseMenu(final DocumentView docView) {
+	public MouseMenu(final DocumentView documentView) {
+		
+		popup = new JPopupMenu();
+		
+		/** The undo action. */
 		undoAction = new AbstractAction("Undo") {
-			//each method has an if action is performed and a task associated with it
+			private static final long serialVersionUID = 1L;
+
 			@Override
 			public void actionPerformed(ActionEvent ae) {
-				textComponent = docView.getDrowDocument().getFocusedPage();
+				textComponent = documentView.getDrowDocument().getFocusedPage();
 				textComponent.replaceSelection(savedString);
 				lastActionSelected = Actions.UNDO;
 			}
 		};
 
-		//add undo to popup and put a seperator underneath it
 		popup.add(undoAction);
 		popup.addSeparator();
 
-		//cut method
+		/** The cut action. */
 		cutAction = new AbstractAction("Cut") {
+			
+			private static final long serialVersionUID = 1L;
+
 			@Override
 			public void actionPerformed(ActionEvent ae) {
 				lastActionSelected = Actions.CUT;
@@ -70,11 +73,13 @@ public class MouseMenu extends MouseAdapter {
 				textComponent.cut();
 			}
 		};
-		//add cut action to popup
 		
 		popup.add(cutAction);
 
+		/** The copy action. */
 		copyAction = new AbstractAction("Copy") {
+
+			private static final long serialVersionUID = 1L;
 
 			@Override
 			public void actionPerformed(ActionEvent ae) {
@@ -82,10 +87,13 @@ public class MouseMenu extends MouseAdapter {
 				textComponent.copy();
 			}
 		};
-		//add copy action to popup
+
 		popup.add(copyAction);
 
+		/** The paste action. */
 		pasteAction = new AbstractAction("Paste") {
+
+			private static final long serialVersionUID = 1L;
 
 			@Override
 			public void actionPerformed(ActionEvent ae) {
@@ -94,11 +102,14 @@ public class MouseMenu extends MouseAdapter {
 				textComponent.paste();
 			}
 		};
-		//add paste action to popup and put seperator beneath it
+
 		popup.add(pasteAction);
 		popup.addSeparator();
 
+		/** The select all action. */
 		selectAllAction = new AbstractAction("Select All") {
+
+			private static final long serialVersionUID = 1L;
 
 			@Override
 			public void actionPerformed(ActionEvent ae) {
@@ -106,13 +117,12 @@ public class MouseMenu extends MouseAdapter {
 				textComponent.selectAll();
 			}
 		};
-		//add select action to popup
+
 		popup.add(selectAllAction);
 	}
 
 	/**
-	 * mouse event handling, this is for when the mouse button is clocked and released
-	 * and also for when anything is picked off the popup menu to be used
+	 * Handles when the mouse button is clicked.
 	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -124,7 +134,6 @@ public class MouseMenu extends MouseAdapter {
 			textComponent = (JTextPane) e.getSource();
 			textComponent.requestFocus();
 			
-			//enable all the popup menu components
 			boolean enabled = textComponent.isEnabled();
 			boolean editable = textComponent.isEditable();
 			boolean nonempty = !(textComponent.getText() == null || textComponent.getText().equals(""));
@@ -138,7 +147,6 @@ public class MouseMenu extends MouseAdapter {
 			pasteAction.setEnabled(enabled && editable && pasteAvailable);
 			selectAllAction.setEnabled(enabled && nonempty);
 
-			//setting size of popup menu.
 			int nx = e.getX();
 
 			if (nx > 500) {
@@ -147,15 +155,26 @@ public class MouseMenu extends MouseAdapter {
 			popup.show(e.getComponent(), nx, e.getY() - popup.getSize().height);
 		}
 	}
+	
+	/**
+	 * Handles when the mouse button is released.
+	 */
 	public void mouseReleased(MouseEvent e) {
 		showPopup(e); 
 	}
+	
+	/**
+	 * Handles when the mouse button is pressed.
+	 */
 	public void mousePressed(MouseEvent e) {
 		showPopup(e);
 	}
+	
+	/**
+	 * Shows the pop up menu.
+	 */
 	private void showPopup(MouseEvent e) {
 		if (e.isPopupTrigger() && popup != null) {
-			//DrowGUI.setText(e.toString());
 			popup.show(e.getComponent(), e.getX(), e.getY());
 		}
 	}

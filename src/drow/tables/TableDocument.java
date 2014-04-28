@@ -6,6 +6,10 @@ import javax.swing.text.*;
 
 import sl.docx.DocxDocument;
 
+/**
+ * <h1>TableDocument</h1>
+ * @author Lee Mc Donald
+ */
 public class TableDocument extends DocxDocument {
 	
 	private static final long serialVersionUID = 1L;

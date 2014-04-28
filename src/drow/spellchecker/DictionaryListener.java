@@ -14,6 +14,11 @@ import drow.highlighter.DrowHighlightManager;
 import drow.styles.DrowStyleActionManager;
 import drow.styles.DrowStyles;
 
+/**
+ * <h1>DictionaryListener</h1>
+ * @author Lee Mc Donald
+ * @author Simon O'Neill
+ */
 public class DictionaryListener implements DocumentListener, CaretListener {
 
 	private Dictionary dictionary;

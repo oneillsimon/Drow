@@ -11,6 +11,10 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.View;
 import javax.swing.text.ViewFactory;
 
+/**
+ * <h1>TableFactory</h1>
+ * @author Lee Mc Donald
+ */
 class TableFactory implements ViewFactory {
 	
 	@Override

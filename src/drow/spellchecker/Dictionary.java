@@ -8,7 +8,6 @@ import java.util.List;
 
 public class Dictionary {
 
-	// graham is gay
 	List<String> dictionary = new ArrayList<String>();
     public String buffer;
     String resDirectory = "res/dictionary/";

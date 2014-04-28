@@ -2,6 +2,10 @@ package drow.tables;
 
 import javax.swing.text.*;
 
+/**
+ * <h1>CellView</h1>
+ * @author Lee Mc Donald
+ */
 public class CellView extends BoxView {
 	
     public CellView(Element elem) {

@@ -8,7 +8,6 @@ import javax.swing.JPanel;
 import drow.tables.TableListener;
 import drow.io.DrowIOActionManager;
 import drow.view.DocumentView;
-import java.awt.Component;
 import javax.swing.Box;
 import javax.swing.border.LineBorder;
 import java.awt.Color;

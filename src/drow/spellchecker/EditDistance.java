@@ -1,5 +1,9 @@
 package drow.spellchecker;
 
+/**
+ * <h1>EditDistance</h1>
+ * @author Lee Mc Donald
+ */
 public class EditDistance {
     private static double Min3(double d, double e, double f) {
         if ((d < e) && (d < f)) {

@@ -3,6 +3,10 @@ package drow.tables;
 import java.awt.*;
 import javax.swing.text.*;
 
+/**
+ * <h1>RowView</h1>
+ * @author Lee Mc Donald
+ */
 public class RowView extends BoxView {
     public RowView(Element elem) {
         super(elem, View.X_AXIS);

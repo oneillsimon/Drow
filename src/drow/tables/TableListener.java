@@ -7,6 +7,10 @@ import sl.docx.DocxDocument;
 import drow.document.DrowPage;
 import drow.gui.InsertPanel;
 
+/**
+ * <h1>TableListener</h1>
+ * @author Lee Mc Donald
+ */
 public class TableListener implements ActionListener {
 
 	final static int PAGE_WIDHT = DrowPage.WIDTH;
