@@ -11,7 +11,7 @@ public class Dictionary {
 	// graham is gay
 	List<String> dictionary = new ArrayList<String>();
     public String buffer;
-    String resDirectory = "res/";
+    String resDirectory = "res/dictionary/";
 
     // returns to word most similar to the word inputted
     public String FindTheClosest(String ToFind)

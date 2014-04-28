@@ -37,7 +37,7 @@ public class DrowGui {
 		this.documentView = documentView;
 		
 		this.documentView.setTitle("drow");
-		this.documentView.setIconImage(new ImageIcon("res/drow.png").getImage());
+		this.documentView.setIconImage(new ImageIcon("res/windowIcon/drow.png").getImage());
 		
 		this.documentView.getDrowDocument().setLayout(null);
 		

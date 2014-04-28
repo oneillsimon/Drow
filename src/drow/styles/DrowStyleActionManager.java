@@ -140,7 +140,7 @@ public class DrowStyleActionManager {
 	
 	/** Action for toggling bold style. */
 	public Action boldAction() {
-		return new AbstractAction("", new ImageIcon("res/bold.png")) {
+		return new AbstractAction("", new ImageIcon("res/buttonIcons/bold.png")) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -152,7 +152,7 @@ public class DrowStyleActionManager {
 	
 	/** Action for toggling italic style. */
 	public Action italicAction() {
-		return new AbstractAction("", new ImageIcon("res/italic.png")) {
+		return new AbstractAction("", new ImageIcon("res/buttonIcons/italic.png")) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -164,7 +164,7 @@ public class DrowStyleActionManager {
 	
 	/** Action for toggling underline style. */
 	public Action underlineAction() {
-		return new AbstractAction("", new ImageIcon("res/underline.png")) {
+		return new AbstractAction("", new ImageIcon("res/buttonIcons/underline.png")) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -176,7 +176,7 @@ public class DrowStyleActionManager {
 	
 	/** Action for toggling strike through style. */
 	public Action strikeThroughAction() {
-		return new AbstractAction("", new ImageIcon("res/strike.png")) {
+		return new AbstractAction("", new ImageIcon("res/buttonIcons/strike.png")) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -188,7 +188,7 @@ public class DrowStyleActionManager {
 	
 	/** Action for toggling superscript style. */
 	public Action superScriptAction() {
-		return new AbstractAction("", new ImageIcon("res/superscript.png")) {
+		return new AbstractAction("", new ImageIcon("res/buttonIcons/superscript.png")) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -200,7 +200,7 @@ public class DrowStyleActionManager {
 	
 	/** Action for toggling subscript style. */
 	public Action subScriptAction() {
-		return new AbstractAction("", new ImageIcon("res/subscript.png")) {
+		return new AbstractAction("", new ImageIcon("res/buttonIcons/subscript.png")) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -212,7 +212,7 @@ public class DrowStyleActionManager {
 	
 	/** Action for changing font color. */
 	public Action foregroundColorAction() {
-		return new AbstractAction("", new ImageIcon("res/fontcolour.png")) {
+		return new AbstractAction("", new ImageIcon("res/buttonIcons/fontcolour.png")) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -233,7 +233,7 @@ public class DrowStyleActionManager {
 	
 	/** Action for changing font highlight color. */
 	public Action backgroundColorAction() {
-		return new AbstractAction("", new ImageIcon("res/fonthighlight.png")) {
+		return new AbstractAction("", new ImageIcon("res/buttonIcons/fonthighlight.png")) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -254,7 +254,7 @@ public class DrowStyleActionManager {
 	
 	/** Action for justifying text left. */
 	public Action justifyLeftAction() {
-		return new AbstractAction("", new ImageIcon("res/align_left.png")) {
+		return new AbstractAction("", new ImageIcon("res/buttonIcons/align_left.png")) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -268,7 +268,7 @@ public class DrowStyleActionManager {
 	
 	/** Action for justifying text center. */
 	public Action justifyCenterAction() {
-		return new AbstractAction("", new ImageIcon("res/align_centre.png")) {
+		return new AbstractAction("", new ImageIcon("res/buttonIcons/align_centre.png")) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -282,7 +282,7 @@ public class DrowStyleActionManager {
 	
 	/** Action for justifying text right. */
 	public Action justifyRightAction() {
-		return new AbstractAction("", new ImageIcon("res/align_right.png")) {
+		return new AbstractAction("", new ImageIcon("res/buttonIcons/align_right.png")) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
