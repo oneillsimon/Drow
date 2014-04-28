@@ -50,7 +50,7 @@ public class DrowIOActionManager {
 	 * @return - An abstract action that will open a file.
 	 */
 	public Action openAction() {
-		return new AbstractAction("Open", new ImageIcon("res/open.gif")) {
+		return new AbstractAction("Open", new ImageIcon("res/buttonIcons/open.gif")) {
 			
 			private static final long serialVersionUID = 1L;
 			
@@ -73,7 +73,7 @@ public class DrowIOActionManager {
 	 * @return - An abstract action for saving a file.
 	 */
 	public Action saveAction() {
-		return new AbstractAction("Save", new ImageIcon("res/save.gif")) {
+		return new AbstractAction("Save", new ImageIcon("res/buttonIcons/save.gif")) {
 			
 			private static final long serialVersionUID = 1L;
 			
@@ -93,7 +93,7 @@ public class DrowIOActionManager {
 	 * @return - An abstract action for inserting a new page into the document.
 	 */
 	public Action newAction() {
-		return new AbstractAction("New", new ImageIcon("res/new.gif")) {
+		return new AbstractAction("New", new ImageIcon("res/buttonIcons/new.gif")) {
 			
 			private static final long serialVersionUID = 1L;
 
@@ -109,7 +109,7 @@ public class DrowIOActionManager {
 	 * @return - An abstract action for entering a full screen mode.
 	 */
 	public Action fullScreenAction() {
-		return new AbstractAction("", new ImageIcon("res/fullscreen.png")) {
+		return new AbstractAction("", new ImageIcon("res/buttonIcons/fullscreen.png")) {
 			
 			private static final long serialVersionUID = 1L;
 
@@ -125,7 +125,7 @@ public class DrowIOActionManager {
 	 * @return - An abstract action for switching to developer mode.
 	 */
 	public Action devModeAction() {
-		return new AbstractAction("", new ImageIcon("res/Developer.png")) {
+		return new AbstractAction("", new ImageIcon("res/buttonIcons/Developer.png")) {
 			
 			private static final long serialVersionUID = 1L;
 
@@ -151,7 +151,7 @@ public class DrowIOActionManager {
 	 * @return - An abstract action for switching to word mode.
 	 */
 	public Action wordModeAction() {
-		return new AbstractAction("", new ImageIcon("res/Developer.png")) {
+		return new AbstractAction("", new ImageIcon("res/buttonIcons/Developer.png")) {
 			
 			private static final long serialVersionUID = 1L;
 
@@ -178,7 +178,6 @@ public class DrowIOActionManager {
 	 */
 	public Action insertImageAction() {
 		return new AbstractAction("", new ImageIcon("res/Developer.png")) {
-			
 			private static final long serialVersionUID = 1L;
 
 			@Override
