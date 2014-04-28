@@ -5,12 +5,18 @@ import java.awt.BorderLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.SimpleAttributeSet;
 
 import drow.view.DocumentView;
 
 /**
  * <h1>DrowGui</h1>
  * This class controls the GUI and JTabbedPane.
+ * <p>
+ * @author Simon O'Neill
+ * @author Graham Wolfe
+ * <p>
  */
 public class DrowGui {
 	
@@ -30,8 +36,6 @@ public class DrowGui {
 	 * absolute coordinates.
 	 * @param documentView - The view containing the document.
 	 * @param tabbedPane - The JTabbedPane containing the panels.
-	 * 
-	 * 
 	 */
 	public DrowGui(DocumentView documentView, JTabbedPane tabbedPane) {
 		this.documentView = documentView;
@@ -49,6 +53,16 @@ public class DrowGui {
 		
 		this.documentView.add(scrollPane, BorderLayout.CENTER);
 		this.documentView.add(tabbedPane, BorderLayout.NORTH);
+		this.documentView.getDrowDocument().add(this.documentView.getDrowDocument().newPage());
+		try {
+			this.documentView.getDrowDocument().getFocusedPage().getStyledDocument().insertString(0, "\t\u2022\n", new SimpleAttributeSet());
+			this.documentView.getDrowDocument().getFocusedPage().getStyledDocument().insertString(0, "\t\u2022\n", new SimpleAttributeSet());
+			this.documentView.getDrowDocument().getFocusedPage().getStyledDocument().insertString(0, "\t\u2022\n", new SimpleAttributeSet());
+			this.documentView.getDrowDocument().getFocusedPage().getStyledDocument().insertString(0, "\t\u2022\n", new SimpleAttributeSet());
+		} catch (BadLocationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	/**

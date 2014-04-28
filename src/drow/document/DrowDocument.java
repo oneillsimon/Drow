@@ -158,7 +158,6 @@ public class DrowDocument extends JPanel {
 	public void swapToDevListeners() {
 		removeListeners();
 		addDevListeners();
-		System.out.println("here");
 	}
 	
 	/**

@@ -28,6 +28,7 @@ import drow.view.DocumentView;
  * <br>-Underline.
  * <br>-Font Colour.
  * <br>-BackGround Colour.
+ * <br>-Bullet Points.
  * <br>-Full Screen.
  * <br>-SubScript.
  * <br>-SuperScript.
@@ -52,6 +53,7 @@ public class HomePanel extends JPanel {
 	private JButton btnSaveAs;
 	private JButton btnNew;
 	private JButton btnFullScreen;
+	private JButton btnBullet;
 	private JButton btnBold;
 	private JButton btnItalic;
 	private JButton btnUnderline;
@@ -68,7 +70,6 @@ public class HomePanel extends JPanel {
 	private JComboBox<String> comboBoxFontSizes;
 	private JLabel lblNull;
 	private JLabel lblNull_1;
-	private JLabel lblNull_2;
 	private JLabel lblNull_3;
 	private JLabel lblNull_4;
 	private JLabel lblNull_5;
@@ -97,6 +98,7 @@ public class HomePanel extends JPanel {
 		btnSaveAs = new JButton("Save As");
 		btnNew = new JButton("New");
 		btnFullScreen = new JButton("Fullscreen");
+		btnBullet = new JButton("\u2202");
 		btnBold = new JButton("Bold");
 		btnItalic = new JButton("Italic");
 		btnUnderline = new JButton("Underline");
@@ -116,7 +118,6 @@ public class HomePanel extends JPanel {
 		
 		lblNull = new JLabel("");
 		lblNull_1 = new JLabel("");
-		lblNull_2 = new JLabel("");
 		lblNull_3 = new JLabel("");
 		lblNull_4 = new JLabel("");
 		lblNull_5 = new JLabel("");
@@ -131,6 +132,7 @@ public class HomePanel extends JPanel {
 		btnOpen.setAction(ioActionManager.openAction());
 		btnNew.setAction(ioActionManager.newAction());
 		btnFullScreen.setAction(ioActionManager.fullScreenAction());
+		btnBullet.setAction(styleActionManager.addBulletPoint());
 		btnBold.setAction(styleActionManager.boldAction());
 		btnItalic.setAction(styleActionManager.italicAction());
 		btnUnderline.setAction(styleActionManager.underlineAction());
@@ -181,10 +183,11 @@ public class HomePanel extends JPanel {
 		add(btnNew);
 		add(btnFullScreen);
 		add(lblNull);
+		
 		add(btnBold);
 		add(btnItalic);
 		add(btnFontColour);
-		add(lblNull_2);
+		add(btnBullet);
 		add(lblNull_3);
 		add(btnJustifyLeft);
 		add(btnJustifyCenter);

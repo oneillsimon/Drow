@@ -201,7 +201,7 @@ public class DrowPage extends JTextPane {
 		caretListener = new DrowCaretListener();
 		addCaretListener(caretListener);
 		
-		dictionaryListener = new DictionaryListener(this, "/dev/java.txt", "word", Color.blue);
+		dictionaryListener = new DictionaryListener(this, "/dev/java.txt", "word", Color.cyan);
 		styledDocument.addDocumentListener(dictionaryListener);
 	}
 }

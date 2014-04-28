@@ -11,6 +11,7 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
+import javax.swing.text.BadLocationException;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
@@ -290,6 +291,25 @@ public class DrowStyleActionManager {
 				SimpleAttributeSet right = new SimpleAttributeSet();
 				StyleConstants.setAlignment(right, StyleConstants.ALIGN_RIGHT);
 				styleDoc(right);
+			}
+		};
+	}
+	
+	/** Method for adding a bullet point to the document, inserts the Unicode char "2022". */
+	public Action addBulletPoint() {
+		return new AbstractAction("\u2022") {
+			
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					pages.get(DrowDocument.FOCUSED_PAGE_NUMBER).getStyledDocument().insertString(pages.get(DrowDocument.FOCUSED_PAGE_NUMBER).getDot(),
+																								 "\t\u2022\n",
+																								 new SimpleAttributeSet());
+				} catch (BadLocationException e1) {
+					e1.printStackTrace();
+				}
 			}
 		};
 	}

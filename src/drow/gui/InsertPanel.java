@@ -11,7 +11,10 @@ import drow.view.DocumentView;
 
 /**
  * <h1>InsertPanel</h1>
- * This class contains controls for inserting tables and pictures. 
+ * This class contains controls for inserting tables and pictures.
+ * <p>
+ * @author Graham Wolfe
+ * <p> 
  */
 public class InsertPanel extends JPanel {
 

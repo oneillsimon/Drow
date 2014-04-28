@@ -16,6 +16,10 @@ import drow.view.DocumentView;
 /**
  * <h1>DevHomePanel</h1>
  * This is the JPanel used in the home tab when developer mode is active.
+ * <p>
+ * @author Simon O'Neill
+ * @author Graham Wolfe
+ * <p>
  */
 public class DevHomePanel extends JPanel {
 
