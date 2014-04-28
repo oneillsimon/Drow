@@ -54,15 +54,6 @@ public class DrowGui {
 		this.documentView.add(scrollPane, BorderLayout.CENTER);
 		this.documentView.add(tabbedPane, BorderLayout.NORTH);
 		this.documentView.getDrowDocument().add(this.documentView.getDrowDocument().newPage());
-		try {
-			this.documentView.getDrowDocument().getFocusedPage().getStyledDocument().insertString(0, "\t\u2022\n", new SimpleAttributeSet());
-			this.documentView.getDrowDocument().getFocusedPage().getStyledDocument().insertString(0, "\t\u2022\n", new SimpleAttributeSet());
-			this.documentView.getDrowDocument().getFocusedPage().getStyledDocument().insertString(0, "\t\u2022\n", new SimpleAttributeSet());
-			this.documentView.getDrowDocument().getFocusedPage().getStyledDocument().insertString(0, "\t\u2022\n", new SimpleAttributeSet());
-		} catch (BadLocationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 	
 	/**
