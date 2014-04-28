@@ -29,7 +29,7 @@ public class DrowIOActionManager {
 	}
 	
 	public Action openAction() {
-		return new AbstractAction("Open", new ImageIcon("res/open.gif")) {
+		return new AbstractAction("Open", new ImageIcon("res/buttonIcons/open.gif")) {
 			
 			private static final long serialVersionUID = 1L;
 			
@@ -48,7 +48,7 @@ public class DrowIOActionManager {
 	}
 	
 	public Action saveAction() {
-		return new AbstractAction("Save", new ImageIcon("res/save.gif")) {
+		return new AbstractAction("Save", new ImageIcon("res/buttonIcons/save.gif")) {
 			
 			private static final long serialVersionUID = 1L;
 			
@@ -64,7 +64,7 @@ public class DrowIOActionManager {
 	}
 	
 	public Action newAction() {
-		return new AbstractAction("New", new ImageIcon("res/new.gif")) {
+		return new AbstractAction("New", new ImageIcon("res/buttonIcons/new.gif")) {
 			
 			private static final long serialVersionUID = 1L;
 
@@ -76,7 +76,7 @@ public class DrowIOActionManager {
 	}
 	
 	public Action fullScreenAction() {
-		return new AbstractAction("", new ImageIcon("res/fullscreen.png")) {
+		return new AbstractAction("", new ImageIcon("res/buttonIcons/fullscreen.png")) {
 			
 			private static final long serialVersionUID = 1L;
 
@@ -88,7 +88,7 @@ public class DrowIOActionManager {
 	}
 	
 	public Action devModeAction() {
-		return new AbstractAction("", new ImageIcon("res/Developer.png")) {
+		return new AbstractAction("", new ImageIcon("res/buttonIcons/Developer.png")) {
 			
 			private static final long serialVersionUID = 1L;
 
@@ -110,7 +110,7 @@ public class DrowIOActionManager {
 	}
 	
 	public Action wordModeAction() {
-		return new AbstractAction("", new ImageIcon("res/Developer.png")) {
+		return new AbstractAction("", new ImageIcon("res/buttonIcons/Developer.png")) {
 			
 			private static final long serialVersionUID = 1L;
 
@@ -132,7 +132,7 @@ public class DrowIOActionManager {
 	}
 	
 	public Action insertImageAction() {
-		return new AbstractAction() {
+		return new AbstractAction("", new ImageIcon("res/buttonIcons/picture.gif")) {
 			
 			private static final long serialVersionUID = 1L;
 
