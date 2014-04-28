@@ -6,6 +6,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * <h1>Dictionary</h1>
+ * @author Lee Mc Donald
+ */
 public class Dictionary {
 
 	List<String> dictionary = new ArrayList<String>();
