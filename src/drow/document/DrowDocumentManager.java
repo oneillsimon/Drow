@@ -1,9 +1,3 @@
-/**
- * <h1>DrowDocumentManager</h1>
- * <p>
- * This class manages the importing and exporting of documents.
- */
-
 package drow.document;
 
 import javax.swing.JFileChooser;
@@ -14,6 +8,14 @@ import drow.io.Exporter;
 import drow.io.Importer;
 import drow.view.DocumentView;
 
+/**
+ * <h1>DrowDocumentManager</h1>
+ * <p>
+ * This class manages the importing and exporting of documents.
+ * <p>
+ * @author Simon O'Neill
+ * <p>
+ */
 public class DrowDocumentManager extends JFrame {
 
 	private static final long serialVersionUID = 1L;

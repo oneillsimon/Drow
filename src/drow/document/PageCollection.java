@@ -1,8 +1,3 @@
-/**
- * <h1>PageCollection</h1>
- * This class takes the document and converts to a format to be serialised and exported.
- */
-
 package drow.document;
 
 import java.io.Serializable;
@@ -13,6 +8,13 @@ import javax.swing.text.StyledDocument;
 import sl.docx.DocxDocument;
 import drow.view.DocumentView;
 
+/**
+ * <h1>PageCollection</h1>
+ * This class takes the document and converts to a format to be serialized and exported.
+ * <p>
+ * @author Simon O'Neill
+ * <p>
+ */
 public class PageCollection implements Serializable {
 	private static final long serialVersionUID = 1L;
 	

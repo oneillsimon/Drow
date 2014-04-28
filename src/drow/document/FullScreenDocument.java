@@ -1,10 +1,3 @@
-/**
- * <h1>FullScreenDocument</h1>
- * <p>
- * This class creates a JFrame and JTextPane based off the documents and current document's pages.
- * Then makes a full screen JPanel and displays the pages in full screen, with keyboard navigation to cycle through them.
- */
-
 package drow.document;
 
 import java.awt.GraphicsDevice;
@@ -21,6 +14,15 @@ import javax.swing.text.BadLocationException;
 import drow.document.helpers.DrowDocumentHelper;
 import drow.view.DocumentView;
 
+/**
+ * <h1>FullScreenDocument</h1>
+ * <p>
+ * This class creates a JFrame and JTextPane based off the documents and current document's pages.
+ * Then makes a full screen JPanel and displays the pages in full screen, with keyboard navigation to cycle through them.
+ * <p>
+ * @author Simon O'Neill
+ * <p>
+ */
 public class FullScreenDocument extends JFrame {
 	
 	private static final long serialVersionUID = 1L;

@@ -17,46 +17,68 @@ import sl.docx.DocxEditorKit;
 import drow.document.PageCollection;
 import drow.view.DocumentView;
 
+/**
+ * <h1>Importer</h1>
+ * Class for handling the importing of files.
+ * <p>
+ * @author Simon O'Neill
+ * <p>
+ */
 public class Importer {
 	
-	private DocumentView docView;
+	/** The view containing the document. */
+	private DocumentView documentView;
 	
-	public Importer(DocumentView docView) {
-		this.docView = docView;
+	/**
+	 * <h1>Constructor</h1>
+	 * @param documentView - The view containing the document.
+	 */
+	public Importer(DocumentView documentView) {
+		this.documentView = documentView;
 	}
 	
-	public void importFile(String filePath, FileFilter fileFilter) {
+	/**
+	 * Imports the file.
+	 * The file filter will dictate how the file is exported.
+	 * @param fileName - The name of the file.
+	 * @param fileFilter - The filter of the file which will determine the method of importing.
+	 */
+	public void importFile(String fileName, FileFilter fileFilter) {
 		
-		String[] split = filePath.split("\\.");
+		String[] split = fileName.split("\\.");
 		DrowFileFilter dFilter = Filters.getFilterFromString(split[split.length - 1]);
 		
 		if(dFilter.equals(Filters.DOCX)) {
-			asDocx(filePath);
+			asDocx(fileName);
 		}
 
 		if(dFilter.equals(Filters.RTF)) {
-			asRtf(filePath);
+			asRtf(fileName);
 		}
 		
 		if(dFilter.equals(Filters.TXT)) {
-			asTxt(filePath);
+			asTxt(fileName);
 		}
 		
 		if(dFilter.equals(Filters.DROW)) {
-			asDrow(filePath);
+			asDrow(fileName);
 		}
 		
-		split = filePath.split("\\\\");
-		docView.setTitle(split[split.length - 1]);
+		split = fileName.split("\\\\");
+		documentView.setTitle(split[split.length - 1]);
 	}
 
-	private void asDocx(String filePath) {
-		docView.getDrowDocument().removeAllPages();
-		docView.getDrowDocument().add(docView.getDrowDocument().newPage());
-		docView.getDrowDocument().getFocusedPage().setEditorKit(new DocxEditorKit());
+	/**
+	 * Imports the file as a ".docx".
+	 * @param fileName - The name of the file.
+	 */
+	private void asDocx(String fileName) {
+		documentView.getDrowDocument().removeAllPages();
+		documentView.getDrowDocument().add(documentView.getDrowDocument().newPage());
+		documentView.getDrowDocument().getFocusedPage().setEditorKit(new DocxEditorKit());
 		try {
-			docView.getDrowDocument().getFocusedPage().getEditorKit().read(new FileInputStream(filePath),
-																		   docView.getDrowDocument().getFocusedPage().getStyledDocument(),
+			documentView.getDrowDocument().getFocusedPage().getEditorKit().read(new FileInputStream(fileName),
+																		   documentView.getDrowDocument().getFocusedPage().getStyledDocument(),
 																		   0);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -67,29 +89,37 @@ public class Importer {
 		}
 	}
 
-	private void asTxt(String filePath) {
+	/**
+	 * Imports the file as plain text.
+	 * @param fileName - The name of the file.
+	 */
+	private void asTxt(String fileName) {
 		try {
-			FileReader reader = new FileReader(filePath);
-			docView.getDrowDocument().removeAllPages();
-			docView.getDrowDocument().add(docView.getDrowDocument().newPage());
-			docView.getDrowDocument().getFocusedPage().read(reader, null);
+			FileReader reader = new FileReader(fileName);
+			documentView.getDrowDocument().removeAllPages();
+			documentView.getDrowDocument().add(documentView.getDrowDocument().newPage());
+			documentView.getDrowDocument().getFocusedPage().read(reader, null);
 			reader.close();
 		} catch (IOException e) {
 			Toolkit.getDefaultToolkit().beep();
-			JOptionPane.showMessageDialog(docView, "Editor can't find the file called " + filePath);
+			JOptionPane.showMessageDialog(documentView, "Editor can't find the file called " + fileName);
 		}
 	}
 
+	/**
+	 * Imports the file as a Rich Text Format document.
+	 * @param fileName - The name of the file.
+	 */
 	private void asRtf(String fileName) {
 		RTFEditorKit kit = new RTFEditorKit();
-		docView.getDrowDocument().removeAllPages();
-		docView.getDrowDocument().add(docView.getDrowDocument().newPage());
-		docView.getDrowDocument().getFocusedPage().setEditorKit(kit);
+		documentView.getDrowDocument().removeAllPages();
+		documentView.getDrowDocument().add(documentView.getDrowDocument().newPage());
+		documentView.getDrowDocument().getFocusedPage().setEditorKit(kit);
 		
 		FileInputStream in = null;		
 		try {
 			in = new FileInputStream(fileName);
-			kit.read(in, (Document)docView.getDrowDocument().getFocusedPage().getDocument(), 0);
+			kit.read(in, (Document)documentView.getDrowDocument().getFocusedPage().getDocument(), 0);
 			in.close();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -98,14 +128,18 @@ public class Importer {
 		}
 	}
 	
+	/**
+	 * Imports the file as a Drow file.
+	 * @param fileName - The name of the file.
+	 */
 	private void asDrow(String fileName) {
 		try {
 			ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName));
 			try {
 				PageCollection collection = (PageCollection)in.readObject();
-				docView.getDrowDocument().removeAllPages();
-				collection.applyToDocument(docView);
-				docView.getDrowDocument().determinePageX();
+				documentView.getDrowDocument().removeAllPages();
+				collection.applyToDocument(documentView);
+				documentView.getDrowDocument().determinePageX();
 				in.close();
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();

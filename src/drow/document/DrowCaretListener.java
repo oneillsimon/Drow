@@ -1,16 +1,16 @@
-/**
- * <h1>DrowCaretListener</h1>
- * <p>
- * This class is used as a wrapper for CaretListener functions
- * 
- * @author Simon O'Neill
- */
-
 package drow.document;
 
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 
+/**
+ * <h1>DrowCaretListener</h1>
+ * <p>
+ * This class is used as a wrapper for CaretListener functions
+ * * <p>
+ * @author Simon O'Neill
+ * <p>
+ */
 public class DrowCaretListener implements CaretListener {
 
 	private int dot;

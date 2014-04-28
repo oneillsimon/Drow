@@ -12,10 +12,22 @@ import javax.swing.text.LayeredHighlighter;
 import javax.swing.text.Position;
 import javax.swing.text.View;
 
+/**
+ * <h1>DrowHighlightPainter</h1>
+ * Creates and paints the highlight.
+ * <p>
+ * @author Simon O'Neill
+ * <p>
+ */
 public class DrowHighlightPainter extends LayeredHighlighter.LayerPainter {
 
+	/** The color of the highlight. */
 	private Color color;
 	
+	/**
+	 * <h1>Constructor</h1>
+	 * @param color - The color of the highlight.
+	 */
 	public DrowHighlightPainter(Color color) {
 		this.color = color;
 	}
@@ -25,6 +37,9 @@ public class DrowHighlightPainter extends LayeredHighlighter.LayerPainter {
 		// This method won't be called.
 	}
 
+	/**
+	 * Calculates the shape of the highlight and paints it.
+	 */
 	@Override
 	public Shape paintLayer(Graphics g, int offset0, int offset1, Shape bounds, JTextComponent component, View view) {
 		g.setColor(color);

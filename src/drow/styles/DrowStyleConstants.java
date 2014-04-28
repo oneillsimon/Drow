@@ -2,6 +2,12 @@ package drow.styles;
 
 import java.awt.Color;
 
+/**
+ * Static class containing constants to control styling.
+ * <p>
+ * @author Simon O'Neill
+ * <p>
+ */
 public class DrowStyleConstants {
 	
 	public static String  FONT_FAMILY 	   	= "serif";

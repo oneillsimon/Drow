@@ -1,12 +1,15 @@
-/**
- * <h1>PageDimensions</h1>
- * This is a static class containing all the dimensions for a variety of page sizes and standards.
- */
-
 package drow.document;
 
 import java.awt.Rectangle;
 
+/**
+ * <h1>PageDimensions</h1>
+ * This is a static class containing all the dimensions for a variety of page sizes and standards.
+ * <p>
+ * @author Simon O'Neill
+ * @author Graham Wolfe
+ * <p>
+ */
 public class PageDimensions {
 	public static final Rectangle LETTER = new Rectangle(612, 792);
 	public static final Rectangle NOTE = new Rectangle(540, 720);

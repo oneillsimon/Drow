@@ -1,11 +1,3 @@
-/**
- * <h1>DrowPage</h1>
- * <p>
- * An extension of JTextPane, this class is the class that the user manipulates
- * and populates with text. It handles the styling of the text and the absolute positioning
- * of the page in the DrowDocument.
- */
-
 package drow.document;
 
 import java.awt.Color;
@@ -20,6 +12,16 @@ import sl.docx.DocxDocument;
 import drow.spellchecker.DictionaryListener;
 import drow.view.DocumentView;
 
+/**
+ * <h1>DrowPage</h1>
+ * <p>
+ * An extension of JTextPane, this class is the class that the user manipulates
+ * and populates with text. It handles the styling of the text and the absolute positioning
+ * of the page in the DrowDocument.
+ * <p>
+ * @author Simon O'Neill
+ * <p>
+ */
 public class DrowPage extends JTextPane {
 	
 	private static final long serialVersionUID = 1L;

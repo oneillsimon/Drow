@@ -1,13 +1,3 @@
-/**
- * <h1>Drow Document</h1>
- * <p>
- * This is the container that holds all the pages.
- * It also features many managerial and convenience methods
- * for manipulating the pages.
- * 
- * @author
- */
-
 package drow.document;
 
 import java.awt.Color;
@@ -19,6 +9,16 @@ import javax.swing.text.BadLocationException;
 
 import drow.document.helpers.DrowDocumentHelper;
 
+/**
+ * <h1>Drow Document</h1>
+ * <p>
+ * This is the container that holds all the pages.
+ * It also features many managerial and convenience methods
+ * for manipulating the pages.
+ * <p>
+ * @author Simon O'Neill
+ * <p>
+ */
 public class DrowDocument extends JPanel {
 
 	private static final long serialVersionUID = 1L;

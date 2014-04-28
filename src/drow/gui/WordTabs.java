@@ -3,6 +3,10 @@ package drow.gui;
 /**
  * <h1>WordTabs</h1>
  * This class contains the JTabbedPane to be used while in word mode.
+ * <p>
+ * @author Simon O'Neill
+ * @author Graham Wolfe
+ * <p>
  */
 import javax.swing.JTabbedPane;
 

@@ -36,6 +36,9 @@ import drow.view.DocumentView;
  * <br>-Justify Right.
  * <br>-Font Family.
  * <br>-Font Size.
+ * <p>
+ * @author Graham Wolfe
+ * <p>
  */
 public class HomePanel extends JPanel {
 
@@ -140,6 +143,9 @@ public class HomePanel extends JPanel {
 		btnSuperScript.setAction(styleActionManager.superScriptAction());
 		btnSubScript.setAction(styleActionManager.subScriptAction());
 		btnDev.setAction(ioActionManager.devModeAction());
+		
+		comboBoxFontFamilies.setAction(styleActionManager.fontFamilyAction());
+		comboBoxFontSizes.setAction(styleActionManager.fontSizeAction());
 		
 		InputMap inputMap = btnSave.getInputMap(JButton.WHEN_IN_FOCUSED_WINDOW);
 		KeyStroke s = KeyStroke.getKeyStroke(KeyEvent.VK_S, Event.CTRL_MASK);

@@ -6,9 +6,12 @@ import javax.swing.AbstractAction;
 import javax.swing.JButton;
 
 /**
-	 * <h1>ClickAction</h1>
-	 * Used for triggering actions tied to keyboard macros.
-	 */
+ * <h1>ClickAction</h1>
+ * Used for triggering actions tied to keyboard macros.
+ * <p>
+ * @author Graham Wolfe
+ * <p>
+ */
 	public class ClickAction extends AbstractAction {
 		
 		private static final long serialVersionUID = 1L;

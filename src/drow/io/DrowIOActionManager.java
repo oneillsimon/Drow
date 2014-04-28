@@ -16,18 +16,39 @@ import drow.gui.DeveloperTabs;
 import drow.gui.WordTabs;
 import drow.view.DocumentView;
 
+/**
+ * <h1>DrowIOActionManager</h1>
+ * Handles all the input and output actions.
+ * <p>
+ * @author Simon O'Neill
+ * <p>
+ */
 public class DrowIOActionManager {
-	private static DrowDocumentManager docManager;
-	private static JFileChooser fileChooser;
-	private static DocumentView docView;
 	
-	public DrowIOActionManager(DocumentView docView) {
-		docManager = docView.getDrowDocumentManager();
+	/** The document manager. */
+	private static DrowDocumentManager docManager;
+	
+	/** The file chooser for browsing the system's directories. */
+	private static JFileChooser fileChooser;
+	
+	/** The view containing the document. */
+	private static DocumentView documentView;
+	
+	/**
+	 * <h1>Constructor</h1>
+	 * @param documentView - The view containing the document.
+	 */
+	public DrowIOActionManager(DocumentView documentView) {
+		docManager = documentView.getDrowDocumentManager();
 		fileChooser = new JFileChooser(System.getProperty("user.dir"));
 		Filters.addFiltersToFileChooser(fileChooser);
-		DrowIOActionManager.docView = docView;
+		DrowIOActionManager.documentView = documentView;
 	}
 	
+	/**
+	 * Action for opening a file.
+	 * @return - An abstract action that will open a file.
+	 */
 	public Action openAction() {
 		return new AbstractAction("Open", new ImageIcon("res/open.gif")) {
 			
@@ -47,6 +68,10 @@ public class DrowIOActionManager {
 		};
 	}
 	
+	/**
+	 * Action for saving a file.
+	 * @return - An abstract action for saving a file.
+	 */
 	public Action saveAction() {
 		return new AbstractAction("Save", new ImageIcon("res/save.gif")) {
 			
@@ -63,6 +88,10 @@ public class DrowIOActionManager {
 		};
 	}
 	
+	/**
+	 * Action for creating a new page in the document.
+	 * @return - An abstract action for inserting a new page into the document.
+	 */
 	public Action newAction() {
 		return new AbstractAction("New", new ImageIcon("res/new.gif")) {
 			
@@ -70,11 +99,15 @@ public class DrowIOActionManager {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				docView.getDrowDocument().add(docView.getDrowDocument().newPage());
+				documentView.getDrowDocument().add(documentView.getDrowDocument().newPage());
 			}
 		};
 	}
 	
+	/**
+	 * Action for entering a full screen mode.
+	 * @return - An abstract action for entering a full screen mode.
+	 */
 	public Action fullScreenAction() {
 		return new AbstractAction("", new ImageIcon("res/fullscreen.png")) {
 			
@@ -82,11 +115,15 @@ public class DrowIOActionManager {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				new FullScreenDocument(docView);
+				new FullScreenDocument(documentView);
 			}
 		};
 	}
 	
+	/**
+	 * Action to switch the GUI to developer mode.
+	 * @return - An abstract action for switching to developer mode.
+	 */
 	public Action devModeAction() {
 		return new AbstractAction("", new ImageIcon("res/Developer.png")) {
 			
@@ -94,21 +131,25 @@ public class DrowIOActionManager {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-					docView.getGui().setTabbedPane(new DeveloperTabs(docView));
-					docView.getDrowDocument().swapToDevListeners();
+					documentView.getGui().setTabbedPane(new DeveloperTabs(documentView));
+					documentView.getDrowDocument().swapToDevListeners();
 					DocumentView.IS_IN_DEV_MODE = true;
 				try {
 					UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
-					SwingUtilities.updateComponentTreeUI(docView);
+					SwingUtilities.updateComponentTreeUI(documentView);
 				} catch (Exception e) {
 				}
 				
-				docView.repaint();
-				docView.revalidate();
+				documentView.repaint();
+				documentView.revalidate();
 			}
 		};
 	}
 	
+	/**
+	 * Action to switch the GUI to word mode.
+	 * @return - An abstract action for switching to word mode.
+	 */
 	public Action wordModeAction() {
 		return new AbstractAction("", new ImageIcon("res/Developer.png")) {
 			
@@ -116,23 +157,27 @@ public class DrowIOActionManager {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-					docView.getGui().setTabbedPane(new WordTabs(docView));
-					docView.getDrowDocument().swapToWordListeners();
+					documentView.getGui().setTabbedPane(new WordTabs(documentView));
+					documentView.getDrowDocument().swapToWordListeners();
 					DocumentView.IS_IN_DEV_MODE = false;
 				try {
 					UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel");
-					SwingUtilities.updateComponentTreeUI(docView);
+					SwingUtilities.updateComponentTreeUI(documentView);
 				} catch (Exception e) {
 				}
 				
-				docView.repaint();
-				docView.revalidate();
+				documentView.repaint();
+				documentView.revalidate();
 			}
 		};
 	}
 	
+	/**
+	 * Action to insert an image into the document.
+	 * @return - An abstract action to insert an image into the document.
+	 */
 	public Action insertImageAction() {
-		return new AbstractAction() {
+		return new AbstractAction("", new ImageIcon("res/Developer.png")) {
 			
 			private static final long serialVersionUID = 1L;
 
@@ -142,8 +187,7 @@ public class DrowIOActionManager {
 				
 				if(fileChooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
 					File file = fileChooser.getSelectedFile();
-					docView.getDrowDocument().getFocusedPage().insertIcon(new ImageIcon(file.getAbsolutePath()));
-					System.out.println(file.getAbsolutePath());
+					documentView.getDrowDocument().getFocusedPage().insertIcon(new ImageIcon(file.getAbsolutePath()));
 				}
 			}
 		};

@@ -19,19 +19,34 @@ import drow.document.DrowDocument;
 import drow.document.DrowPage;
 import drow.view.DocumentView;
 
+/**
+ * <h1>DrowStyleActionManager</h1>
+ * This class manages the actions used to style text in the document.
+ * <p>
+ * @author Simon O'Neill
+ * <p>
+ */
 public class DrowStyleActionManager {
 	
+	/** The document to style. */
 	private static DrowDocument document;
+	
+	/** The list of pages in the document. */
 	private static ArrayList<DrowPage> pages;
 	
-	public DrowStyleActionManager(DocumentView docView) {
+	/**
+	 * <h1>Constructor</h1>
+	 * @param documentView - The view containing the document.
+	 */
+	public DrowStyleActionManager(DocumentView documentView) {
 		
-		if(docView != null) {
-			DrowStyleActionManager.document = docView.getDrowDocument();
-			DrowStyleActionManager.pages = docView.getDrowDocument().getPages();
+		if(documentView != null) {
+			DrowStyleActionManager.document = documentView.getDrowDocument();
+			DrowStyleActionManager.pages = documentView.getDrowDocument().getPages();
 		}
 	}
 	
+	/** Action for changing the font family. */
 	public Action fontFamilyAction() {
 		return new AbstractAction() {
 			private static final long serialVersionUID = 1L;
@@ -47,6 +62,7 @@ public class DrowStyleActionManager {
 		};
 	}
 	
+	/** Action for changing the font size. */
 	public Action fontSizeAction() {
 		return new AbstractAction() {
 			private static final long serialVersionUID = 1L;
@@ -62,6 +78,7 @@ public class DrowStyleActionManager {
 		};
 	}
 	
+	/** Action for changing the left indent of the text. */
 	public Action leftIndentAction() {
 		return new AbstractAction() {
 			private static final long serialVersionUID = 1L;
@@ -73,6 +90,7 @@ public class DrowStyleActionManager {
 		};
 	}
 	
+	/** Action for changing the right indent of the text. */
 	public Action rightIndentAction() {
 		return new AbstractAction() {
 			private static final long serialVersionUID = 1L;
@@ -84,6 +102,7 @@ public class DrowStyleActionManager {
 		};
 	}
 	
+	/** Action for changing the first line indent of the text. */
 	public Action firstLineIndentAction() {
 		return new AbstractAction() {
 			private static final long serialVersionUID = 1L;
@@ -95,6 +114,7 @@ public class DrowStyleActionManager {
 		};
 	}
 	
+	/** Action for changing the spacing of text above some text. */
 	public Action spaceAboveAction() {
 		return new AbstractAction() {
 			private static final long serialVersionUID = 1L;
@@ -106,6 +126,7 @@ public class DrowStyleActionManager {
 		};
 	}
 	
+	/** Action for changing the spacing of text below some text. */
 	public Action spaceBelowAction() {
 		return new AbstractAction() {
 			private static final long serialVersionUID = 1L;
@@ -117,6 +138,7 @@ public class DrowStyleActionManager {
 		};
 	}
 	
+	/** Action for toggling bold style. */
 	public Action boldAction() {
 		return new AbstractAction("", new ImageIcon("res/bold.png")) {
 			private static final long serialVersionUID = 1L;
@@ -128,6 +150,7 @@ public class DrowStyleActionManager {
 		};
 	}
 	
+	/** Action for toggling italic style. */
 	public Action italicAction() {
 		return new AbstractAction("", new ImageIcon("res/italic.png")) {
 			private static final long serialVersionUID = 1L;
@@ -139,6 +162,7 @@ public class DrowStyleActionManager {
 		};
 	}
 	
+	/** Action for toggling underline style. */
 	public Action underlineAction() {
 		return new AbstractAction("", new ImageIcon("res/underline.png")) {
 			private static final long serialVersionUID = 1L;
@@ -150,6 +174,7 @@ public class DrowStyleActionManager {
 		};
 	}
 	
+	/** Action for toggling strike through style. */
 	public Action strikeThroughAction() {
 		return new AbstractAction("", new ImageIcon("res/strike.png")) {
 			private static final long serialVersionUID = 1L;
@@ -161,6 +186,7 @@ public class DrowStyleActionManager {
 		};
 	}
 	
+	/** Action for toggling superscript style. */
 	public Action superScriptAction() {
 		return new AbstractAction("", new ImageIcon("res/superscript.png")) {
 			private static final long serialVersionUID = 1L;
@@ -172,6 +198,7 @@ public class DrowStyleActionManager {
 		};
 	}
 	
+	/** Action for toggling subscript style. */
 	public Action subScriptAction() {
 		return new AbstractAction("", new ImageIcon("res/subscript.png")) {
 			private static final long serialVersionUID = 1L;
@@ -183,6 +210,7 @@ public class DrowStyleActionManager {
 		};
 	}
 	
+	/** Action for changing font color. */
 	public Action foregroundColorAction() {
 		return new AbstractAction("", new ImageIcon("res/fontcolour.png")) {
 			private static final long serialVersionUID = 1L;
@@ -203,6 +231,7 @@ public class DrowStyleActionManager {
 		};
 	}
 	
+	/** Action for changing font highlight color. */
 	public Action backgroundColorAction() {
 		return new AbstractAction("", new ImageIcon("res/fonthighlight.png")) {
 			private static final long serialVersionUID = 1L;
@@ -223,6 +252,7 @@ public class DrowStyleActionManager {
 		};
 	}
 	
+	/** Action for justifying text left. */
 	public Action justifyLeftAction() {
 		return new AbstractAction("", new ImageIcon("res/align_left.png")) {
 			private static final long serialVersionUID = 1L;
@@ -236,6 +266,7 @@ public class DrowStyleActionManager {
 		};
 	}
 	
+	/** Action for justifying text center. */
 	public Action justifyCenterAction() {
 		return new AbstractAction("", new ImageIcon("res/align_centre.png")) {
 			private static final long serialVersionUID = 1L;
@@ -249,6 +280,7 @@ public class DrowStyleActionManager {
 		};
 	}
 	
+	/** Action for justifying text right. */
 	public Action justifyRightAction() {
 		return new AbstractAction("", new ImageIcon("res/align_right.png")) {
 			private static final long serialVersionUID = 1L;
@@ -262,10 +294,12 @@ public class DrowStyleActionManager {
 		};
 	}
 	
+	/** Method for applying style to a particular area of a JTextPane. */
 	public void styleText(JTextPane textPane, Style style, int offset, int length) {
 		textPane.getStyledDocument().setCharacterAttributes(offset, length, style, false);
 	}
 	
+	/** Convenience method for styling a document. */
 	private void styleDoc(Style style) {
 		pages.get(DrowDocument.FOCUSED_PAGE_NUMBER).getStyledDocument().setCharacterAttributes(document.getLesser(),
 											  document.getDiff(),
@@ -273,6 +307,7 @@ public class DrowStyleActionManager {
 											  false);
 	}
 	
+	/** Convenience method for styling a document. */
 	private void styleDoc(SimpleAttributeSet attribSet) {
 		pages.get(DrowDocument.FOCUSED_PAGE_NUMBER).getStyledDocument().setParagraphAttributes(document.getLesser(),
 											  document.getDiff(),

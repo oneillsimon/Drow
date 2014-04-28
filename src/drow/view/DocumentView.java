@@ -14,22 +14,42 @@ import drow.gui.MouseMenu;
 import drow.gui.WordTabs;
 import drow.io.Filters;
 
+/**
+ * <h1>DocumentView</h1>
+ * The main view, which contains the document.
+ * <p>
+ * @author Simon O'Neill
+ * @author Graham Wolfe
+ * <p>
+ */
 public class DocumentView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
+	/** The width of the frame. */
 	public static int WINDOW_WIDTH = 750;
+	
+	/** The height of the frame. */
 	public static int WINDOW_HEIGHT = 500;
 	
+	/** Is the GUI in developer mode. */
 	public static boolean IS_IN_DEV_MODE = false;
 	
+	/** The document manager. */
 	private DrowDocumentManager docManager;
+	
+	/** The document. */
 	private DrowDocument doc;
 	
+	/** The GIU. */
 	private DrowGui gui;
 
+	/**
+	 * <h1>Constructor</h1>
+	 */
 	public DocumentView() {
 		
+		/** Sets up the FileFilters. */
 		Filters.setUp();
 		
 		doc = new DrowDocument();
@@ -38,7 +58,6 @@ public class DocumentView extends JFrame {
 		
 		gui = new DrowGui(this, new WordTabs(this));
 		
-		//Adding mouse listener to document via MouseMenu.java
 		doc.addMouseListener(new MouseMenu(this));
 		
 		this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -77,19 +96,27 @@ public class DocumentView extends JFrame {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	
+	/**
+	 * Gets the document manager.
+	 * @return DrowDocumentManager - The manager for the documents.
+	 */
 	public DrowDocumentManager getDrowDocumentManager() {
 		return docManager;
 	}
 	
+	/**
+	 * Gets the document.
+	 * @return DrowDocument - The document in the view.
+	 */
 	public DrowDocument getDrowDocument() {
 		return doc;
 	}
 	
+	/**
+	 * Gets the GUI.
+	 * @return DrowGui - The GUI inside the JFrame.
+	 */
 	public DrowGui getGui() {
 		return gui;
-	}
-
-	public DocumentView getRoot() {
-		return this;
 	}
 }

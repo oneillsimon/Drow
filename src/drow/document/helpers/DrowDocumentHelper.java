@@ -1,8 +1,3 @@
-/**
- * <h1>DrowDocumentHelper</h1>
- * This class contains a method to merge to JTextPanes into one, retaining styles and text.
- */
-
 package drow.document.helpers;
 
 import java.lang.reflect.Method;
@@ -13,6 +8,15 @@ import javax.swing.text.DefaultStyledDocument;
 import javax.swing.text.Element;
 import javax.swing.text.SimpleAttributeSet;
 
+/**
+ * <h1>DrowDocumentHelper</h1>
+ * This class contains a method to merge to JTextPanes into one, retaining styles and text.
+ * <p>
+ * @author Simon O'Neill
+ * @author Lee Mc Donald
+ * @author Graham Wolfe
+ * <p>
+ */
 public class DrowDocumentHelper {
 	
 	public static void mergeDocument(DefaultStyledDocument source, DefaultStyledDocument dest) throws BadLocationException {
