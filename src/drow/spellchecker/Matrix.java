@@ -1,29 +1,52 @@
 package drow.spellchecker;
 
 /**
- * <h1>Matrix</h1>
- * @author Lee Mc Donald
+ * 
+ * @author leemcdonald
+ * 
+ * Matrix class used in the EditDistance algorithm.
+ * This matrix class was taken from: http://introcs.cs.princeton.edu/java/95linear/Matrix.java.html
+ * This class was not coded by myself.
+ *
  */
+
 final public class Matrix {
     private final int M;             // number of rows
     private final int N;             // number of columns
     private final double[][] data;   // M-by-N array
 
-    // create M-by-N matrix of 0's
+    /**
+     * @param M
+     * @param N
+     */
     public Matrix(int M, int N) {
         this.M = M;
         this.N = N;
         data = new double[M][N];
     }
+    /**
+     * 
+     * @param row
+     * @param col
+     * @return
+     */
     public double Get(int row, int col) {
         return data[row][col];
     }
-    // set the value of the elements class
+    /**
+     * 
+     * @param row
+     * @param col
+     * @param d
+     */
     public void Set(int row, int col, double d) {
     	data[row][col] = d;
     }
 
-    // create matrix based on 2d array
+    /**
+     * Data is a multidimensional array to instantiate the matrix
+     * @param data
+     */
     public Matrix(double[][] data) {
         M = data.length;
         N = data[0].length;
@@ -33,7 +56,9 @@ final public class Matrix {
                     this.data[i][j] = data[i][j];
     }
 
-    // copy constructor
+    /**
+     * @param A
+     */
     private Matrix(Matrix A) { this(A.data); }
 
     // create and return a random M-by-N matrix with values between 0 and 1
@@ -45,7 +70,11 @@ final public class Matrix {
         return A;
     }
 
-    // create and return the N-by-N identity matrix
+    /**
+     * 
+     * @param N
+     * @return
+     */
     public static Matrix identity(int N) {
         Matrix I = new Matrix(N, N);
         for (int i = 0; i < N; i++)
@@ -53,14 +82,21 @@ final public class Matrix {
         return I;
     }
 
-    // swap rows i and j
+    /**
+     * 
+     * @param i
+     * @param j
+     */
     private void swap(int i, int j) {
         double[] temp = data[i];
         data[i] = data[j];
         data[j] = temp;
     }
 
-    // create and return the transpose of the invoking matrix
+    /**
+     * 
+     * @return
+     */
     public Matrix transpose() {
         Matrix A = new Matrix(N, M);
         for (int i = 0; i < M; i++)
@@ -69,7 +105,11 @@ final public class Matrix {
         return A;
     }
 
-    // return C = A + B
+    /**
+     * return C = A + B
+     * @param B
+     * @return
+     */
     public Matrix plus(Matrix B) {
         Matrix A = this;
         if (B.M != A.M || B.N != A.N) throw new RuntimeException("Illegal matrix dimensions.");
@@ -80,8 +120,11 @@ final public class Matrix {
         return C;
     }
 
-
-    // return C = A - B
+    /**
+     * return C = A - B
+     * @param B
+     * @return
+     */
     public Matrix minus(Matrix B) {
         Matrix A = this;
         if (B.M != A.M || B.N != A.N) throw new RuntimeException("Illegal matrix dimensions.");
@@ -92,7 +135,11 @@ final public class Matrix {
         return C;
     }
 
-    // does A = B exactly?
+    /**
+     * does A = B exactly?
+     * @param B
+     * @return
+     */
     public boolean eq(Matrix B) {
         Matrix A = this;
         if (B.M != A.M || B.N != A.N) throw new RuntimeException("Illegal matrix dimensions.");
@@ -102,7 +149,11 @@ final public class Matrix {
         return true;
     }
 
-    // return C = A * B
+    /**
+     * return C = A * B
+     * @param B
+     * @return
+     */
     public Matrix times(Matrix B) {
         Matrix A = this;
         if (A.N != B.M) throw new RuntimeException("Illegal matrix dimensions.");
@@ -114,8 +165,11 @@ final public class Matrix {
         return C;
     }
 
-
-    // return x = A^-1 b, assuming A is square and has full rank
+    /**
+     * return x = A^-1 b, assuming A is square and has full rank
+     * @param rhs
+     * @return
+     */
     public Matrix solve(Matrix rhs) {
         if (M != N || rhs.M != N || rhs.N != 1)
             throw new RuntimeException("Illegal matrix dimensions.");

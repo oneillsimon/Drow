@@ -3,24 +3,24 @@ package drow.tables;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import sl.docx.DocxDocument;
 import drow.document.DrowPage;
 import drow.gui.InsertPanel;
+import drow.view.DocumentView;
 
-/**
- * <h1>TableListener</h1>
- * @author Lee Mc Donald
- */
 public class TableListener implements ActionListener {
 
 	final static int PAGE_WIDHT = DrowPage.WIDTH;
 	
 	private InsertPanel panel;
-	
-	public TableListener(InsertPanel panel) {
+	/**
+	 * <h1> </h1>
+	 * @param view
+	 * @param panel
+	 */
+	public TableListener(DocumentView view, InsertPanel panel) {
 		this.panel = panel;
 	}
-
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
@@ -28,12 +28,14 @@ public class TableListener implements ActionListener {
 		int c = panel.getTxtColumns().getValue();
 		initTable(r, c);
 	}
-	
+	/**
+	 * This method has been stripped down due to integration issues.
+	 * Tables are currently not working.
+	 * @param rows
+	 * @param cols
+	 */
 	private void initTable(int rows, int cols) {
-		//TableDocument doc = (TableDocument) docView.getDrowDocument().getFocusedPage().getStyledDocument();
-		@SuppressWarnings("unused")
-		DocxDocument tabledoc = new TableDocument();
-        
+		// DocxDocument tabledoc = new TableDocument();
         // figure out a the total width of the page then break it up.
         int[] colArray = new int[cols];
         int averageCol = PAGE_WIDHT / cols;
