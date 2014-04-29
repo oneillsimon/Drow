@@ -36,10 +36,10 @@ public class DocumentView extends JFrame {
 	public static boolean IS_IN_DEV_MODE = false;
 	
 	/** The document manager. */
-	private DrowDocumentManager docManager;
+	private DrowDocumentManager documentManager;
 	
 	/** The document. */
-	private DrowDocument doc;
+	private DrowDocument document;
 	
 	/** The GIU. */
 	private DrowGui gui;
@@ -52,13 +52,13 @@ public class DocumentView extends JFrame {
 		/** Sets up the FileFilters. */
 		Filters.setUp();
 		
-		doc = new DrowDocument();
+		document = new DrowDocument();
 		
-		docManager = new DrowDocumentManager(this);
+		documentManager = new DrowDocumentManager(this);
 		
 		gui = new DrowGui(this, new WordTabs(this));
 		
-		doc.addMouseListener(new MouseMenu(this));
+		document.addMouseListener(new MouseMenu(this));
 		
 		this.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 		this.setTitle("Drow Word");
@@ -70,16 +70,16 @@ public class DocumentView extends JFrame {
 			public void componentShown(ComponentEvent arg0) {
 				WINDOW_WIDTH = getWidth();
 				WINDOW_HEIGHT = getHeight();
-				doc.determinePageX();
-				doc.setPreferredSize(new Dimension(DrowPage.WIDTH, DrowDocument.BOTTOM_OF_LAST_PAGE));
+				document.determinePageX();
+				document.setPreferredSize(new Dimension(DrowPage.WIDTH, DrowDocument.BOTTOM_OF_LAST_PAGE));
 			}
 			
 			@Override
 			public void componentResized(ComponentEvent arg0) {
 				WINDOW_WIDTH = getWidth();
 				WINDOW_HEIGHT = getHeight();
-				doc.determinePageX();
-				doc.setPreferredSize(new Dimension(DrowPage.WIDTH, DrowDocument.BOTTOM_OF_LAST_PAGE));
+				document.determinePageX();
+				document.setPreferredSize(new Dimension(DrowPage.WIDTH, DrowDocument.BOTTOM_OF_LAST_PAGE));
 			}
 			
 			@Override
@@ -91,7 +91,7 @@ public class DocumentView extends JFrame {
 			}
 		});
 		
-		doc.determinePageX();
+		document.determinePageX();
 		
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
@@ -101,7 +101,7 @@ public class DocumentView extends JFrame {
 	 * @return DrowDocumentManager - The manager for the documents.
 	 */
 	public DrowDocumentManager getDrowDocumentManager() {
-		return docManager;
+		return documentManager;
 	}
 	
 	/**
@@ -109,7 +109,7 @@ public class DocumentView extends JFrame {
 	 * @return DrowDocument - The document in the view.
 	 */
 	public DrowDocument getDrowDocument() {
-		return doc;
+		return document;
 	}
 	
 	/**
