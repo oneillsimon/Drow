@@ -177,7 +177,7 @@ public class DrowIOActionManager {
 	 * @return - An abstract action to insert an image into the document.
 	 */
 	public Action insertImageAction() {
-		return new AbstractAction("", new ImageIcon("res/Developer.png")) {
+		return new AbstractAction("", new ImageIcon("res/buttonIcons/picture.gif")) {
 			private static final long serialVersionUID = 1L;
 
 			@Override

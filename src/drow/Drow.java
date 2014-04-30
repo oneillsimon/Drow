@@ -15,7 +15,7 @@ import drow.view.DocumentView;
  * @author Graham Wolfe
  * <p>
  * Abandon hope all ye who venture past this point,
- * for this be the land of undocumented libraries and Shitty Swing code.
+ * for this be the land of undocumented libraries and shitty Swing code.
  */
 public class Drow {
 	public static void main(String[] args) {
