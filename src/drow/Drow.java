@@ -9,13 +9,14 @@ import drow.view.DocumentView;
  * <p>
  * This is Drow, the basic word processor from Team Full-Duplex.
  * Coded in 3 months for our Team Project.
+ * <br><br>
+ * Abandon hope all ye who venture past this point,
+ * for this be the land of undocumented libraries and shitty Swing code.
  * <p>
  * @author Simon O'Neill
  * @author Lee Mc Donald
  * @author Graham Wolfe
- * <p>
- * Abandon hope all ye who venture past this point,
- * for this be the land of undocumented libraries and shitty Swing code.
+ * 
  */
 public class Drow {
 	public static void main(String[] args) {
