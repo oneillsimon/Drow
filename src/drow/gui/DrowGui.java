@@ -51,7 +51,6 @@ public class DrowGui {
 		
 		this.documentView.add(scrollPane, BorderLayout.CENTER);
 		this.documentView.add(tabbedPane, BorderLayout.NORTH);
-		this.documentView.getDrowDocument().add(this.documentView.getDrowDocument().newPage());
 	}
 	
 	/**
