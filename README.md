@@ -11,7 +11,9 @@ for this be the land of undocumented libraries and shitty Swing code.
 
 Authored by:
   [Simon O'Neill](https://github.com/oneillsimon)
+  
   [Lee Mc Donald](https://github.com/dartvader)
+  
   [Graham Wolfe](https://github.com/gwolfe)
   
 
