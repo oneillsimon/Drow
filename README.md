@@ -30,7 +30,7 @@ This is a student project, full of bugs an likely not to run.
 It is recommened you do not run at all, however if you choose to, there are some known problems.
 
 Known Issues
-===========
+============
 
   - Going fullscreen on Macs will likely cause the machine to freeze.
   - Word documents, although techinically supported, will be come courrupt if opened or saved in Drow.
