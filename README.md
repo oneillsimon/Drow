@@ -26,7 +26,7 @@ Disclaimer
  and anything else that you can think of. 
  Use it at your own risk."
 
-This is a student project, full of bugs an likely not to run.
+This is a student project, full of bugs and likely not to run.
 It is recommened you do not run at all, however if you choose to, there are some known problems.
 
 Known Issues
