@@ -37,7 +37,7 @@ public class FullScreenDocument extends JFrame {
 	private int pageIndex;
 	
 	/** The page to display in full screen. */
-	private DrowPage textPane;
+	private DrowPage fullscreenPage;
 	
 	/**
 	 * Inner class to invoke the full screen JFrame and handle keyboard input.
@@ -69,11 +69,11 @@ public class FullScreenDocument extends JFrame {
 					if(pageIndex > 0) {
 						pageIndex--;
 						try {
-							getContentPane().remove(textPane);
-							textPane = new DrowPage(0);
-							textPane.setEditable(false);
-							DrowDocumentHelper.mergeDocument(document.getPages().get(pageIndex).getStyledDocument(), textPane.getStyledDocument());
-							getContentPane().add(textPane);
+							getContentPane().remove(fullscreenPage);
+							fullscreenPage = new DrowPage(0);
+							fullscreenPage.setEditable(false);
+							DrowDocumentHelper.mergeDocument(document.getPages().get(pageIndex).getStyledDocument(), fullscreenPage.getStyledDocument());
+							getContentPane().add(fullscreenPage);
 							repaint();
 						} catch (BadLocationException e1) {
 						}
@@ -88,11 +88,11 @@ public class FullScreenDocument extends JFrame {
 					if(pageIndex < document.getPages().size() - 1) {
 						pageIndex++;
 						try {
-							getContentPane().remove(textPane);
-							textPane = new DrowPage(0);
-							textPane.setEditable(false);
-							DrowDocumentHelper.mergeDocument(document.getPages().get(pageIndex).getStyledDocument(), textPane.getStyledDocument());
-							getContentPane().add(textPane);
+							getContentPane().remove(fullscreenPage);
+							fullscreenPage = new DrowPage(0);
+							fullscreenPage.setEditable(false);
+							DrowDocumentHelper.mergeDocument(document.getPages().get(pageIndex).getStyledDocument(), fullscreenPage.getStyledDocument());
+							getContentPane().add(fullscreenPage);
 							repaint();
 						} catch (BadLocationException e1) {
 							e1.printStackTrace();
@@ -123,13 +123,13 @@ public class FullScreenDocument extends JFrame {
 		this.pageIndex = 0;
 		
 		try {
-			this.textPane = new DrowPage(0);
-			DrowDocumentHelper.mergeDocument(document.getPages().get(pageIndex).getStyledDocument(), textPane.getStyledDocument());
+			this.fullscreenPage = new DrowPage(0);
+			DrowDocumentHelper.mergeDocument(document.getPages().get(pageIndex).getStyledDocument(), fullscreenPage.getStyledDocument());
 		} catch (BadLocationException e) {
 			e.printStackTrace();
 		}
-		textPane.setEditable(false);
-		getContentPane().add(textPane);
+		fullscreenPage.setEditable(false);
+		getContentPane().add(fullscreenPage);
 		
 		/**
 		 * Set the frame to maximised and remove all decoration.
