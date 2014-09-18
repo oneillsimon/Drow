@@ -21,15 +21,15 @@ import javax.swing.text.View;
  */
 public class DrowHighlightPainter extends LayeredHighlighter.LayerPainter {
 
-	/** The color of the highlight. */
-	private Color color;
+	/** The colour of the highlight. */
+	private Color colour;
 	
 	/**
 	 * <h1>Constructor</h1>
-	 * @param color - The color of the highlight.
+	 * @param color - The colour of the highlight.
 	 */
-	public DrowHighlightPainter(Color color) {
-		this.color = color;
+	public DrowHighlightPainter(Color colour) {
+		this.colour = colour;
 	}
 	
 	@Override
@@ -42,7 +42,7 @@ public class DrowHighlightPainter extends LayeredHighlighter.LayerPainter {
 	 */
 	@Override
 	public Shape paintLayer(Graphics g, int offset0, int offset1, Shape bounds, JTextComponent component, View view) {
-		g.setColor(color);
+		g.setColor(colour);
 		
 		Rectangle rectangle = null;
 		
@@ -84,8 +84,8 @@ public class DrowHighlightPainter extends LayeredHighlighter.LayerPainter {
 		return rectangle;
 	}
 
-	public Color getColor() {
-		return color;
+	public Color getColour() {
+		return colour;
 	}
 
 }

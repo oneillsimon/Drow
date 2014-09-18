@@ -22,10 +22,10 @@ public class DrowHighlightManager {
 	/**
 	 * <h1>Constructor<h1>
 	 * @param textComp - The JTextComponent where the highlight will be drawn.
-	 * @param color - The color of the highlight.
+	 * @param colour - The colour of the highlight.
 	 */
-	public DrowHighlightManager(JTextComponent textComp, Color color) {
-		highlightPainter = new DrowHighlightPainter(color);
+	public DrowHighlightManager(JTextComponent textComp, Color colour) {
+		highlightPainter = new DrowHighlightPainter(colour);
 		highlighter = new DrowHighLighter(highlightPainter);
 		textComp.setHighlighter(highlighter);
 	}
@@ -44,10 +44,10 @@ public class DrowHighlightManager {
 	}
 
 	/**
-	 * Gets the color of the highlight.
-	 * @return Color - The color of the highlight.
+	 * Gets the colour of the highlight.
+	 * @return Color - The colour of the highlight.
 	 */
-	public Color getColor() {
-		return highlightPainter.getColor();
+	public Color getColour() {
+		return highlightPainter.getColour();
 	}
 }

@@ -7,7 +7,7 @@ import javax.swing.event.CaretListener;
  * <h1>DrowCaretListener</h1>
  * <p>
  * This class is used as a wrapper for CaretListener functions
- * * <p>
+ * <p>
  * @author Simon O'Neill
  * <p>
  */

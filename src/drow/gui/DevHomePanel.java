@@ -73,6 +73,5 @@ public class DevHomePanel extends JPanel {
 		add(btnNew);
 		add(btnSave);
 		add(btnDev);
-
 	}
 }

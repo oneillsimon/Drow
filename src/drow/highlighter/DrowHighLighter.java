@@ -13,7 +13,7 @@ import javax.swing.text.DefaultHighlighter;
  */
 public class DrowHighLighter extends DefaultHighlighter {
 	
-	/** The Onject that will create and paint the highlight. */
+	/** The Object that will create and paint the highlight. */
 	private DrowHighlightPainter highlightPainter;
 	
 	/**
@@ -28,7 +28,7 @@ public class DrowHighLighter extends DefaultHighlighter {
 	 * Adds the highlight to the JTextComponent.
 	 * @param offset - Where to start the highlight in the JTextComponent.
 	 * @param length - The length of the highlight.
-	 * @return - an object that can be used as a tag to refer to the highlight.
+	 * @return Object - an object that can be used as a tag to refer to the highlight.
 	 * @throws BadLocationException
 	 */
 	public Object addHighlight(int offset, int length) throws BadLocationException {

@@ -83,7 +83,7 @@ public class DrowDocument extends JPanel {
 	
 	/**
 	 * Gets the list of pages.
-	 * @return ArrayList<DrowPage> - the list of pages in the document.
+	 * @return ArrayList<<a>DrowPage> - the list of pages in the document.
 	 */
 	public ArrayList<DrowPage> getPages() {
 		return pages;

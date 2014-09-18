@@ -66,7 +66,7 @@ public class DictionaryListener implements DocumentListener, CaretListener {
 	        	length = l;
 	        	}
 	        public void run() {
-	        	actionManager.styleText(textPane, DrowStyles.applyStyleForegroundColor(highlightManager.getColor()), offset, length);
+	        	actionManager.styleText(textPane, DrowStyles.applyStyleForegroundColor(highlightManager.getColour()), offset, length);
 	        }
 	    }
 	    Thread t = new Thread(new OneShotTask(offset, length));

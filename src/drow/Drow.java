@@ -27,6 +27,8 @@ public class Drow {
 			System.out.println(e.getStackTrace() + "\n");
 			System.out.println(e.getCause());
 		}
+		
+		// Let the fun begin!
 		new DocumentView();
 	}
 }

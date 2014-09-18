@@ -38,15 +38,13 @@ public class DrowPage extends JTextPane {
 	/** The height of the page. */
 	public static int HEIGHT;
 	
-	/** The bottom of the latest page. */
+	/** The bottom of the last page. */
 	public static int BOTTOM_OF_LAST;
 	
 	/** The stlyeContext of the page. */
 	private StyleContext styleContext;
 	
-	/** The styledDocument of the page.
-	 * This looks after the various styles applied to the page.
-	 */
+	/** The styledDocument of the page. This looks after the various styles applied to the page. */
     private DocxDocument styledDocument;
 	
     /** The listener that will check word spelling. */
@@ -60,7 +58,7 @@ public class DrowPage extends JTextPane {
 	
 	/**
 	 * <h1>Default Constructor</h1>
-	 * Creates an empty page which can be used logically but will never be styled of displayed.
+	 * Creates an empty page which can be used logically but will never be styled or displayed.
 	 */
 	public DrowPage() {
 		setPageDimensions(PageDimensions.A4);
