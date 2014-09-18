@@ -56,7 +56,7 @@ public class DevHomePanel extends JPanel {
 		
 		btnSave.setAction(ioActionManager.saveAction());
 		btnOpen.setAction(ioActionManager.openAction());
-		btnNew.setAction(ioActionManager.newAction());
+		btnNew.setAction(ioActionManager.newPageAction());
 		btnDev.setAction(ioActionManager.wordModeAction());
 		
 		InputMap inputMap = btnSave.getInputMap(JButton.WHEN_IN_FOCUSED_WINDOW);

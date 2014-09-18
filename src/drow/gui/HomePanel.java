@@ -131,7 +131,7 @@ public class HomePanel extends JPanel {
 		
 		btnSave.setAction(ioActionManager.saveAction());
 		btnOpen.setAction(ioActionManager.openAction());
-		btnNew.setAction(ioActionManager.newAction());
+		btnNew.setAction(ioActionManager.newPageAction());
 		btnFullScreen.setAction(ioActionManager.fullScreenAction());
 		btnBullet.setAction(styleActionManager.addBulletPoint());
 		btnBold.setAction(styleActionManager.boldAction());

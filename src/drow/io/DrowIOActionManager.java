@@ -92,7 +92,7 @@ public class DrowIOActionManager {
 	 * Action for creating a new page in the document.
 	 * @return - An abstract action for inserting a new page into the document.
 	 */
-	public Action newAction() {
+	public Action newPageAction() {
 		return new AbstractAction("New", new ImageIcon("res/buttonIcons/new.gif")) {
 			
 			private static final long serialVersionUID = 1L;
