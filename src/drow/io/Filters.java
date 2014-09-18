@@ -13,16 +13,16 @@ import javax.swing.JFileChooser;
 public class Filters {
 	
 	/** DrowFileFilter for .docx files. */
-	public static DrowFileFilter DOCX = new DrowFileFilter("docx", "Microsoft Word 2007/2010");
+	public static DrowFileFilter DOCX = new DrowFileFilter("docx", "Microsoft Word 2007/2010 Document");
 	
 	/** DrowFileFilter for .txt files. */
-	public static DrowFileFilter TXT = new DrowFileFilter("txt", "Text");
+	public static DrowFileFilter TXT = new DrowFileFilter("txt", "Plain Text File");
 	
 	/** DrowFileFilter for .rtf files. */
 	public static DrowFileFilter RTF = new DrowFileFilter("rtf", "Rich Text Format");
 	
 	/** DrowFileFilter for .drow files. */
-	public static DrowFileFilter DROW = new DrowFileFilter("drow", "Drow word file");
+	public static DrowFileFilter DROW = new DrowFileFilter("drow", "Drow worD Document");
 	
 	/** A list of all the extensions. */
 	private static ArrayList<DrowFileFilter> extensions = new ArrayList<DrowFileFilter>();
