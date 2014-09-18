@@ -38,7 +38,7 @@ public class Filters {
 	/**
 	 * Gets a FileFilter based on a String.
 	 * @param s - The String containing a file filter
-	 * @return DrowFileFilter - The Filter matching the passed in String, if no match is found return the FileFilter for plaintext.
+	 * @return DrowFileFilter - The Filter matching the passed in String, if no match is found return the FileFilter for Plain Text.
 	 */
 	public static DrowFileFilter getFilterFromString(String s) {
 		for(int i = 0; i < extensions.size(); i++) {
@@ -53,7 +53,7 @@ public class Filters {
 	/**
 	 * Checks if a string has a matching FileFilter.
 	 * @param s - The String containing the FileFilter.
-	 * @return boolean - True if the String has a corresponding FileFilter, false if it doesn't.
+	 * @return boolean - true if the String has a corresponding FileFilter, false if it doesn't.
 	 */
 	public static boolean isStringFileFilter(String s) {
 		for(int i = 0; i < extensions.size(); i++) {
@@ -77,7 +77,7 @@ public class Filters {
 
 	/**
 	 * Gets the ArrayList of FileFilters.
-	 * @return ArrayList<DrowFileFilter> - The list of FileFilters.
+	 * @return ArrayList<<a>DrowFileFilter> - The list of FileFilters.
 	 */
 	public static ArrayList<DrowFileFilter> getExtensions() {
 		return extensions;

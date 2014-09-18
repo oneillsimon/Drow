@@ -56,15 +56,15 @@ public class DrowStyles {
 	/** Style context for subscript. */
 	private static Style styleSubscript		  = styleContext.addStyle("", null);
 	
-	/** Style context for font color. */
+	/** Style context for font colour. */
 	private static Style styleForegroundColor = styleContext.addStyle("", null);
 	
-	/** Style context for font highlight color. */
+	/** Style context for font highlight colour. */
 	private static Style styleBackgroundColor = styleContext.addStyle("", null);
 	
 	/**
 	 * Apply font family style to text.
-	 * @param s - The text to apply the style to.
+	 * @param s - The font family name.
 	 * @return - The style.
 	 */
 	public static Style applyStyleFontFamily(String s) {
@@ -76,7 +76,7 @@ public class DrowStyles {
 	
 	/**
 	 * Apply font size style to text.
-	 * @param s - The text to apply the style to.
+	 * @param i - The the size of the font.
 	 * @return - The style.
 	 */
 	public static Style applyStyleFontSize(int i) {
@@ -88,7 +88,7 @@ public class DrowStyles {
 	
 	/**
 	 * Apply left indent style to text.
-	 * @param s - The text to apply the style to.
+	 * @param f - the indent amount.
 	 * @return - The style.
 	 */
 	public static Style applyStyleLeftIndent(float f) {
@@ -100,7 +100,7 @@ public class DrowStyles {
 	
 	/**
 	 * Apply right indent style to text.
-	 * @param s - The text to apply the style to.
+	 * @param f - the indent amount.
 	 * @return - The style.
 	 */
 	public static Style applyStyleRightIndent(float f) {
@@ -112,7 +112,7 @@ public class DrowStyles {
 	
 	/**
 	 * Apply first line indent style to text.
-	 * @param s - The text to apply the style to.
+	 * @param f - the indent amount.
 	 * @return - The style.
 	 */
 	public static Style applyStyleFirstLineIndent(float f) {
@@ -124,7 +124,7 @@ public class DrowStyles {
 	
 	/**
 	 * Apply space above style to text.
-	 * @param s - The text to apply the style to.
+	 * @param f - the indent amount.
 	 * @return - The style.
 	 */
 	public static Style applyStyleSpaceAbove(float f) {
@@ -136,7 +136,7 @@ public class DrowStyles {
 	
 	/**
 	 * Apply space below style to text.
-	 * @param s - The text to apply the style to.
+	 * @param f - the indent amount.
 	 * @return - The style.
 	 */
 	public static Style applyStyleSpaceBelow(float f) {
@@ -148,7 +148,6 @@ public class DrowStyles {
 	
 	/**
 	 * Apply bold style to text.
-	 * @param s - The text to apply the style to.
 	 * @return - The style.
 	 */
 	public static Style applyStyleBold() {
@@ -160,7 +159,6 @@ public class DrowStyles {
 	
 	/**
 	 * Apply italic style to text.
-	 * @param s - The text to apply the style to.
 	 * @return - The style.
 	 */
 	public static Style applyStyleItalic() {
@@ -172,7 +170,6 @@ public class DrowStyles {
 	
 	/**
 	 * Apply underline style to text.
-	 * @param s - The text to apply the style to.
 	 * @return - The style.
 	 */
 	public static Style applyStyleUnderline() {
@@ -184,7 +181,6 @@ public class DrowStyles {
 	
 	/**
 	 * Apply strike through style to text.
-	 * @param s - The text to apply the style to.
 	 * @return - The style.
 	 */
 	public static Style applyStyleStrikeThrough() {
@@ -196,7 +192,6 @@ public class DrowStyles {
 	
 	/**
 	 * Apply superscript style to text.
-	 * @param s - The text to apply the style to.
 	 * @return - The style.
 	 */
 	public static Style applyStyleSuperScript() {
@@ -208,7 +203,6 @@ public class DrowStyles {
 	
 	/**
 	 * Apply subscript style to text.
-	 * @param s - The text to apply the style to.
 	 * @return - The style.
 	 */
 	public static Style applyStyleSubScript() {
@@ -219,8 +213,8 @@ public class DrowStyles {
 	}
 	
 	/**
-	 * Apply font color to text.
-	 * @param s - The text to apply the style to.
+	 * Apply font colour to text.
+	 * @param c - The colour for the foreground.
 	 * @return - The style.
 	 */
 	public static Style applyStyleForegroundColor(Color c) {
@@ -231,8 +225,8 @@ public class DrowStyles {
 	}
 	
 	/**
-	 * Apply highlight color to text.
-	 * @param s - The text to apply the style to.
+	 * Apply highlight colour to text.
+	 * @param c - The colour for the background.
 	 * @return - The style.
 	 */
 	public static Style applyStyleBackgroundColor(Color c) {

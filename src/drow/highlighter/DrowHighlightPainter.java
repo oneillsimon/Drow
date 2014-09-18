@@ -87,5 +87,4 @@ public class DrowHighlightPainter extends LayeredHighlighter.LayerPainter {
 	public Color getColour() {
 		return colour;
 	}
-
 }

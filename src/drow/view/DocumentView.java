@@ -41,7 +41,7 @@ public class DocumentView extends JFrame {
 	/** The document. */
 	private DrowDocument document;
 	
-	/** The GIU. */
+	/** The GUI. */
 	private DrowGui gui;
 
 	/**

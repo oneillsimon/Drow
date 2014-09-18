@@ -30,7 +30,7 @@ public class DrowGui {
 	/**
 	 * <h1>Constructor</h1>
 	 * This constructor sets the JFrame title and icon image,
-	 * It also sets the document view layout to null so we can position the document with
+	 * it also sets the document view layout to null so we can position the document with
 	 * absolute coordinates.
 	 * @param documentView - The view containing the document.
 	 * @param tabbedPane - The JTabbedPane containing the panels.

@@ -182,7 +182,7 @@ public class DrowPage extends JTextPane {
 	
 	/**
 	 * Adds the listeners for word processing, and a dictionary listener
-	 * based on an English Dictionary.
+	 * based on an British English Dictionary.
 	 */
 	public void addWordListeners() {
 		caretListener = new DrowCaretListener();

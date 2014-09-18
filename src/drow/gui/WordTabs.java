@@ -1,5 +1,9 @@
 package drow.gui;
 
+import javax.swing.JTabbedPane;
+
+import drow.view.DocumentView;
+
 /**
  * <h1>WordTabs</h1>
  * This class contains the JTabbedPane to be used while in word mode.
@@ -8,10 +12,6 @@ package drow.gui;
  * @author Graham Wolfe
  * <p>
  */
-import javax.swing.JTabbedPane;
-
-import drow.view.DocumentView;
-
 public class WordTabs extends JTabbedPane {
 
 	private static final long serialVersionUID = 1L;

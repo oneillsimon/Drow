@@ -30,7 +30,7 @@ public class PageCollection implements Serializable {
 	
 	/**
 	 * Gets the pages in the collection.
-	 * @return ArrayList<DrowPage> - The list of pages in the collection.
+	 * @return ArrayList<<a>DrowPage> - The list of pages in the collection.
 	 */
 	public ArrayList<StyledDocument> getPages() {
 		return pages;

@@ -62,8 +62,6 @@ public class InsertPanel extends JPanel {
 		btnImage.setBounds(323, 11, 33, 31);
 		actionManager = new DrowIOActionManager(documentView);
 		
-		//tableListener = new TableListener(this);
-		
 		btnInsert = new JButton("Insert");
 		btnInsert.setBounds(168, 9, 61, 33);
 		btnInsert.setActionCommand("insert");

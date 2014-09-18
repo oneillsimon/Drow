@@ -80,7 +80,7 @@ public class Exporter {
 	}
 
 	/**
-	 * Exports the file as a ".docx".
+	 * Exports the file as a ".docx" file.
 	 * @param fileName - The name of the file.
 	 */
 	private void asDocx(String fileName) {

@@ -39,6 +39,7 @@ import drow.view.DocumentView;
  * <br>-Font Size.
  * <p>
  * @author Graham Wolfe
+ * @author Simon O'Neill
  * <p>
  */
 public class HomePanel extends JPanel {

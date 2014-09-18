@@ -15,7 +15,7 @@ import drow.view.DocumentView;
 public class DeveloperTabs extends JTabbedPane {
 
 	private static final long serialVersionUID = 1L;
-
+	
 	/**
 	 * <h1>Constructor</h1>
 	 * @param documentView - The document view containing the document.

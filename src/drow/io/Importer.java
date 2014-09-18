@@ -39,7 +39,7 @@ public class Importer {
 	
 	/**
 	 * Imports the file.
-	 * The file filter will dictate how the file is exported.
+	 * The file filter will dictate how the file is imported.
 	 * @param fileName - The name of the file.
 	 * @param fileFilter - The filter of the file which will determine the method of importing.
 	 */
@@ -69,7 +69,7 @@ public class Importer {
 	}
 
 	/**
-	 * Imports the file as a ".docx".
+	 * Imports the file as a ".docx" file.
 	 * @param fileName - The name of the file.
 	 */
 	private void asDocx(String fileName) {
@@ -90,7 +90,7 @@ public class Importer {
 	}
 
 	/**
-	 * Imports the file as plain text.
+	 * Imports the file as a plain text file.
 	 * @param fileName - The name of the file.
 	 */
 	private void asTxt(String fileName) {
@@ -129,7 +129,7 @@ public class Importer {
 	}
 	
 	/**
-	 * Imports the file as a Drow file.
+	 * Imports the file as a .drow file.
 	 * @param fileName - The name of the file.
 	 */
 	private void asDrow(String fileName) {

@@ -41,7 +41,6 @@ public class FullScreenDocument extends JFrame {
 	
 	/**
 	 * Inner class to invoke the full screen JFrame and handle keyboard input.
-	 *
 	 */
 	private class KeyDispatcher implements KeyEventDispatcher {
 

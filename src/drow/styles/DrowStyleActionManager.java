@@ -211,7 +211,7 @@ public class DrowStyleActionManager {
 		};
 	}
 	
-	/** Action for changing font color. */
+	/** Action for changing font colour. */
 	public Action foregroundColorAction() {
 		return new AbstractAction("", new ImageIcon("res/buttonIcons/fontcolour.png")) {
 			private static final long serialVersionUID = 1L;
@@ -232,7 +232,7 @@ public class DrowStyleActionManager {
 		};
 	}
 	
-	/** Action for changing font highlight color. */
+	/** Action for changing font highlight colour. */
 	public Action backgroundColorAction() {
 		return new AbstractAction("", new ImageIcon("res/buttonIcons/fonthighlight.png")) {
 			private static final long serialVersionUID = 1L;
@@ -267,7 +267,7 @@ public class DrowStyleActionManager {
 		};
 	}
 	
-	/** Action for justifying text center. */
+	/** Action for justifying text centre. */
 	public Action justifyCenterAction() {
 		return new AbstractAction("", new ImageIcon("res/buttonIcons/align_centre.png")) {
 			private static final long serialVersionUID = 1L;

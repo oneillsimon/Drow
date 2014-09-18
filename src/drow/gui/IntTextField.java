@@ -17,4 +17,4 @@ public class IntTextField extends JTextField {
 			return 0;
 		}
 	}
-}	
+}
