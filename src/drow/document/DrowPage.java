@@ -199,7 +199,7 @@ public class DrowPage extends JTextPane {
 		caretListener = new DrowCaretListener();
 		addCaretListener(caretListener);
 		
-		dictionaryListener = new DictionaryListener(this, "/dev/java.txt", "word", Color.cyan);
+		dictionaryListener = new DictionaryListener(this, "/dev/java.txt", DictionaryListener.HIGHLIGHT_WORD, Color.cyan);
 		styledDocument.addDocumentListener(dictionaryListener);
 	}
 }

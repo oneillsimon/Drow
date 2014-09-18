@@ -27,6 +27,9 @@ import drow.styles.DrowStyles;
  */
 public class DictionaryListener implements DocumentListener, CaretListener {
 
+	public static final String HIGHLIGHT_UNDERLINE = "underline";
+	public static final String HIGHLIGHT_WORD = "word";
+	
 	/** The dictionary containing the words. */
 	private Dictionary dictionary;
 	
@@ -63,7 +66,7 @@ public class DictionaryListener implements DocumentListener, CaretListener {
 	 * @param fileName - The file name of the dictionary to query.
 	 */
 	public DictionaryListener(JTextPane textPane, String fileName) {
-		this(textPane, fileName, "underline", Color.red);
+		this(textPane, fileName, DictionaryListener.HIGHLIGHT_UNDERLINE, Color.red);
 	}
 	
 	/**
@@ -163,13 +166,13 @@ public class DictionaryListener implements DocumentListener, CaretListener {
 			word = word.replaceAll("[\\W]|_", "");
 			wordEnd = wordStart + word.length() - 1;
 			
-			if(highlightWhat.equals("underline")) {
+			if(highlightWhat.equals(DictionaryListener.HIGHLIGHT_UNDERLINE)) {
 				if(!dictionary.isWord(word) && !word.equals("")) {
 					highlightManager.highlight(wordStart, wordEnd - wordStart + 1);
 				}
 			}
 			
-			if(highlightWhat.equals("word")) {
+			if(highlightWhat.equals(DictionaryListener.HIGHLIGHT_WORD)) {
 				if(dictionary.isWord(word)) {
 					int offset = wordStart;
 					int length = (wordEnd - wordStart + 1);
