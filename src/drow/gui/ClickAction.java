@@ -12,17 +12,17 @@ import javax.swing.JButton;
  * @author Graham Wolfe
  * <p>
  */
-	public class ClickAction extends AbstractAction {
-		
-		private static final long serialVersionUID = 1L;
-		
-		private JButton button;
+public class ClickAction extends AbstractAction {
+	
+	private static final long serialVersionUID = 1L;
+	
+	private JButton button;
 
-		public ClickAction(JButton button) {
-		    this.button = button;
-		}
-
-		public void actionPerformed(ActionEvent e) {
-		    button.doClick();
-		}
+	public ClickAction(JButton button) {
+	    this.button = button;
 	}
+
+	public void actionPerformed(ActionEvent e) {
+	    button.doClick();
+	}
+}
